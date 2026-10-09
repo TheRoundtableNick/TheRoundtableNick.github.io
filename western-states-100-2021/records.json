@@ -1,0 +1,102 @@
+{
+ "men": {
+  "name": "Vincent Bouillard",
+  "sex": "m",
+  "year": 2026,
+  "seconds": 49575,
+  "time": "13:46:15"
+ },
+ "women": {
+  "name": "Jennifer Lichter",
+  "sex": "f",
+  "year": 2026,
+  "seconds": 55685,
+  "time": "15:28:05"
+ },
+ "top10": [
+  {
+   "name": "Vincent Bouillard",
+   "sex": "m",
+   "year": 2026,
+   "seconds": 49575,
+   "time": "13:46:15"
+  },
+  {
+   "name": "Francesco Puppi",
+   "sex": "m",
+   "year": 2026,
+   "seconds": 49868,
+   "time": "13:51:08"
+  },
+  {
+   "name": "Ryan Montgomery",
+   "sex": "m",
+   "year": 2026,
+   "seconds": 50035,
+   "time": "13:53:55"
+  },
+  {
+   "name": "Thomas Cardin",
+   "sex": "m",
+   "year": 2026,
+   "seconds": 50878,
+   "time": "14:07:58"
+  },
+  {
+   "name": "Jim Walmsley",
+   "sex": "m",
+   "year": 2019,
+   "seconds": 50968,
+   "time": "14:09:28"
+  },
+  {
+   "name": "Caleb Olson",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 51085,
+   "time": "14:11:25"
+  },
+  {
+   "name": "Jim Walmsley",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 51225,
+   "time": "14:13:45"
+  },
+  {
+   "name": "Chris Myers",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 51459,
+   "time": "14:17:39"
+  },
+  {
+   "name": "Kilian Jornet",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 51562,
+   "time": "14:19:22"
+  },
+  {
+   "name": "Zach Miller",
+   "sex": "m",
+   "year": 2026,
+   "seconds": 51609,
+   "time": "14:20:09"
+  }
+ ],
+ "years_parsed": [
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "generated": "fastest finishes in 2015-2026 as published by the race"
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact — UltraRunTrack</title>
+<meta name="description" content="Reach UltraRunTrack: race directors, timing partners, data requests, corrections.">
+<link rel="canonical" href="https://ultraruntrack.com/contact.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/urt.css">
+<style>
+.cw{max-width:660px;margin:0 auto;padding:0 20px 90px}
+.chead{padding:46px 0 6px}
+.chead h1{font-family:var(--display);font-size:clamp(30px,5vw,50px);line-height:1.04;
+  letter-spacing:-.035em;margin:0 0 12px}
+.chead p{font-size:16.5px;color:var(--ink-2);line-height:1.55;max-width:56ch;margin:0}
+.cform{display:grid;gap:11px;margin:30px 0 8px}
+.cform input,.cform textarea,.cform select{background:var(--panel);
+  border:1px solid var(--line-2,#ddd2c2);border-radius:10px;padding:12px 14px;font:inherit;
+  font-size:15px;color:var(--ink);width:100%;box-sizing:border-box}
+.cform input:focus,.cform textarea:focus,.cform select:focus{
+  outline:2px solid var(--acc-bright,#ff7a1a);outline-offset:1px}
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.chp{position:absolute;left:-9999px;width:1px;height:1px}
+.crow2{display:flex;gap:13px;align-items:center;flex-wrap:wrap;margin-top:3px}
+.cform button{background:var(--acc-bright,#ff7a1a);color:#141d26;border:0;border-radius:10px;
+  padding:13px 26px;font:inherit;font-size:15.5px;font-weight:700;cursor:pointer}
+.cform button:disabled{opacity:.6;cursor:default}
+.cmsg{font-size:13.5px;color:var(--ink-2)}
+.cnote{font-size:13px;color:var(--ink-3);margin:26px 0 0;line-height:1.6}
+.cdone{font-size:17px;color:var(--ink);line-height:1.5}
+@media(max-width:560px){.crow{grid-template-columns:1fr}}
+</style></head><body>
+<header><div style="max-width:660px;margin:0 auto;padding:16px 20px;display:flex;
+  align-items:center;justify-content:space-between;gap:14px">
+  <a class="logo" href="/" style="font-weight:800;font-size:15px">ULTRA<i>RUN</i>TRACK</a>
+  <div id="urt-search"></div>
+</div></header>
+
+<div class="cw">
+  <div class="chead">
+    <span class="factlabel">Contact</span>
+    <h1>Tell us about your race.</h1>
+    <p>We can track any race that publishes split times at official checkpoints. Tracking is
+      free and always will be. This also reaches us for corrections, data requests and anything
+      else &mdash; we read every one.</p>
+  </div>
+
+  <form class="cform" id="cform" novalidate>
+    <div class="crow">
+      <input name="name" placeholder="Your name" aria-label="Your name" autocomplete="name">
+      <input name="email" type="email" placeholder="Your email" aria-label="Your email"
+             autocomplete="email" required>
+    </div>
+    <select name="subject" aria-label="What is this about">
+      <option value="Race tracking request">I put on a race, or handle its timing</option>
+      <option value="Correction">Something on the site is wrong</option>
+      <option value="Data request">A data request &mdash; access or removal</option>
+      <option value="Sponsorship">Sponsorship</option>
+      <option value="Something else">Something else</option>
+    </select>
+    <input name="race" placeholder="Which race? (if it is about one)" aria-label="Which race">
+    <textarea name="message" rows="5" required aria-label="Message"
+      placeholder="If it is about a race: where its results are published, and roughly how many start."></textarea>
+    <!-- honeypot: never seen by a person, filled in by bots -->
+    <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="chp">
+    <div class="crow2">
+      <button type="submit">Send it</button>
+      <span class="cmsg" id="cmsg"></span>
+    </div>
+  </form>
+
+  <p class="cnote">Your message is stored and forwarded to a real person. We do not add you to
+    any list, and the address you give is used only to reply.</p>
+</div>
+
+<script>
+/* The site previously offered only mailto:hello@ultraruntrack.com, which answers
+   554 Relay access denied — every message sent to it bounced, including the data-removal
+   route named in the privacy policy. This form posts to /api/contact, which stores the
+   message before it tries to send, so nothing is lost if mail fails. */
+(function(){
+  var f=document.getElementById('cform'); if(!f) return;
+  var msg=document.getElementById('cmsg');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=f.querySelector('button'), d={};
+    ['name','email','race','subject','message','website'].forEach(function(k){
+      var el=f.querySelector('[name="'+k+'"]'); d[k]=el?el.value.trim():'';
+    });
+    if(d.message.length<10){ msg.textContent='Tell us a little more.'; return; }
+    if(!/^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(d.email)){
+      msg.textContent='We need an email to reply to.'; return; }
+    b.disabled=true; msg.textContent='Sending…';
+    fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(d)})
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(j&&j.ok){
+          f.innerHTML='<p class="cdone">Got it. It is with a real person now, and you will '
+            +'hear back on '+(d.email?d.email.replace(/[<>&]/g,''):'the address you gave')+'.</p>';
+          msg.textContent='';
+        } else {
+          b.disabled=false;
+          msg.textContent=(j&&j.error)||'That did not go through. Try again in a moment.';
+        }
+      })
+      .catch(function(){
+        b.disabled=false;
+        msg.textContent='That did not go through. Try again in a moment.';
+      });
+  });
+}());
+</script>
+<script src="/s/search.js" defer></script>
+<script src="/urt.js" defer></script>
+</body></html>

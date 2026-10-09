@@ -1,0 +1,386 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Upcoming ultramarathons — UltraRunTrack</title>
+<meta name="description" content="Every ultramarathon we know is coming, with the ones we can track live marked. Ultras on foot only. Free, no account.">
+<link rel="canonical" href="https://ultraruntrack.com/upcoming/">
+<meta name="theme-color" content="#f7f2ea">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/urt.css">
+<style>
+.uw{max-width:940px;margin:0 auto;padding:0 20px 90px}
+.uhead{padding:46px 0 4px}
+.uhead h1{font-family:var(--display);font-size:clamp(30px,5vw,52px);line-height:1.03;
+  letter-spacing:-.035em;margin:0 0 10px}
+.uhead p{font-size:16px;color:var(--ink-2);max-width:64ch;margin:0}
+.umonth{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;
+  color:var(--ink-3);margin:30px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.urow{display:grid;grid-template-columns:74px 92px 1fr auto;gap:16px;align-items:center;
+  padding:14px 0;border-bottom:1px solid var(--line)}
+/* rows whose source carries no banner keep the same columns, so nothing shifts left */
+.urow>.uthumb{width:92px;height:52px;object-fit:cover;border-radius:7px;grid-column:2;
+  background:var(--panel)}
+.urow>div:not(.udate){grid-column:3}
+.urow>.utag{grid-column:4}
+.urow:hover{background:#fdf6ec}
+.udate{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+.uname{font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.3}
+.umeta{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-top:3px}
+.utag{font-family:var(--mono);font-size:9.5px;letter-spacing:1.1px;text-transform:uppercase;
+  padding:4px 9px;border-radius:999px;white-space:nowrap}
+.utag.can{background:rgba(255,122,26,.1);color:var(--acc)}
+.utag.list{background:var(--panel);border:1px solid var(--line-2);color:var(--ink-3)}
+.unote{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--acc-bright);
+  border-radius:10px;padding:14px 16px;font-size:13.5px;color:var(--ink-2);margin:26px 0 0}
+@media (max-width:640px){
+  .urow{grid-template-columns:64px 1fr auto;gap:10px}
+  .udate{grid-column:1/-1;font-size:11.5px}
+  .urow>.uthumb{width:64px;height:40px;grid-column:1}
+  .urow>div:not(.udate){grid-column:2}
+  .urow>.utag{grid-column:3}
+}
+
+/* urt-nav: the same five destinations on every page. Before this, /vs/ and proof.html had no
+   navigation at all and the upcoming schedule was unreachable from anywhere. */
+.urtnav{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.urtnav a{font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.7px;
+  text-transform:uppercase;text-decoration:none;padding:7px 11px;border-radius:8px;
+  color:var(--ink-2,#4d463f);white-space:nowrap;transition:background .16s ease,color .16s ease}
+.urtnav a:hover{background:rgba(255,122,26,.1);color:var(--acc,#a83a06)}
+.urtnav a[aria-current="page"]{color:var(--acc,#a83a06);background:rgba(255,122,26,.09)}
+@media (max-width:760px){
+  .urtnav{gap:0}
+  .urtnav a{padding:6px 8px;font-size:10px}
+}
+
+/* Linked rows read as clickable; unlinked ones deliberately do not, so the affordance is
+   honest about which races we can actually send you to. */
+a.urow-link{text-decoration:none;color:inherit;transition:background .14s ease}
+a.urow-link:hover{background:#fdf6ec}
+a.urow-link:hover .uname{color:var(--acc)}
+.ugo{font-style:normal;font-size:11px;color:var(--ink-3);margin-left:7px;vertical-align:2px}
+a.urow-link:hover .ugo{color:var(--acc)}
+
+/* Facets, not a search box. Every option carries its own count and the counts update as the
+   others narrow, so the page never offers a filter that returns nothing. */
+.ufilters{margin:26px 0 8px;display:grid;gap:12px}
+.urow1{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#uf-q{flex:1 1 260px;min-width:0;background:var(--panel);border:1px solid var(--line-2,#ddd2c2);
+  border-radius:10px;padding:11px 14px;font:inherit;font-size:14.5px;color:var(--ink)}
+#uf-q:focus{outline:2px solid var(--acc-bright,#ff7a1a);outline-offset:1px}
+.uftrack{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-2);
+  white-space:nowrap;cursor:pointer}
+#uf-clear{background:none;border:1px solid var(--line-2,#ddd2c2);border-radius:9px;
+  padding:8px 13px;font:inherit;font-size:12.5px;color:var(--ink-2);cursor:pointer}
+#uf-clear:hover{border-color:var(--acc);color:var(--acc)}
+.ufchips{display:flex;gap:7px;flex-wrap:wrap}
+.ufchips button{background:none;border:1px solid var(--line-2,#ddd2c2);border-radius:999px;
+  padding:7px 13px;font-family:var(--mono);font-size:10.5px;letter-spacing:.6px;
+  text-transform:uppercase;color:var(--ink-2);cursor:pointer;white-space:nowrap;
+  transition:background .14s ease,border-color .14s ease,color .14s ease}
+.ufchips button:hover:not(:disabled){border-color:var(--acc);color:var(--acc)}
+.ufchips button[aria-pressed="true"]{background:var(--acc-bright,#ff7a1a);
+  border-color:var(--acc-bright,#ff7a1a);color:#141d26;font-weight:700}
+.ufchips button:disabled{opacity:.34;cursor:default}
+.ufchips button i{font-style:normal;opacity:.6;margin-left:5px}
+.urow2{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.urow2 select{background:var(--panel);border:1px solid var(--line-2,#ddd2c2);border-radius:9px;
+  padding:9px 11px;font:inherit;font-size:13px;color:var(--ink);max-width:230px}
+.ufcount{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.7px;
+  color:var(--ink-3)}
+.unone{padding:34px 0;color:var(--ink-2);font-size:15px}
+@media(max-width:640px){.ufcount{margin-left:0;width:100%}}
+
+/* The RD ask. Deliberately quiet: 231 of these on one page, and the page's job is still to
+   answer "what is coming". It reveals itself on hover/focus of its own chip. */
+.urd-pitch{cursor:pointer;position:relative}
+.urd-ask{position:absolute;left:50%;transform:translateX(-50%);top:100%;
+  font-style:normal;font-size:9.5px;letter-spacing:.4px;text-transform:none;
+  opacity:0;transition:opacity .12s;margin-top:3px;pointer-events:none;
+  color:var(--acc,#a83a06);white-space:nowrap}
+.urd-pitch:hover .urd-ask,.urd-pitch:focus .urd-ask,
+.urow:hover .urd-ask{opacity:1}
+.urd-pitch:focus{outline:2px solid var(--acc-bright,#ff7a1a);outline-offset:2px}
+.urd-inline{color:var(--acc,#a83a06);text-decoration:underline;text-underline-offset:2px}
+</style></head><body>
+<header><div style="max-width:940px;margin:0 auto;padding:16px 20px;display:flex;
+  align-items:center;justify-content:space-between;gap:14px">
+  <a class="logo" href="/" style="font-weight:800;font-size:15px">ULTRA<i>RUN</i>TRACK</a>
+  <div id="urt-search"></div>
+</div></header>
+<div class="urtnavbar"><div style="max-width:1180px;margin:0 auto;padding:0 20px 10px"><nav class="urtnav"><a href="/">Races</a><a href="/upcoming/" aria-current="page">Upcoming</a><a href="/vs/">Head to head</a><a href="/crew/">Crew</a><a href="/race-directors.html">For race directors</a><a href="/sponsors.html">Sponsors</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></nav></div></div>
+
+<div class="uw">
+  <div class="uhead">
+    <span class="factlabel">Upcoming</span>
+    <h1>What is coming.</h1>
+    <p id="usub">Ultramarathons on foot, in date order. The ones we can already track live are
+    marked. Everything else is listed because it is happening, not because we cover it.</p>
+  </div>
+  <div class="ufilters" id="urt-filters" hidden>
+    <div class="urow1">
+      <input type="search" id="uf-q" placeholder="Search a race" aria-label="Search races"
+             autocomplete="off" spellcheck="false">
+      <label class="uftrack"><input type="checkbox" id="uf-track"> Only races we can follow live</label>
+      <button type="button" id="uf-clear" hidden>Clear</button>
+    </div>
+    <div class="ufchips" id="uf-dist" role="group" aria-label="Distance"></div>
+    <div class="urow2">
+      <select id="uf-state" aria-label="State"></select>
+      <select id="uf-month" aria-label="Month"></select>
+      <span class="ufcount" id="uf-count"></span>
+    </div>
+  </div>
+  <div id="ulist"></div>
+  <div class="unote" id="unote" hidden></div>
+</div>
+
+<script>
+(function(){
+  var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+
+/* ---- facets ------------------------------------------------------------------------------
+   The data to answer "a 100-miler in Colorado in October" was on every row and the page had no
+   way to ask. Filtering happens over the array already in memory, so it is instant.
+
+   Timed and backyard formats are their OWN band, never folded into a mileage bucket: 102 of
+   233 races have no fixed distance, and calling "24hrs" a 50K would be a lie.                */
+var BANDS = [
+  { id: 'u50',   label: '50K & under', test: function (r) { return fixedKm(r) && fixedKm(r) <= 50; } },
+  { id: '50100', label: '50-100K',     test: function (r) { var k = fixedKm(r); return k > 50 && k <= 100; } },
+  { id: '100m',  label: '100K-100mi',  test: function (r) { var k = fixedKm(r); return k > 100 && k <= 161; } },
+  { id: 'over',  label: '100mi+',      test: function (r) { var k = fixedKm(r); return k > 161; } },
+  { id: '200',   label: '200mi+',      test: function (r) { var k = fixedKm(r); return k >= 321; } },
+  { id: 'timed', label: 'Timed & backyard', test: function (r) { return !fixedKm(r); } }
+];
+function fixedKm(r){
+  /* 999 is the pipeline's sentinel for an unbounded format, not a distance. */
+  var ks = (r.courses || []).filter(function (k) { return k !== 999; });
+  if (ks.length) return Math.max.apply(null, ks);
+  return (r.km && r.km !== 999) ? r.km : 0;
+}
+
+var ALL = [], F = { q: '', band: '', state: '', month: '', track: false };
+
+function readHash(){
+  var h = (location.hash || '').replace(/^#/, '');
+  if (!h) return;
+  h.split('&').forEach(function (p) {
+    var kv = p.split('='), k = kv[0], v = decodeURIComponent(kv[1] || '');
+    if (k in F) F[k] = (k === 'track') ? (v === '1') : v;
+  });
+}
+function writeHash(){
+  var p = [];
+  Object.keys(F).forEach(function (k) {
+    var v = F[k];
+    if (k === 'track') { if (v) p.push('track=1'); }
+    else if (v) p.push(k + '=' + encodeURIComponent(v));
+  });
+  var h = p.join('&');
+  history.replaceState(null, '', h ? '#' + h : location.pathname);
+}
+
+function matches(r, skip){
+  if (skip !== 'q' && F.q) {
+    var hay = ((r.name || '') + ' ' + (r.city || '') + ' ' + (r.state || '')).toLowerCase();
+    if (hay.indexOf(F.q.toLowerCase()) === -1) return false;
+  }
+  if (skip !== 'band' && F.band) {
+    var b = BANDS.filter(function (x) { return x.id === F.band; })[0];
+    if (b && !b.test(r)) return false;
+  }
+  if (skip !== 'state' && F.state && String(r.state || '') !== F.state) return false;
+  if (skip !== 'month' && F.month && String(r.date || '').slice(0, 7) !== F.month) return false;
+  if (skip !== 'track' && F.track && !r.can_track) return false;
+  return true;
+}
+
+function countIf(skip, extra){
+  return ALL.filter(function (r) { return matches(r, skip) && extra(r); }).length;
+}
+
+var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function paintFacets(){
+  /* Counts are computed with THIS facet excluded, so the numbers say "what you would get if
+     you picked this", not "what is already showing". */
+  var dh = document.getElementById('uf-dist');
+  dh.innerHTML = BANDS.map(function (b) {
+    var n = countIf('band', b.test);
+    return '<button type="button" data-band="' + b.id + '" aria-pressed="' +
+      (F.band === b.id) + '"' + (n ? '' : ' disabled') + '>' + b.label +
+      '<i>' + n + '</i></button>';
+  }).join('');
+
+  var states = {};
+  ALL.forEach(function (r) { if (r.state) states[r.state] = 1; });
+  var ss = Object.keys(states).map(function (st) {
+    return { st: st, n: countIf('state', function (r) { return r.state === st; }) };
+  }).filter(function (x) { return x.n; }).sort(function (a, b) { return b.n - a.n; });
+  document.getElementById('uf-state').innerHTML =
+    '<option value="">Anywhere (' + ALL.filter(function(r){return matches(r,'state');}).length + ')</option>' +
+    ss.map(function (x) {
+      return '<option value="' + x.st + '"' + (F.state === x.st ? ' selected' : '') + '>' +
+        x.st + ' (' + x.n + ')</option>';
+    }).join('');
+
+  var months = {};
+  ALL.forEach(function (r) { var m = String(r.date || '').slice(0, 7); if (m) months[m] = 1; });
+  var ms = Object.keys(months).sort().map(function (m) {
+    return { m: m, n: countIf('month', function (r) { return String(r.date||'').slice(0,7) === m; }) };
+  }).filter(function (x) { return x.n; });
+  document.getElementById('uf-month').innerHTML =
+    '<option value="">Any month (' + ALL.filter(function(r){return matches(r,'month');}).length + ')</option>' +
+    ms.map(function (x) {
+      var p = x.m.split('-');
+      return '<option value="' + x.m + '"' + (F.month === x.m ? ' selected' : '') + '>' +
+        MON[+p[1] - 1] + ' ' + p[0] + ' (' + x.n + ')</option>';
+    }).join('');
+
+  var any = F.q || F.band || F.state || F.month || F.track;
+  document.getElementById('uf-clear').hidden = !any;
+}
+
+function applyFilters(){
+  var shown = ALL.filter(function (r) { return matches(r, null); });
+  document.getElementById('uf-count').textContent =
+    shown.length === ALL.length
+      ? ALL.length + ' races'
+      : shown.length + ' of ' + ALL.length + ' races';
+  paintFacets();
+  writeHash();
+  render(shown);
+}
+
+  fetch('/upcoming.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){ return r.ok?r.json():null; })
+    .then(function(d){
+      var items=(d&&(d.races||d.items))||(Array.isArray(d)?d:[]);
+      var host=document.getElementById('ulist');
+      ALL=items.slice();
+      if(items.length){
+        readHash();
+        document.getElementById('urt-filters').hidden=false;
+        document.getElementById('uf-q').value=F.q;
+        document.getElementById('uf-track').checked=F.track;
+        document.getElementById('uf-q').addEventListener('input',function(){
+          F.q=this.value.trim(); applyFilters(); });
+        document.getElementById('uf-track').addEventListener('change',function(){
+          F.track=this.checked; applyFilters(); });
+        document.getElementById('uf-state').addEventListener('change',function(){
+          F.state=this.value; applyFilters(); });
+        document.getElementById('uf-month').addEventListener('change',function(){
+          F.month=this.value; applyFilters(); });
+        document.getElementById('uf-dist').addEventListener('click',function(e){
+          var b=e.target.closest('button[data-band]'); if(!b||b.disabled) return;
+          F.band=(F.band===b.getAttribute('data-band'))?'':b.getAttribute('data-band');
+          applyFilters(); });
+        document.getElementById('uf-clear').addEventListener('click',function(){
+          F={q:'',band:'',state:'',month:'',track:false};
+          document.getElementById('uf-q').value='';
+          document.getElementById('uf-track').checked=false;
+          applyFilters(); });
+      }
+      if(!items.length){
+        host.innerHTML='<p style="color:var(--ink-2);font-size:15px;margin:24px 0">'
+          +'Nothing on the calendar we can confirm yet.</p>';
+        return;
+      }
+      applyFilters();
+      return;
+    })
+    .catch(function(){});
+
+  function render(items){
+      var host=document.getElementById('ulist');
+      if(!items.length){
+        host.innerHTML='<p class="unone">No race matches that. '
+          +'<a href="#" onclick="document.getElementById(\'uf-clear\').click();return false">'
+          +'Clear the filters</a>.</p>';
+        return;
+      }
+      items.sort(function(a,b){ return String(a.date||'').localeCompare(String(b.date||'')); });
+      var h='', lastMonth='';
+      items.forEach(function(r){
+        var dt=new Date((r.start_utc||r.date)+(String(r.start_utc||'').length?'':'T12:00:00Z'));
+        var mk=isNaN(dt)?'':(MON[dt.getUTCMonth()]+' '+dt.getUTCFullYear());
+        if(mk&&mk!==lastMonth){ h+='<div class="umonth">'+esc(mk)+'</div>'; lastMonth=mk; }
+        var day=isNaN(dt)?esc(r.date||''):(MON[dt.getUTCMonth()]+' '+dt.getUTCDate());
+        var bits=[];
+        /* 999 is the pipeline's sentinel for a format with no fixed distance - backyard,
+           24-hour, stage race. It is not a distance and must never reach the page; show the
+           registrar's own wording instead. */
+        var UNBOUNDED=999;
+        function km(k){ return Math.round(k)+' km'; }
+        var fixed=(r.courses||[]).filter(function(k){return k!==UNBOUNDED;});
+        var isOpen=(r.km===UNBOUNDED)||((r.courses||[]).indexOf(UNBOUNDED)>=0);
+        if(fixed.length) bits.push(fixed.map(km).join(', '));
+        if(isOpen) bits.push(r.distances ? String(r.distances) : 'timed event');
+        if(!fixed.length && !isOpen && r.km) bits.push(km(r.km));
+        if(r.field_size) bits.push(r.field_size+' entered');
+        /* "Listed" alone tells a reader we do not cover this race and stops. Every listed
+           race is an RD who has not been asked, and this is the one page where a specific
+           untracked race and an interested reader meet. The chip carries the ask.
+           A span, not an anchor: this sits inside the row's own <a>, and nested anchors are
+           invalid HTML — the browser drops one and the row stops working. */
+        var tag=r.can_track
+          ? '<span class="utag can">We can track this</span>'
+          : '<span class="utag list urd-pitch" role="link" tabindex="0" '
+            + 'title="Free live tracking for your race">Listed'
+            + '<i class="urd-ask">Track this race free</i></span>';
+        /* An anchor when we have a real event page, a div when we do not. Every row used to be
+           a div, so the whole page was unclickable. Nothing here links to a guessed URL. */
+        var href=r.url||'';
+        var open=href?'<a class="urow urow-link" href="'+esc(href)+'" target="_blank" rel="noopener">'
+                     :'<div class="urow">';
+        var close=href?'</a>':'</div>';
+        /* The race's own banner, thumbnail-sized. Not a hero: this page answers "what is
+           coming and can we cover it", and 233 full-width photographs would bury that. */
+        var thumb=r.banner
+          ? '<img class="uthumb" src="'+esc(r.banner)+'" alt="" loading="lazy" '
+            +'referrerpolicy="no-referrer" onerror="this.remove()">'
+          : '';
+        h+=open+'<div class="udate">'+esc(day)+'</div>'
+          +thumb
+          +'<div><div class="uname">'+esc(r.name||'')
+          +(href?'<i class="ugo">\u2197</i>':'')+'</div>'
+          +(bits.length?'<div class="umeta">'+esc(bits.join(' · '))+'</div>':'')
+          +'</div>'+tag+close;
+      });
+      host.innerHTML=h;
+
+      /* Delegated once on the host: the list re-renders on every filter change, so a handler
+         bound per chip would be lost the moment somebody picks a distance band. */
+      if (!host.dataset.rdBound) {
+        host.dataset.rdBound = '1';
+        var go = function (e) {
+          var p = e.target.closest ? e.target.closest('.urd-pitch') : null;
+          if (!p) return;
+          e.preventDefault();
+          e.stopPropagation();
+          location.href = '/race-directors.html';
+        };
+        host.addEventListener('click', go);
+        host.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') go(e);
+        });
+      }
+
+      var can=items.filter(function(r){ return r.can_track; }).length;
+      var n=document.getElementById('unote');
+      n.innerHTML='<b>'+items.length+' races on the calendar, '+can+' we could cover today.</b> '
+        +'<a href="/race-directors.html" class="urd-inline">Put your race on this list &mdash; free.</a> ' 
+        +'Sourced from the timing platforms we already read, filtered to ultras on foot. '
+        +'Anything whose distance and window imply a pace no human sustains on foot is dropped, '
+        +'which is how cycling brevets and mountain bike stage races stay off this page. '
+        +'If your race is missing, <a href="/race-directors">tell us</a> and tracking is free.';
+      n.hidden=false;
+  }
+}());
+</script>
+<script src="/s/search.js" defer></script>
+<script src="/urt.js" defer></script>
+</body></html>

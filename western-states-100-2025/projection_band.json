@@ -1,0 +1,40 @@
+{
+ "by_progress": {
+  "0": [
+   0.8877,
+   1.144
+  ],
+  "1": [
+   0.9094,
+   1.12
+  ],
+  "2": [
+   0.9377,
+   1.1201
+  ],
+  "3": [
+   0.9465,
+   1.0967
+  ],
+  "4": [
+   0.9611,
+   1.0767
+  ],
+  "5": [
+   0.9683,
+   1.0731
+  ]
+ },
+ "buckets": 8,
+ "measured_coverage_pct": {
+  "0": 77,
+  "1": 75,
+  "2": 81,
+  "3": 84,
+  "4": 84,
+  "5": 87
+ },
+ "mean_coverage_pct": 81,
+ "family": "western-states-100",
+ "note": "p10-p90 of (actual finish / projected finish) fitted on this race's earlier years; the coverage shown was then measured on later years the fit never saw."
+}

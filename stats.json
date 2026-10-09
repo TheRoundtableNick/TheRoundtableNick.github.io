@@ -1,0 +1,50 @@
+{
+ "platform": {
+  "races": 0,
+  "events": 0,
+  "year_from": null,
+  "year_to": null,
+  "runner_races": 0,
+  "finishes": 0,
+  "finish_miles": 0,
+  "by_event": {}
+ },
+ "audience": {
+  "unique_visitors": 3361,
+  "page_views": 651942,
+  "mobile_pct": 55,
+  "peak_concurrent": 247,
+  "peak_at_minute": "2026-07-29 01:30",
+  "peak_window_start": "2026-07-28",
+  "peak_window_end": "2026-07-29",
+  "best_day": "2026-07-28",
+  "best_day_uniques": 2160,
+  "days_measured": 2,
+  "top_referrers": [
+   {
+    "host": "facebook.com",
+    "n": 1318
+   },
+   {
+    "host": "https:",
+    "n": 491
+   },
+   {
+    "host": "google.com",
+    "n": 369
+   },
+   {
+    "host": "bing.com",
+    "n": 79
+   },
+   {
+    "host": "android-app://com.google.android.googlequicksearchbox/",
+    "n": 47
+   }
+  ],
+  "measured_from": "our own nginx access log, bots excluded, all requests including assets",
+  "peak_definition": "maximum distinct visitors in any single minute",
+  "as_of": "2026-07-29T03:24:52.688703+00:00"
+ },
+ "generated_utc": "2026-07-29T03:24:53.492381+00:00"
+}

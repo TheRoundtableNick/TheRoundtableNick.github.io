@@ -1,0 +1,63 @@
+{
+ "curve": [
+  [
+   0,
+   0.0
+  ],
+  [
+   4.34,
+   1.999
+  ],
+  [
+   9.17,
+   3.095
+  ],
+  [
+   20.48,
+   6.479
+  ],
+  [
+   27.63,
+   10.433
+  ],
+  [
+   29.83,
+   11.782
+  ],
+  [
+   33.24,
+   14.125
+  ],
+  [
+   37.36,
+   15.741
+  ],
+  [
+   46.25,
+   19.644
+  ],
+  [
+   52.65,
+   23.585
+  ],
+  [
+   55.04,
+   25.019
+  ],
+  [
+   61.4,
+   28.264
+  ],
+  [
+   69.34,
+   31.427
+  ]
+ ],
+ "family": "restonica",
+ "finishers": 296,
+ "holdout_err_h": {
+  "badwater_curve": null,
+  "own_curve": null
+ },
+ "note": "median finisher shape derived from this race's own archived results"
+}

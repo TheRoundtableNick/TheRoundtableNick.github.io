@@ -1,0 +1,46 @@
+{
+ "by_hours_since_split": {
+  "0.5": {
+   "n": 4159,
+   "median_mi": 0.09,
+   "p75_mi": 0.17,
+   "p90_mi": 0.26
+  },
+  "1": {
+   "n": 3963,
+   "median_mi": 0.17,
+   "p75_mi": 0.32,
+   "p90_mi": 0.48
+  },
+  "2": {
+   "n": 2440,
+   "median_mi": 0.29,
+   "p75_mi": 0.54,
+   "p90_mi": 0.85
+  },
+  "3": {
+   "n": 961,
+   "median_mi": 0.43,
+   "p75_mi": 0.79,
+   "p90_mi": 1.25
+  },
+  "4": {
+   "n": 354,
+   "median_mi": 0.61,
+   "p75_mi": 0.96,
+   "p90_mi": 1.55
+  }
+ },
+ "buckets": [
+  0.5,
+  1,
+  2,
+  3,
+  4,
+  6,
+  8,
+  12
+ ],
+ "family": "chianti",
+ "note": "absolute miles between our estimated position and where a runner actually was, measured across this race's own archived runners"
+}

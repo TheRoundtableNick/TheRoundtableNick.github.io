@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Race Directors — Free Live Tracking for UltraRunTrack</title>
+<meta name="description" content="Free live tracking for ultramarathons. Works with checkpoint splits only — no GPS needed. Free for your race, your runners, and families. No setup, no contract.">
+<link rel="canonical" href="https://ultraruntrack.com/race-directors">
+<meta property="og:title" content="Free Live Tracking for Your Race">
+<meta property="og:description" content="Turn your split times into live runner tracking. Free for race directors, runners, and families. No GPS, no setup, no contract.">
+<meta property="og:image" content="https://ultraruntrack.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080a0e;--panel:#0f131a;--line:#1e2632;--txt:#e8edf4;--dim:#8b97a8;
+--dim2:#5d6878;--hot:#ff7a1a;--hot2:#ffb020;--cool:#35d0ff;--go:#3ddc97;
+--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.6;
+-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#10151d,#0b0f15)}
+.hb{display:flex;align-items:center;gap:11px;padding:13px 0}
+.logo{font-size:16px;font-weight:800;text-decoration:none}
+.logo i{font-style:normal;color:var(--hot)}
+nav{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:1px}
+nav a{color:var(--dim);text-decoration:none;margin-left:14px}
+nav a:hover{color:var(--cool)}
+h1{font-size:clamp(26px,4.6vw,42px);font-weight:800;letter-spacing:-1.1px;margin:32px 0 12px;
+line-height:1.1}
+h1 span{color:var(--hot)}
+.lede{font-size:16px;color:var(--dim);max-width:64ch}
+h2{font-size:11px;font-family:var(--mono);letter-spacing:1.6px;text-transform:uppercase;
+color:var(--dim2);margin:34px 0 12px}
+p{color:var(--dim);font-size:14px;max-width:70ch;margin-bottom:12px}
+b{color:var(--txt)}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+background:var(--line);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.big div{background:var(--panel);padding:17px 18px}
+.big b{display:block;font-family:var(--mono);font-size:26px;color:var(--hot2);letter-spacing:-.6px}
+.big u{display:block;text-decoration:none;font-family:var(--mono);font-size:9px;
+color:var(--dim2);letter-spacing:1.1px;text-transform:uppercase;margin-top:4px}
+.meta{font-family:var(--mono);font-size:10.5px;color:var(--dim2);margin-top:11px;line-height:1.75}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:17px 18px}
+.card h3{font-size:14.5px;font-weight:700;margin-bottom:7px}
+.card p{font-size:13px;margin:0}
+.slot{border:1px dashed #2a3444;border-radius:11px;padding:16px 18px}
+.slot b{display:block;font-size:14px}
+.slot span{display:block;font-size:13px;color:var(--dim2);margin-top:5px}
+.cta{display:inline-block;margin-top:22px;background:var(--hot);color:#12080a;font-weight:700;
+font-size:13.5px;padding:12px 26px;border-radius:9px;font-family:var(--mono);letter-spacing:.6px;
+text-decoration:none;cursor:pointer;border:none}
+.cta:hover{filter:brightness(1.08)}
+#sf input,#sf textarea{width:100%;background:#0a0e14;border:1px solid var(--line);
+  border-radius:9px;padding:12px 13px;color:var(--txt);font-size:14.5px;font-family:var(--sans);
+  margin-bottom:10px;outline:none;min-height:46px}
+#sf input:focus,#sf textarea:focus{border-color:var(--hot)}
+#sf-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+#sf button{border:none;cursor:pointer;margin-top:2px}
+#sf-out{font-family:var(--mono);font-size:12.5px;margin-top:11px;min-height:18px}
+#sf-out.ok{color:var(--go)} #sf-out.err{color:#ff7a7a}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 44px;
+font-family:var(--mono);font-size:11px;color:var(--dim2);line-height:1.9}
+footer a{color:var(--dim)}
+.note{border-left:3px solid var(--go);background:var(--panel);border-radius:0 9px 9px 0;
+padding:13px 16px;margin:18px 0;font-size:13.5px;color:var(--dim)}
+.highlight{background:var(--panel);border-left:3px solid var(--hot);border-radius:0 9px 9px 0;
+padding:13px 16px;margin:18px 0;font-size:13.5px;color:var(--dim)}
+
+/* urt-nav: the same five destinations on every page. Before this, /vs/ and proof.html had no
+   navigation at all and the upcoming schedule was unreachable from anywhere. */
+.urtnav{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.urtnav a{font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.7px;
+  text-transform:uppercase;text-decoration:none;padding:7px 11px;border-radius:8px;
+  color:var(--ink-2,#4d463f);white-space:nowrap;transition:background .16s ease,color .16s ease}
+.urtnav a:hover{background:rgba(255,122,26,.1);color:var(--acc,#a83a06)}
+.urtnav a[aria-current="page"]{color:var(--acc,#a83a06);background:rgba(255,122,26,.09)}
+@media (max-width:760px){
+  .urtnav{gap:0}
+  .urtnav a{padding:6px 8px;font-size:10px}
+}
+
+/* The proof strip. An RD's decision is visual and takes ten seconds; the page was prose. */
+.rdprev{margin:34px 0 8px}
+.rdprev-lede{font-family:var(--mono,ui-monospace,monospace);font-size:10.5px;
+  letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-3,#8a8378);margin:0 0 14px}
+.rdprev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rdprev-tile{display:block;text-decoration:none;color:inherit;border:1px solid
+  var(--line,#e8e0d4);border-radius:12px;overflow:hidden;background:var(--panel,#fff);
+  transition:border-color .12s}
+.rdprev-tile:hover{border-color:var(--acc,#a83a06)}
+.rdprev-tile img{display:block;width:100%;height:auto;border-bottom:1px solid
+  var(--line,#e8e0d4)}
+.rdprev-tile b{display:block;font-size:15px;margin:14px 16px 4px;
+  color:var(--ink,#141d26)}
+.rdprev-tile span{display:block;font-size:13.5px;line-height:1.5;margin:0 16px 16px;
+  color:var(--ink-2,#4a5568)}
+@media(max-width:820px){.rdprev-grid{grid-template-columns:1fr}}
+</style>
+
+
+  <link rel="stylesheet" href="/urt.css">
+</head>
+<body>
+<header><div class="wrap hb">
+  <a class="logo" href="/">ULTRA<i>RUN</i>TRACK</a>
+  
+</div></header>
+<div class="urtnavbar"><div style="max-width:1180px;margin:0 auto;padding:0 20px 10px"><nav class="urtnav"><a href="/">Races</a><a href="/upcoming/">Upcoming</a><a href="/vs/">Head to head</a><a href="/crew/">Crew</a><a href="/race-directors.html">For race directors</a><a href="/sponsors.html">Sponsors</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></nav></div></div>
+
+<div class="wrap">
+  <h1>Free live tracking for your <span>100-miler</span></h1>
+  <p class="lede">Your race publishes split times. We turn them into live positions on the
+    course, checkpoint to checkpoint. Free for you, your runners, and their families.
+    No contract, no setup on your end.</p>
+
+  <section class="rdprev">
+  <p class="rdprev-lede">This is a real race on it. Click any of them.</p>
+  <div class="rdprev-grid">
+    <a class="rdprev-tile" href="/badwater-135/">
+      <img src="/rdshots/tracker-preview.jpg" alt="The live board during Badwater 135"
+           loading="lazy" width="900" height="558">
+      <b>Your runners</b><span>Every entrant on the course, checkpoint to checkpoint, with
+      projected finishes and a live cheer wall.</span>
+    </a>
+    <a class="rdprev-tile" href="/crew/badwater-135/">
+      <img src="/rdshots/crew-preview.jpg" alt="The crew plan for Badwater 135"
+           loading="lazy" width="900" height="558">
+      <b>Your crews</b><span>Arrival windows at every checkpoint, built from real finishers
+      who ran the same finish time. Not a pace formula.</span>
+    </a>
+    <a class="rdprev-tile" href="/a/nick-affleck-b89917c267a1">
+      <img src="/rdshots/story-preview.jpg" alt="A finisher's own results page"
+           loading="lazy" width="900" height="558">
+      <b>Your finishers</b><span>A permanent page each, with their own race story and the
+      messages their family left them. They share it with your race's name on it.</span>
+    </a>
+  </div>
+</section>
+
+<h2>What your runners get</h2>
+  <div class="big">
+    <div><b>Live tracking</b><u>Every runner on the map</u></div>
+    <div><b>Crew pages</b><u>Where to be and when</u></div>
+    <div><b>Cheer wall</b><u>Messages read at aid stations</u></div>
+    <div><b>Personal links</b><u>Families share with one click</u></div>
+  </div>
+
+  <div class="highlight">
+    <b>No phone signal for a day and a half.</b> Crews and families cannot reach a runner by text.
+    The cheer wall is the only way to send a message that will be read out when that runner reaches
+    the next aid station. During Badwater 135, <b id="cheerct">471</b> messages were sent, in English, Portuguese, Hungarian and Spanish.
+  </div>
+
+  <h2>How it works</h2>
+  <div class="grid2">
+    <div class="card"><h3>You publish splits</h3>
+      <p>You already do this. We need nothing else. Your checkpoint times are all we read.</p></div>
+    <div class="card"><h3>We build the tracker</h3>
+      <p>We have your race template in the archive. Turnkey. Your logo, your colors, your story.</p></div>
+    <div class="card"><h3>Runners go live</h3>
+      <p>As you publish splits, every runner appears on a map, with estimated arrival times and
+         a personal link their crew can share.</p></div>
+    <div class="card"><h3>Families follow along</h3>
+      <p>No login, no app. From the moment you open the tracker, families can watch, leave messages,
+         and sleep knowing where their runner is.</p></div>
+  </div>
+
+  <h2>Proof from Badwater 135, 2026</h2>
+  <div class="big" id="aud"></div>
+  <div class="meta" id="audmeta"></div>
+
+  <div class="note">
+    <b>Every figure on this page is counted, not estimated.</b> We parsed our own nginx access log
+    with bots excluded. The numbers are real because they matter to you.
+  </div>
+
+  <h2>Why other trackers do not work</h2>
+  <div class="grid2">
+    <div class="card"><h3>GPS trackers need GPS</h3>
+      <p>Badwater, Western States, Hardrock and UTMB publish checkpoint times only. Most live
+         trackers simply cannot work without GPS. We turn your splits into live positions instead.</p></div>
+    <div class="card"><h3>Your race, your name</h3>
+      <p>Not buried in an aggregator. Your race gets its own page, your branding, your story.
+         Families see your race name, not a generic leaderboard.</p></div>
+    <div class="card"><h3>Replay the year before</h3>
+      <p>Runners use it to train. They see split times from everyone in the archive who ran your
+         course and finished, so they know what a real pace feels like. Enduring traffic.</p></div>
+  </div>
+
+  <h2>Talk to us</h2>
+  <form id="sf" class="card" novalidate>
+    <p style="margin-bottom:12px">Tell us about your race. This goes straight to the person who
+      built the site.</p>
+    <input id="sf-email" type="email" inputmode="email" autocomplete="email"
+           placeholder="your email" aria-label="Your email" required>
+    <input id="sf-name" type="text" inputmode="text" autocomplete="name"
+           placeholder="race name" aria-label="Your race name">
+    <textarea id="sf-msg" rows="4" placeholder="What are you thinking? (Optional)"
+              aria-label="Your message"></textarea>
+    <input id="sf-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="cta" type="submit">SEND INQUIRY &rarr;</button>
+    <div id="sf-out"></div>
+  </form>
+
+  <div class="highlight">
+    <b>No contract. No cost.</b> Happy to run one race for free. If your runners like it, we talk
+    about the next one. If not, you keep your data and we take down the tracker.
+  </div>
+
+  <section class="about">
+    <h3>About UltraRunTrack</h3>
+    <p>We track 108 races going back 24 years. Badwater, Hardrock, Western States, UTMB, Lavaredo
+       and a hundred smaller races. Every finish time in the archive is replayable, checkpoint by
+       checkpoint, minute by minute.</p>
+    <p>We built this because split-only races had no tracking at all. GPS got all the attention
+       and all the money. This is the fix.</p>
+  </section>
+</div>
+
+<footer><div class="wrap">
+  UltraRunTrack is an independent project and is not affiliated with any race organiser.<br>
+  Timing data belongs to the races and their timing partners.<br>
+  <a href="/">Races</a> &middot; <a href="/about">About</a> &middot;
+  <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a> &middot;
+  <a href="/sponsors">Sponsors</a>
+</div></footer>
+
+<script>
+function n(x){ return x==null?'—':x.toLocaleString(); }
+/* Load real numbers from our stats. If a race is currently live, show those numbers.
+   Otherwise, show Badwater 135 2026 as our proof point. */
+Promise.all([
+  fetch('/stats.json?t='+Date.now()).then(function(r){return r.json();}).catch(function(){return null;}),
+  fetch('/viewers.json?t='+Date.now()).then(function(r){return r.json();}).catch(function(){return null;})
+]).then(function(res){
+  var s=res[0]||{}, a=s.audience||{};
+  var ab=document.getElementById('aud');
+  if(a.unique_visitors){
+    ab.innerHTML=
+       '<div><b>'+n(a.unique_visitors)+'</b><u>Unique visitors, race day</u></div>'
+      +'<div><b>'+n(a.page_views)+'</b><u>Page views</u></div>'
+      +'<div><b>'+a.mobile_pct+'%</b><u>On mobile</u></div>'
+      +'<div><b>'+n(a.peak_concurrent)+'</b><u>Peak concurrent</u></div>';
+    var top=(a.top_referrers||[])[0];
+    document.getElementById('audmeta').textContent=
+      'Measured over '+a.days_measured+' day'+(a.days_measured===1?'':'s')
+      +' from our own nginx log, bots excluded'
+      +(top?'. '+top.n+' arrivals came from '+top.host+', none of them paid for.':'.');
+  } else { ab.parentNode.removeChild(ab); }
+}).catch(function(){});
+
+/* A mailto exposes a personal address and, worse, exposes wherever it forwards. A form
+   posts to our own endpoint, so a director's enquiry lands in the store with their message
+   intact and nobody sees an inbox they were not meant to. */
+document.getElementById('sf').addEventListener('submit',function(e){
+  e.preventDefault();
+  var em=document.getElementById('sf-email').value.trim();
+  var nm=document.getElementById('sf-name').value.trim();
+  var ms=document.getElementById('sf-msg').value.trim();
+  var out=document.getElementById('sf-out');
+  if(document.getElementById('sf-hp').value){ return; }   /* bot */
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){
+    out.className='err'; out.textContent='That email does not look right.'; return;
+  }
+  out.className=''; out.textContent='Sending...';
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:em,name:nm,msg:ms,kind:'race-director'})})
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      if(j&&j.ok){ out.className='ok';
+        out.textContent='Got it. We will come back to you soon.';
+        document.getElementById('sf-msg').value='';
+        document.getElementById('sf-name').value='';
+      } else { out.className='err'; out.textContent='Something went wrong. Try again shortly.'; }
+    })
+    .catch(function(){ out.className='err'; out.textContent='Could not send. Try again shortly.'; });
+});
+</script>
+
+<script>
+/* urt-live-cheercount: read the real total rather than a number frozen at build time. */
+fetch('/api/cheers/feed?race=badwater-135&limit=1')
+  .then(function(r){ return r.ok?r.json():null; })
+  .then(function(d){
+    if(!d||!d.total) return;
+    var el=document.getElementById('cheerct');
+    if(el) el.textContent=d.total.toLocaleString();
+  }).catch(function(){});
+</script>
+<script src="/urt.js" defer></script>
+</body>
+</html>

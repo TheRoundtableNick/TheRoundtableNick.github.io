@@ -1,0 +1,52 @@
+{
+ "by_hours_since_split": {
+  "0.5": {
+   "n": 35712,
+   "median_mi": 0.13,
+   "p75_mi": 0.27,
+   "p90_mi": 0.49
+  },
+  "1": {
+   "n": 34168,
+   "median_mi": 0.24,
+   "p75_mi": 0.52,
+   "p90_mi": 0.91
+  },
+  "2": {
+   "n": 25374,
+   "median_mi": 0.41,
+   "p75_mi": 0.81,
+   "p90_mi": 1.36
+  },
+  "3": {
+   "n": 14086,
+   "median_mi": 0.61,
+   "p75_mi": 1.22,
+   "p90_mi": 2.06
+  },
+  "4": {
+   "n": 6773,
+   "median_mi": 0.9,
+   "p75_mi": 1.69,
+   "p90_mi": 2.46
+  },
+  "6": {
+   "n": 983,
+   "median_mi": 0.87,
+   "p75_mi": 1.54,
+   "p90_mi": 2.39
+  }
+ },
+ "buckets": [
+  0.5,
+  1,
+  2,
+  3,
+  4,
+  6,
+  8,
+  12
+ ],
+ "family": "hardrock-100",
+ "note": "absolute miles between our estimated position and where a runner actually was, measured across this race's own archived runners"
+}

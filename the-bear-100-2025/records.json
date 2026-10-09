@@ -1,0 +1,107 @@
+{
+ "men": {
+  "name": "Zachary Garner",
+  "sex": "m",
+  "year": 2023,
+  "seconds": 61911,
+  "time": "17:11:51"
+ },
+ "women": {
+  "name": "Careth Arnold",
+  "sex": "f",
+  "year": 2024,
+  "seconds": 73549,
+  "time": "20:25:49"
+ },
+ "top10": [
+  {
+   "name": "Zachary Garner",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 61911,
+   "time": "17:11:51"
+  },
+  {
+   "name": "Jeremy Humphrey",
+   "sex": "m",
+   "year": 2013,
+   "seconds": 64560,
+   "time": "17:56:00"
+  },
+  {
+   "name": "Jeff Browning",
+   "sex": "m",
+   "year": 2017,
+   "seconds": 66528,
+   "time": "18:28:48"
+  },
+  {
+   "name": "Mike Foote",
+   "sex": "m",
+   "year": 2010,
+   "seconds": 66840,
+   "time": "18:34:00"
+  },
+  {
+   "name": "Mike Cappi",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 66890,
+   "time": "18:34:50"
+  },
+  {
+   "name": "Jimmy Elam",
+   "sex": "m",
+   "year": 2020,
+   "seconds": 67132,
+   "time": "18:38:52"
+  },
+  {
+   "name": "Geoff Roes",
+   "sex": "m",
+   "year": 2009,
+   "seconds": 67379,
+   "time": "18:42:59"
+  },
+  {
+   "name": "Adam Loomis",
+   "sex": "m",
+   "year": 2021,
+   "seconds": 67557,
+   "time": "18:45:57"
+  },
+  {
+   "name": "Brian Peterson",
+   "sex": "m",
+   "year": 2014,
+   "seconds": 68363,
+   "time": "18:59:23"
+  },
+  {
+   "name": "Mick Jurynec",
+   "sex": "m",
+   "year": 2015,
+   "seconds": 68467,
+   "time": "19:01:07"
+  }
+ ],
+ "years_parsed": [
+  2008,
+  2009,
+  2010,
+  2013,
+  2014,
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "generated": "fastest finishes in 2008-2025 as published by the race"
+}

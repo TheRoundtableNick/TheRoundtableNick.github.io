@@ -1,0 +1,46 @@
+{
+ "by_hours_since_split": {
+  "0.5": {
+   "n": 35695,
+   "median_mi": 0.09,
+   "p75_mi": 0.17,
+   "p90_mi": 0.27
+  },
+  "1": {
+   "n": 26941,
+   "median_mi": 0.16,
+   "p75_mi": 0.29,
+   "p90_mi": 0.45
+  },
+  "2": {
+   "n": 6890,
+   "median_mi": 0.33,
+   "p75_mi": 0.59,
+   "p90_mi": 0.9
+  },
+  "3": {
+   "n": 1589,
+   "median_mi": 0.46,
+   "p75_mi": 0.81,
+   "p90_mi": 1.23
+  },
+  "4": {
+   "n": 93,
+   "median_mi": 0.34,
+   "p75_mi": 0.8,
+   "p90_mi": 1.19
+  }
+ },
+ "buckets": [
+  0.5,
+  1,
+  2,
+  3,
+  4,
+  6,
+  8,
+  12
+ ],
+ "family": "lavaredo",
+ "note": "absolute miles between our estimated position and where a runner actually was, measured across this race's own archived runners"
+}

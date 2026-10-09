@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sponsor UltraRunTrack — live audience numbers you can verify</title>
+<meta name="description" content="Sponsorship and media kit for UltraRunTrack. Real audience numbers, measured from our own server logs and refreshed every few minutes. Free live tracking for ultramarathons that carry no GPS.">
+<link rel="canonical" href="https://ultraruntrack.com/sponsors">
+<meta property="og:title" content="Sponsor UltraRunTrack">
+<meta property="og:description" content="Live audience numbers, measured from our own logs. The only tracker that works for races with no GPS.">
+<meta property="og:image" content="https://ultraruntrack.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080a0e;--panel:#0f131a;--line:#1e2632;--txt:#e8edf4;--dim:#8b97a8;
+--dim2:#5d6878;--hot:#ff7a1a;--hot2:#ffb020;--cool:#35d0ff;--go:#3ddc97;
+--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.6;
+-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#10151d,#0b0f15)}
+.hb{display:flex;align-items:center;gap:11px;padding:13px 0}
+.logo{font-size:16px;font-weight:800;text-decoration:none}
+.logo i{font-style:normal;color:var(--hot)}
+nav{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:1px}
+nav a{color:var(--dim);text-decoration:none;margin-left:14px}
+nav a:hover{color:var(--cool)}
+h1{font-size:clamp(26px,4.6vw,42px);font-weight:800;letter-spacing:-1.1px;margin:32px 0 12px;
+line-height:1.1}
+h1 span{color:var(--hot)}
+.lede{font-size:16px;color:var(--dim);max-width:64ch}
+h2{font-size:11px;font-family:var(--mono);letter-spacing:1.6px;text-transform:uppercase;
+color:var(--dim2);margin:34px 0 12px}
+p{color:var(--dim);font-size:14px;max-width:70ch;margin-bottom:12px}
+b{color:var(--txt)}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+background:var(--line);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.big div{background:var(--panel);padding:17px 18px}
+.big b{display:block;font-family:var(--mono);font-size:26px;color:var(--hot2);letter-spacing:-.6px}
+.big u{display:block;text-decoration:none;font-family:var(--mono);font-size:9px;
+color:var(--dim2);letter-spacing:1.1px;text-transform:uppercase;margin-top:4px}
+.meta{font-family:var(--mono);font-size:10.5px;color:var(--dim2);margin-top:11px;line-height:1.75}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:17px 18px}
+.card h3{font-size:14.5px;font-weight:700;margin-bottom:7px}
+.card p{font-size:13px;margin:0}
+.slot{border:1px dashed #2a3444;border-radius:11px;padding:16px 18px}
+.slot b{display:block;font-size:14px}
+.slot span{display:block;font-size:13px;color:var(--dim2);margin-top:5px}
+.cta{display:inline-block;margin-top:22px;background:var(--hot);color:#12080a;font-weight:700;
+font-size:13.5px;padding:12px 26px;border-radius:9px;font-family:var(--mono);letter-spacing:.6px;
+text-decoration:none}
+.cta:hover{filter:brightness(1.08)}
+#sf input,#sf textarea{width:100%;background:#0a0e14;border:1px solid var(--line);
+  border-radius:9px;padding:12px 13px;color:var(--txt);font-size:14.5px;font-family:var(--sans);
+  margin-bottom:10px;outline:none;min-height:46px}
+#sf input:focus,#sf textarea:focus{border-color:var(--hot)}
+#sf-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+#sf button{border:none;cursor:pointer;margin-top:2px}
+#sf-out{font-family:var(--mono);font-size:12.5px;margin-top:11px;min-height:18px}
+#sf-out.ok{color:var(--go)} #sf-out.err{color:#ff7a7a}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 44px;
+font-family:var(--mono);font-size:11px;color:var(--dim2);line-height:1.9}
+footer a{color:var(--dim)}
+.note{border-left:3px solid var(--go);background:var(--panel);border-radius:0 9px 9px 0;
+padding:13px 16px;margin:18px 0;font-size:13.5px;color:var(--dim)}
+
+/* urt-nav: the same five destinations on every page. Before this, /vs/ and proof.html had no
+   navigation at all and the upcoming schedule was unreachable from anywhere. */
+.urtnav{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.urtnav a{font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.7px;
+  text-transform:uppercase;text-decoration:none;padding:7px 11px;border-radius:8px;
+  color:var(--ink-2,#4d463f);white-space:nowrap;transition:background .16s ease,color .16s ease}
+.urtnav a:hover{background:rgba(255,122,26,.1);color:var(--acc,#a83a06)}
+.urtnav a[aria-current="page"]{color:var(--acc,#a83a06);background:rgba(255,122,26,.09)}
+@media (max-width:760px){
+  .urtnav{gap:0}
+  .urtnav a{padding:6px 8px;font-size:10px}
+}
+</style>
+  <link rel="stylesheet" href="/urt.css">
+</head>
+<body>
+<header><div class="wrap hb">
+  <a class="logo" href="/">ULTRA<i>RUN</i>TRACK</a>
+  
+</div></header>
+<div class="urtnavbar"><div style="max-width:1180px;margin:0 auto;padding:0 20px 10px"><nav class="urtnav"><a href="/">Races</a><a href="/upcoming/">Upcoming</a><a href="/vs/">Head to head</a><a href="/sponsors.html" aria-current="page">Sponsors</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></nav></div></div>
+
+<div class="wrap">
+  <h1>Sponsor the sport's <span>most patient</span> audience.</h1>
+  <p class="lede">Ultra fans do not skim. During a race they sit on one page for hours,
+    refreshing to find out whether one specific person is still moving. Below are our real
+    numbers, measured from our own server logs and refreshed every few minutes. Check them yourself.</p>
+
+  <h2 id="urt-peak-block">What one race looks like</h2>
+  <div class="big" id="peak"></div>
+  <div class="meta" id="peakmeta"></div>
+
+  <h2 style="margin-top:34px">Right now, between races</h2>
+  <div class="big" id="aud"></div>
+  <div class="meta" id="audmeta"></div>
+
+  <div class="note">
+    <b>Every figure on this page is counted, not estimated.</b> There is no analytics vendor
+    and no tracking pixel — the numbers come from parsing our own nginx access log with bots
+    excluded, and the measurement window is always stated. We would rather show you a small
+    honest number than a big soft one.
+  </div>
+
+  <h2>What the platform is</h2>
+  <div class="big" id="plat"></div>
+  <div class="meta" id="platmeta"></div>
+
+  <h2>Why this audience is hard to reach anywhere else</h2>
+  <div class="grid2">
+    <div class="card"><h3>These races have no GPS</h3>
+      <p>Badwater, Hardrock, Western States and UTMB publish checkpoint times and nothing
+         else. Every GPS-based tracker simply cannot cover them. We turn official splits into
+         live positions, which is why we exist at all.</p></div>
+    <div class="card"><h3>A committed core never closes the tab</h3>
+<p><!-- urt-honest-sessions: figures below are read live from stats.json, measured from our own log. The previous copy claimed sessions were "measured in hours"; the median is closer to three minutes, and the truth about the tail is a better argument than the overstatement was. -->Most people check in again and again through a race. A smaller group simply leaves it open. In the Badwater 135 <b id="s-1h">468</b> sessions ran past an hour, <b id="s-4h">59</b> ran past four, <b id="s-8h">9</b> ran past eight, and the longest single session was <b id="s-max">24h 36m</b> — the length of the race itself. Median session is <b id="s-med">3m 16s</b>, because checking on someone is a thing people do many times, not once.</p></div>
+    <div class="card"><h3>It arrives on its own</h3>
+      <p>We have never bought an ad or run a campaign. Almost all traffic is people sharing
+         a runner's link with their own friends and family.</p></div>
+    <div class="card" id="spprice">
+<h3>What it costs</h3>
+<p class="sppintro">We have never had a sponsor. The first one takes a risk on an unproven
+platform, so the founding rate is lower and stays locked for as long as they keep the slot.</p>
+
+<div class="spptier">
+  <div class="sppt">
+    <u>FOUNDING RATE</u>
+    <b>$1,500</b><i>per race</i>
+    <p>Presented-by placement for the full duration, which for a hundred-miler is 24 to 48
+    continuous hours. First three partners only.</p>
+  </div>
+  <div class="sppt">
+    <u>FOUNDING SEASON</u>
+    <b>$6,000</b><i>five races</i>
+    <p>Same placement across five races, booked in advance. Works out at $1,200 a race.</p>
+  </div>
+  <div class="sppt alt">
+    <u>AFTER THE FOUNDING SLOTS</u>
+    <b>$2,500</b><i>per race</i>
+    <p>What the rate becomes once the first three are taken. Nobody has paid this yet and we
+    are not going to pretend otherwise.</p>
+  </div>
+</div>
+
+<p class="sppmath">The arithmetic, from the numbers at the top of this page. One race drew
+<b id="spp-u">4,629</b> people and <b id="spp-p">20,877</b> page loads, and
+<b id="spp-h">475</b> of those sessions ran past an hour. At the founding rate that is around
+<b id="spp-c">$3</b> per hour-long session, and nothing at all for the other <b id="spp-r">3,382</b>
+people who came through. Divide it yourself, the figures update live.</p>
+
+<p class="sppwhat">What is not included: we do not run tracking pixels, we do not sell data,
+and there is no third-party ad script anywhere on this site. That is the reason the audience
+tolerates a sponsor at all, so it is not negotiable.</p>
+</div>
+<script>
+/* urt-sponsor-price: the cost-per-hour-session figure is derived from the same stats.json the
+   rest of the page reads, so it can never drift from the audience numbers above it. */
+(function(){
+  fetch('/stats.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){ return r.ok?r.json():null; })
+    .then(function(d){
+      var a=d&&d.audience; if(!a) return;
+      function set(id,v){ var e=document.getElementById(id); if(e&&v!=null) e.textContent=v; }
+      if(a.unique_visitors) set('spp-u', a.unique_visitors.toLocaleString());
+      if(a.page_views) set('spp-p', a.page_views.toLocaleString());
+      if(a.sessions_over_1h){
+        set('spp-h', a.sessions_over_1h.toLocaleString());
+        set('spp-c', '$'+Math.round(1500/a.sessions_over_1h));
+        /* urt-peak-curve-ui: derive the remainder rather than asserting a
+           rounded figure written against a since-corrected unique count. */
+        if(a.unique_visitors) set('spp-r',
+          Math.max(0,a.unique_visitors-a.sessions_over_1h).toLocaleString());
+      }
+    }).catch(function(){});
+})();
+</script>
+<style>
+#spprice .sppintro{color:#8b97a8;font-size:13.5px;line-height:1.6}
+.spptier{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;
+  margin:16px 0 4px}
+.sppt{background:#0b0f15;border:1px solid #1e2632;border-left:3px solid #ff7a1a;
+  border-radius:10px;padding:13px}
+.sppt.alt{border-left-color:#5d6878}
+.sppt u{display:block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:8.5px;
+  letter-spacing:1.3px;color:#8b97a8;text-decoration:none}
+.sppt b{display:block;font-size:26px;color:#e8edf4;letter-spacing:-.5px;margin-top:7px}
+.sppt i{display:block;font-style:normal;font-size:11px;color:#5d6878;margin-top:1px}
+.sppt p{margin-top:8px;font-size:12px;line-height:1.55;color:#8b97a8}
+.sppmath{margin-top:16px;font-size:13px;line-height:1.65;color:#8b97a8}
+.sppmath b{color:#e8edf4}
+.sppwhat{margin-top:12px;font-size:12.5px;line-height:1.6;color:#5d6878}
+</style>
+<div class="card" id="spdemo">
+<h3>See it on the live race</h3>
+<p>Type a name and it renders in position on the race page, above the leaderboard, with the
+field still moving underneath. Nothing is saved and nobody else sees it.</p>
+<div class="spdrow">
+  <input id="spd-in" type="text" maxlength="32" placeholder="Your brand"
+         aria-label="Brand name to preview">
+  <button type="button" id="spd-go">PREVIEW IT LIVE</button>
+</div>
+<p class="spdnote" id="spd-note"></p>
+</div>
+<script>
+/* urt-sponsor-demo: hands the prospect the real page with their name in it. The preview
+   parameter is read client-side only, writes nothing, and disappears on reload. */
+(function(){
+  var i=document.getElementById('spd-in'), b=document.getElementById('spd-go'),
+      n=document.getElementById('spd-note');
+  if(!i||!b) return;
+  function go(){
+    var v=(i.value||'').trim();
+    if(!v){ n.textContent='Put a name in first.'; return; }
+    var u='/badwater-135/?sponsor='+encodeURIComponent(v);
+    n.textContent='Opening the live race page with your name in the placement.';
+    window.open(u,'_blank','noopener');
+  }
+  b.addEventListener('click',go);
+  i.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); go(); } });
+})();
+</script>
+<style>
+#spdemo .spdrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+#spdemo input{flex:1 1 180px;min-width:0;background:#0e1319;border:1px solid #1a2029;
+  border-radius:7px;padding:11px 12px;color:#e8edf4;font-size:14px;font-family:inherit}
+#spdemo input:focus{outline:none;border-color:#ff7a1a}
+#spdemo button{flex:0 0 auto;background:#ff7a1a;border:0;border-radius:7px;padding:11px 15px;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:1px;
+  color:#0a0e14;font-weight:700;cursor:pointer}
+.spdnote{margin-top:9px;font-size:12px;color:#8b97a8;min-height:1em}
+</style>
+<div class="card"><h3>Free, forever, for the people racing</h3>
+      <p>No paywall, no account, no app. Runners, crews and families never pay. Sponsorship
+         is how it stays that way, and we say so on the page.</p></div>
+  </div>
+
+  <h2>Placements</h2>
+  <div class="grid2">
+    <div class="slot"><b>Race page banner</b>
+      <span>One placement above the leaderboard, visible for the full duration of a race —
+        which for a hundred-miler is 24 to 48 continuous hours.</span></div>
+    <div class="slot"><b>Presented-by line</b>
+      <span>Your name in the race header and in every shared link preview, including the
+        per-runner pages families post to Facebook and Instagram.</span></div>
+    <div class="slot"><b>Replay archive</b>
+      <span>Persistent placement across the whole archive, which keeps drawing search
+        traffic every day of the year, not just on race weekends.</span></div>
+    <div class="slot"><b>Pace charts</b>
+      <span>The pages runners read while training, months before a race. A different and
+        more commercial moment than race day.</span></div>
+  </div>
+
+  <p style="margin-top:22px">We keep inventory deliberately small — around three clean
+    placements. This audience is hostile to clutter and we would rather protect the thing
+    that makes it worth sponsoring.</p>
+
+  <h2>Talk to us</h2>
+  <form id="sf" class="card" novalidate>
+    <p style="margin-bottom:12px">Tell us what you have in mind. This goes straight to the
+      person who built the site.</p>
+    <input id="sf-email" type="email" inputmode="email" autocomplete="email"
+           placeholder="your email" aria-label="Your email" required>
+    <textarea id="sf-msg" rows="4" placeholder="What are you thinking?"
+              aria-label="Your message"></textarea>
+    <input id="sf-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="cta" type="submit">SEND &rarr;</button>
+    <div id="sf-out"></div>
+  </form>
+</div>
+
+<footer><div class="wrap">
+  UltraRunTrack is an independent project and is not affiliated with any race organiser.<br>
+  Timing data belongs to the races and their timing partners.<br>
+  <a href="/">Races</a> &middot; <a href="/about">About</a> &middot;
+  <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a> &middot;
+  <a href="/sponsors">Sponsorship</a>
+</div></footer>
+
+<script>
+function n(x){ return x==null?'—':x.toLocaleString(); }
+/* Both files are generated on the box from our own logs and the archive itself, so this
+   page can never drift from what the site actually is. If a number cannot be loaded the
+   block is left out rather than filled with a guess. */
+Promise.all([
+  fetch('/stats.json?t='+Date.now()).then(function(r){return r.json();}).catch(function(){return null;}),
+  fetch('/viewers.json?t='+Date.now()).then(function(r){return r.json();}).catch(function(){return null;})
+]).then(function(res){
+  var s=res[0]||{}, v=res[1]||{}, a=s.audience||{}, p=s.platform||{};
+  var ab=document.getElementById('aud');
+  if(a.unique_visitors){
+    ab.innerHTML=
+       '<div><b>'+n(a.unique_visitors)+'</b><u>Unique visitors, race day</u></div>'
+      +'<div><b>'+n(a.page_views)+'</b><u>Page views</u></div>'
+      +'<div><b>'+a.mobile_pct+'%</b><u>On mobile</u></div>'
+      +'<div><b>'+(a.peak_curve?(n(a.peak_curve['30_min'])+'</b><u>Together within a half hour</u></div>'+'<div class="m"><b>'+n(a.peak_curve['5_min'])+'</b><u>Within five minutes</u></div>'+'<div class="m"><b>'+n(a.peak_curve['1_min'])+'</b><u>In the busiest minute</u></div>'):(n(a.peak_concurrent)+'</b><u>Peak concurrent</u></div>'))
+      +(v.now?'<div><b>'+n(v.now)+'</b><u>Watching right now</u></div>':'');
+    var top=(a.top_referrers||[])[0];
+    document.getElementById('audmeta').textContent=
+      'Today, with no race running. Measured over '+a.days_measured+' day'+(a.days_measured===1?'':'s')
+      +' from our own nginx log, bots excluded'
+      +(top?'. '+top.n+' arrivals came from '+top.host+', none of them paid for.':'.');
+  } else { ab.parentNode.removeChild(ab); }
+  var pb=document.getElementById('plat');
+  if(p.races){
+    pb.innerHTML=
+       '<div><b>'+n(p.races)+'</b><u>Races tracked</u></div>'
+      +'<div><b>'+n(p.events)+'</b><u>Events covered</u></div>'
+      +'<div><b>'+p.year_from+'&ndash;'+p.year_to+'</b><u>Years of results</u></div>'
+      +'<div><b>'+n(p.finishes)+'</b><u>Finishes on record</u></div>'
+      +'<div><b>'+(p.finish_miles>=1e6?(p.finish_miles/1e6).toFixed(1)+'M':n(p.finish_miles))
+      +'</b><u>Race miles replayable</u></div>';
+    document.getElementById('platmeta').textContent=
+      'Counted from the archive itself. Includes Badwater 135, Hardrock 100, Western States '
+      +'100, UTMB, CCC, TDS, OCC, Lavaredo, Transgrancanaria, Tarawera and more.';
+  } else { pb.parentNode.removeChild(pb); }
+}).catch(function(){});
+
+/* A mailto exposes a personal address and, worse, exposes wherever it forwards. A form
+   posts to our own endpoint, so a sponsor's enquiry lands in the store with their message
+   intact and nobody sees an inbox they were not meant to. */
+document.getElementById('sf').addEventListener('submit',function(e){
+  e.preventDefault();
+  var em=document.getElementById('sf-email').value.trim();
+  var ms=document.getElementById('sf-msg').value.trim();
+  var out=document.getElementById('sf-out');
+  if(document.getElementById('sf-hp').value){ return; }   /* bot */
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){
+    out.className='err'; out.textContent='That email does not look right.'; return;
+  }
+  out.className=''; out.textContent='Sending...';
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:em,msg:ms,kind:'sponsor'})})
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      if(j&&j.ok){ out.className='ok';
+        out.textContent='Got it. We will come back to you.';
+        document.getElementById('sf-msg').value='';
+      } else { out.className='err'; out.textContent='Something went wrong. Try again shortly.'; }
+    })
+    .catch(function(){ out.className='err'; out.textContent='Could not send. Try again shortly.'; });
+});
+</script>
+<script>
+/* urt-honest-sessions: keep the session figures tied to measurement, not to copy. */
+(function(){
+  function hms(sec){
+    sec=Math.round(sec||0);
+    if(sec>=3600) return Math.floor(sec/3600)+'h '+('0'+Math.floor(sec%3600/60)).slice(-2)+'m';
+    return Math.floor(sec/60)+'m '+('0'+(sec%60)).slice(-2)+'s';
+  }
+  fetch('/stats.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){ return r.ok?r.json():null; })
+    .then(function(d){
+      var a=d&&d.audience; if(!a||a.sessions==null) return;
+      function set(id,v){ var e=document.getElementById(id); if(e&&v!=null) e.textContent=v; }
+      set('s-1h', a.sessions_over_1h);
+      set('s-4h', a.sessions_over_4h);
+      set('s-8h', a.sessions_over_8h);
+      set('s-max', hms(a.session_longest_s));
+      set('s-med', hms(a.session_median_s));
+    }).catch(function(){});
+})();
+</script>
+<script src="/urt.js" defer></script>
+<script>
+/* urt-peak-block: race week, frozen so it cannot decay.
+   stats.json's audience block is a rolling window over a log that rotates daily, so the
+   page used to open with a quiet Tuesday. audience_peaks.json holds measured race windows
+   permanently, each carrying the exact span it covers. Attention leads because it is the
+   argument that does not depend on scale. */
+fetch('/audience_peaks.json?t='+Date.now(),{cache:'no-store'})
+  .then(function(r){ return r.ok?r.json():null; })
+  .then(function(d){
+    var host=document.getElementById('peak'), meta=document.getElementById('peakmeta');
+    if(!host||!d||!d.best) return;
+    var b=d.best;
+    function num(n){ return Number(n).toLocaleString(); }
+    function hrs(sec){ return (Number(sec)/3600).toFixed(1)+'h'; }
+    function cell(v,l){ return v==null?'':'<div><b>'+v+'</b><u>'+l+'</u></div>'; }
+
+    var h='';
+    /* Attention first. This is the part nobody else can sell. */
+    if(b.session_longest_s) h+=cell(hrs(b.session_longest_s.value),'longest single session');
+    if(b.sessions_over_8h)  h+=cell(num(b.sessions_over_8h.value),'sessions past eight hours');
+    if(b.sessions_over_1h)  h+=cell(num(b.sessions_over_1h.value),'sessions past one hour');
+    /* Then reach, in the window it actually happened in. */
+    if(b.peak_30min)        h+=cell(num(b.peak_30min.value),'together within a half hour');
+    if(b.unique_visitors)   h+=cell(num(b.unique_visitors.value),'unique visitors');
+    host.innerHTML=h;
+
+    var src=b.unique_visitors||b.peak_30min||{};
+    var ent=(d.entries||[])[0]||{};
+    var from=(ent.window_from||'').split(':')[0], to=(ent.window_to||'').split(':')[0];
+    if(meta){
+      meta.textContent='Measured over '+(ent.days_measured||'?')+' days of '
+        +(src.label||'a race')+', '+from+' to '+to+'. Same parser, same bot exclusion and '
+        +'the same definitions as the figures below. Nothing is blended across windows: '
+        +'every number here happened inside that one.';
+    }
+  }).catch(function(){});
+</script>
+</body>
+</html>

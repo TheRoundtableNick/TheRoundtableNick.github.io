@@ -1,0 +1,43 @@
+{
+ "curve": [
+  [
+   0,
+   0.0
+  ],
+  [
+   4.59,
+   1.328
+  ],
+  [
+   11.64,
+   3.389
+  ],
+  [
+   14.91,
+   4.104
+  ],
+  [
+   20.93,
+   7.017
+  ],
+  [
+   27.82,
+   8.682
+  ],
+  [
+   30.93,
+   10.183
+  ],
+  [
+   35.33,
+   11.293
+  ]
+ ],
+ "family": "occ",
+ "finishers": 1534,
+ "holdout_err_h": {
+  "badwater_curve": null,
+  "own_curve": null
+ },
+ "note": "median finisher shape derived from this race's own archived results"
+}

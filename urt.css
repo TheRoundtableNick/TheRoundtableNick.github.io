@@ -1,0 +1,736 @@
+/* UltraRunTrack design system.
+ *
+ * Every page on this site carried its own inline stylesheet and nothing linked a shared
+ * one, which is why they drifted apart the moment one of them changed. This is the single
+ * source of truth. It is loaded LAST in the head so it wins on order against the inline
+ * block each page still ships, without needing !important on everything.
+ *
+ * Reference is Stripe: a light page with generous rhythm, one strong accent, layered
+ * shadows rather than borders doing the work, and motion that is felt rather than seen.
+ * The one thing borrowed most directly is the dark instrument panel on a light page --
+ * Stripe puts code blocks there, we put the live race.
+ *
+ * The live race page does NOT load this. A crew at 3am in the desert keeps a dark map.
+ */
+
+/* ---- tokens ---------------------------------------------------------------- */
+:root{
+  --bg:#f7f2ea;            /* warm sand */
+  --bg-2:#fdf9f3;
+  --panel:#fffdfa;
+  --ink:#141d26;           /* 14:1 on sand */
+  --ink-2:#4c5764;         /* 7.2:1  */
+  --ink-3:#6b7684;         /* 4.9:1, AA at body sizes */
+  --line:#ebe0d2;
+  --line-2:#e0d2c0;
+  --acc:#a83a06;           /* orange you READ. #ff7a1a is 2.6:1 on sand and fails */
+  --acc-lift:#8d3005;
+  --acc-bright:#ff7a1a;    /* orange you LOOK AT: fills, dots, the course line */
+  --go:#1c7a4b;
+  --cool:#0b6a94;
+  --ink-dark:#0a0e14;      /* the instrument */
+
+  --sh-1:0 1px 2px rgba(66,44,22,.06);
+  --sh-2:0 1px 2px rgba(66,44,22,.05), 0 6px 16px -4px rgba(66,44,22,.08);
+  --sh-3:0 2px 4px rgba(66,44,22,.05), 0 14px 32px -8px rgba(66,44,22,.13);
+  --sh-4:0 4px 8px rgba(66,44,22,.05), 0 24px 56px -12px rgba(66,44,22,.18);
+
+  --r-1:8px; --r-2:12px; --r-3:16px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --fast:140ms; --med:220ms;
+
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+
+  /* urt-legacy-vars: every page still consumes the ORIGINAL dark-theme variable names in
+     its own inline block. Defining only the new names left var(--txt) resolving to
+     #e8edf4 -- near-white text written for a black page -- now sitting on white panels.
+     The audit found 63 failing pairs on the homepage alone, the worst at 1.1:1, which is
+     invisible. Remapping the old names here fixes every consumer at once instead of
+     chasing them page by page. */
+  --txt:#141d26;
+  --dim:#4c5764;
+  --dim2:#6b7684;
+  --panel2:#f4ece0;
+  --hot:#a83a06;      /* the READ orange; the bright one is --acc-bright */
+  --hot2:#8d3005;
+  --dead:#8a7f72;
+  --warn:#9a5400;
+}
+
+/* ---- base ------------------------------------------------------------------ */
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  line-height:1.55;letter-spacing:-.003em}
+
+/* Type scale. Tight tracking on the big sizes is most of what makes a headline feel
+   designed rather than merely large. */
+h1{letter-spacing:-.032em;line-height:1.06;color:var(--ink);font-weight:800}
+h2{letter-spacing:-.022em;line-height:1.15;color:var(--ink);font-weight:750}
+h3{letter-spacing:-.014em;color:var(--ink);font-weight:700}
+p{color:var(--ink-2)}
+b,strong{color:var(--ink)}
+small{color:var(--ink-3)}
+
+a{color:var(--acc);text-decoration:none;
+  transition:color var(--fast) var(--ease)}
+a:hover{color:var(--acc-lift)}
+
+/* Focus that is visible without being ugly. */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--acc);outline-offset:2px;border-radius:4px}
+
+/* ---- surfaces -------------------------------------------------------------- */
+header{background:linear-gradient(180deg,#fffbf5,var(--bg));
+  border-bottom:1px solid var(--line);backdrop-filter:saturate(1.2)}
+.logo{color:var(--ink)}
+.logo i{color:var(--acc);font-style:normal}
+
+footer{background:linear-gradient(180deg,#f2e9dd,#ece1d2);color:var(--ink-3);
+  border-top:1px solid var(--line)}
+footer a{color:var(--acc)}
+
+/* Cards. Shadow does the work; the border is only there to define the edge on sand.
+   The lift on hover is small on purpose -- 2px reads as responsive, 6px reads as a toy. */
+.card,.slot,.f,.big div,.aud div,.su-box,.rdband,.note{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r-2);
+  box-shadow:var(--sh-2);
+  transition:box-shadow var(--med) var(--ease), transform var(--med) var(--ease),
+             border-color var(--med) var(--ease)}
+a.card:hover,.card a:hover,.prepg a:hover,.slot:hover{
+  box-shadow:var(--sh-3);transform:translateY(-2px);border-color:var(--line-2)}
+
+/* Anything clickable that is a whole block. */
+.prepg a,.replay a,.rrow{background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r-2);box-shadow:var(--sh-1);color:var(--ink);
+  transition:box-shadow var(--med) var(--ease), transform var(--med) var(--ease),
+             border-color var(--med) var(--ease)}
+.prepg a:hover,.replay a:hover{box-shadow:var(--sh-3);transform:translateY(-2px);
+  border-color:var(--acc)}
+
+/* ---- the instrument -------------------------------------------------------- */
+/* Stripe puts a dark code panel on a light page. Ours is the live race. Framing it
+   like a device is what stops it reading as a hole in the layout. */
+.heroright>*,.instrument{border-radius:var(--r-3);
+  border:1px solid #2b2119;box-shadow:var(--sh-4);overflow:hidden}
+
+/* ---- buttons --------------------------------------------------------------- */
+.cta,.rdcta,button.primary,.btn-primary{
+  display:inline-block;background:var(--acc-bright);color:#2b1204;font-weight:800;
+  border:0;border-radius:var(--r-1);padding:13px 24px;cursor:pointer;
+  box-shadow:0 1px 2px rgba(120,60,10,.2), 0 6px 16px -6px rgba(255,122,26,.5);
+  transition:transform var(--fast) var(--ease), box-shadow var(--med) var(--ease),
+             filter var(--fast) var(--ease)}
+.cta:hover,.rdcta:hover,button.primary:hover,.btn-primary:hover{
+  transform:translateY(-1px);filter:brightness(1.04);
+  box-shadow:0 2px 4px rgba(120,60,10,.2), 0 12px 26px -8px rgba(255,122,26,.55)}
+.cta:active,.rdcta:active,button.primary:active{transform:translateY(0)}
+
+/* ---- form fields ----------------------------------------------------------- */
+/* Every page styles these with ID rules that outrank a class chain, so they are named. */
+input,textarea,select,
+#subemail,#sf-email,#sf-name,#sf-msg,#sf input,#sf textarea{
+  background:var(--panel);border:1px solid var(--line-2);border-radius:var(--r-1);
+  color:var(--ink);font-family:inherit;
+  transition:border-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease)}
+input::placeholder,textarea::placeholder{color:var(--ink-3)}
+input:focus,textarea:focus,#subemail:focus,#sf input:focus,#sf textarea:focus{
+  border-color:var(--acc);box-shadow:0 0 0 3px rgba(168,58,6,.13);outline:0}
+
+/* ---- eyebrow labels -------------------------------------------------------- */
+.eyebrow,h2.mono,.sec-label{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--ink-3)}
+
+/* ---- the search widget ships its own dark palette from /s/search.js ---------- */
+body #urt-search #urtsq{background:var(--panel);color:var(--ink);
+  border:1px solid var(--line-2);box-shadow:var(--sh-1)}
+body #urt-search #urtsq::placeholder{color:var(--ink-3)}
+body #urt-search #urtsq:focus{border-color:var(--acc);
+  box-shadow:0 0 0 3px rgba(168,58,6,.13)}
+/* Not scoped to #urt-search: the panel is portalled to <body> so it can escape
+   .urt-hero{overflow:hidden}, which used to slice it in half. */
+body .urtsr{background:var(--panel);border-color:var(--line);
+  box-shadow:var(--sh-4);border-radius:var(--r-2)}
+body .urtsi{border-top-color:var(--line)}
+body .urtsi b{color:var(--ink)}
+body .urtsi span,body .urtsh{color:var(--ink-3)}
+body .urtsi:hover,body .urtsi.on{background:#fdf4e9}
+body .urtsi:hover b,body .urtsi.on b{color:var(--acc)}
+body .urtsn{color:var(--ink)}
+body .urtsn span{color:var(--ink-3)}
+body .urtsn a{color:var(--acc);text-decoration:underline}
+
+/* ---- live state ------------------------------------------------------------ */
+/* The most valuable thing on the site is that something is happening RIGHT NOW, and it
+   was styled the same as everything else. */
+.live-card,.livecard{border-left:3px solid var(--acc-bright);
+  background:linear-gradient(100deg,#fff7ee,var(--panel) 55%)}
+.pill-dot.live{background:var(--acc-bright);
+  box-shadow:0 0 0 0 rgba(255,122,26,.6);animation:urt-pulse 2.4s infinite}
+@keyframes urt-pulse{
+  0%{box-shadow:0 0 0 0 rgba(255,122,26,.55)}
+  70%{box-shadow:0 0 0 9px rgba(255,122,26,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,122,26,0)}}
+
+/* ---- motion ---------------------------------------------------------------- */
+/* Scroll reveal. Deliberately shallow: 10px and 420ms. Anything more turns a page a
+   sponsor is evaluating into something they have to wait for. */
+.urt-rise{opacity:0;transform:translateY(10px);
+  transition:opacity 420ms var(--ease), transform 420ms var(--ease)}
+.urt-rise.urt-in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .urt-rise{opacity:1;transform:none}
+}
+
+/* ---- page specifics, kept here so there is exactly one stylesheet ------------ */
+/* Homepage hero. The texture is the real Badwater elevation profile, generated from the
+   surveyed course we hold, so the page carries terrain without pretending to a photo. */
+.hero{position:relative;isolation:isolate;
+  background:linear-gradient(180deg,#fff7ec 0%,#fbeedd 45%,var(--bg) 100%)}
+.hero:before{content:"";position:absolute;left:0;right:0;bottom:-1px;height:150px;z-index:-1;
+  background:url("/art/badwater-135-2000.svg") no-repeat bottom center;
+  background-size:120% 100%;opacity:.85;pointer-events:none}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;z-index:-1;
+  background:linear-gradient(90deg,transparent,#e2b98c,transparent)}
+
+/* Alternating section value, so the page has rhythm instead of one flat tone. */
+section:nth-of-type(even){background:linear-gradient(180deg,var(--bg-2),var(--bg))}
+
+/* Sponsors page: this is the surface a brand manager actually lands on. */
+.big div b{color:var(--acc)}
+.big div u,.aud div u{color:var(--ink-3);text-decoration:none}
+.slot{border:1px dashed var(--line-2);background:linear-gradient(180deg,#fffdfa,#fdf7ee)}
+.slot b{color:var(--ink)}
+.slot span{color:var(--ink-3)}
+
+/* Signup + race-director bands. */
+.su-box{background:linear-gradient(180deg,#fffbf5,#f4ebdf)}
+.su-box h2,.su-box h3{color:var(--ink)}
+.su-box p,.su-box .sub{color:var(--ink-2)}
+.rdband{background:linear-gradient(120deg,#fffaf2,var(--panel) 60%)}
+.rdband h2{color:var(--ink)}
+.rdband p{color:var(--ink-2)}
+
+/* Tables, used on athlete career pages and elsewhere. */
+thead th{color:var(--ink-3);border-bottom:1px solid var(--line)}
+td{border-bottom:1px solid var(--line)}
+tbody tr{transition:background var(--fast) var(--ease)}
+tbody tr:hover{background:#fdf6ec}
+
+/* ---- components the audit caught still dark -------------------------------- */
+/* Found by walking every page and listing any element whose computed background was
+   dark. These are page-local components the system did not know about; they belong
+   here rather than back in a per-page block, which is how the drift started. */
+
+/* homepage: live cheer card and the show-all control */
+.cheer-card,#cheer-display{background:linear-gradient(100deg,#fff7ee,var(--panel) 55%);
+  border:1px solid var(--line);border-radius:var(--r-2);box-shadow:var(--sh-1)}
+.cheer-card b,#cheer-display b{color:var(--ink)}
+#showall{background:var(--panel);color:var(--ink);border:1px solid var(--line-2);
+  border-radius:var(--r-1);padding:11px 22px;cursor:pointer;font-weight:700;
+  box-shadow:var(--sh-1);
+  transition:box-shadow var(--med) var(--ease),transform var(--fast) var(--ease),
+             border-color var(--med) var(--ease)}
+#showall:hover{box-shadow:var(--sh-2);transform:translateY(-1px);border-color:var(--acc)}
+
+/* sponsors: the placement preview strip and its control */
+.sppt{background:linear-gradient(180deg,#fffdfa,#f8f0e4);border:1px solid var(--line);
+  border-radius:var(--r-2);color:var(--ink)}
+.sppt b,.sppt strong{color:var(--ink)}
+.sppt span,.sppt small{color:var(--ink-3)}
+#spd-in{background:var(--panel);border:1px solid var(--line-2);color:var(--ink)}
+
+/* proof: the measured-accuracy figures. These carry the credibility claim, so they get
+   the most contrast on the page rather than the least. */
+.metric{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-2);
+  box-shadow:var(--sh-2);color:var(--ink)}
+.metric b,.metric strong{color:var(--acc)}
+.sub-metric{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-1);
+  color:var(--ink-2)}
+.verified-badge{background:#e8f5ee;border:1px solid #bfe0cd;color:var(--go);
+  border-radius:999px;font-weight:700}
+
+/* ---- audit round two ------------------------------------------------------- */
+/* Every fix below came from measuring contrast on all 200-odd text nodes per page,
+   not from looking at screenshots. */
+
+/* REGRESSION I INTRODUCED: body{color:var(--ink)} cascades INTO the dark instrument
+   panel, so its label went dark-on-dark at 1.1:1. The panel is the one place on a light
+   page that must keep light text. */
+.heroright,.heroright *,.instrument,.instrument *{color:#e8edf4}
+.heroright .map-label,.instrument .map-label{color:#cfd8e3}
+.heroright b,.heroright strong{color:#fff}
+
+/* --dim2 measured 4.1:1 on sand at the small sizes it is actually used for. AA needs
+   4.5, so it goes darker rather than staying a pleasant grey that fails. */
+:root{--dim2:#5f6a78;--ink-3:#5f6a78}
+
+/* proof.html and sponsors.html were written against a black page and hardcode their
+   greys, plus a white h1, using descendant selectors that outrank a bare element rule. */
+header h1{color:var(--ink)}
+.headline{color:var(--acc)}
+.metric-label,.sub-metric-label,.note,.note *,.sppintro,.meta{color:var(--ink-2)}
+.metric-label{font-weight:600}
+
+/* #ff7a1a as link text is 2.6:1 on sand. It stays the fill and the dot; never the word. */
+body a{color:var(--acc)}
+body a:hover{color:var(--acc-lift)}
+body .heroright a,body .instrument a{color:var(--acc-bright)}
+
+/* ---- audit round three: named selectors, matched specificity ---------------- */
+/* proof.html carries the credibility claim, so it is the last page that should be hard
+   to read. It hardcodes #888, #b0b0b0 and #ff7a1a through descendant and class
+   selectors that a bare element rule cannot reach. */
+header p{color:var(--ink-2)}
+.metric-section h2{color:var(--ink-2)}
+.metric-label{color:var(--ink-2)}
+.sub-metric-label{color:var(--ink-2)}
+.note,.note strong{color:var(--ink-2)}
+.note strong{color:var(--ink)}
+/* Orange as a WORD has to be the readable one everywhere it appears as text. */
+.metric-number,.sub-metric-value,.metric-source a,.footer a{color:var(--acc)}
+
+/* sponsors: #spprice .sppintro is an ID-scoped rule. */
+#spprice .sppintro{color:var(--ink-2)}
+
+/* The primary button: dark ink on the bright fill, which is the one place the bright
+   orange is allowed behind text. */
+a.cta,a.rdcta,.cta,.rdcta{background:var(--acc-bright);color:#241004}
+a.cta:hover,a.rdcta:hover{color:#241004}
+
+/* ---- audit round four: consequences of remapping --hot --------------------- */
+/* Remapping --hot to the readable dark orange fixed it everywhere it was TEXT and broke
+   it everywhere it was a FILL. Four elements used it as a background and went from a
+   bright button to a dark one with near-black text on it, at 3.1:1. Every consumer of a
+   changed value has to be found, not just the ones that were failing. */
+.sbtn,#subf button,#spprice .cta,.cta,.rdcta{
+  background:var(--acc-bright);color:#241004;font-weight:800;border:0}
+.sbtn:hover,#subf button:hover{filter:brightness(1.05);color:#241004}
+
+/* sponsors.html carries THREE style blocks and two of them sit AFTER the stylesheet
+   link, so they win on order no matter what is written here. These need to win on
+   specificity instead, which is what the body prefix buys. */
+body #spprice .sppintro{color:var(--ink-2)}
+body #spprice .card,body #spprice{color:var(--ink)}
+body .sppt,body .sppt *{color:var(--ink)}
+body .sppt span,body .sppt small{color:var(--ink-2)}
+
+/* proof.html: the accuracy paragraph and its live figure sit inside .metric. */
+.metric p,.metric span,#acc-live{color:var(--ink-2)}
+.metric #acc-live,#acc-live{font-weight:600}
+
+/* ---- display type ----------------------------------------------------------- */
+/* A system font stack is the loudest tell that nobody art-directed a page. Archivo Black
+   is self-hosted rather than pulled from a CDN, so there is no third party in the render
+   path and no request leaves the box. */
+@font-face{
+  font-family:'Archivo Black';font-style:normal;font-weight:400;font-display:swap;
+  src:url('/fonts/archivo-black-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+    U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Archivo Black';font-style:normal;font-weight:400;font-display:swap;
+  src:url('/fonts/archivo-black-latin-ext.woff2') format('woff2');
+  unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,
+    U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+:root{--display:'Archivo Black',var(--sans)}
+
+/* ---- the live hero ---------------------------------------------------------- */
+/* Full bleed and dark on an otherwise light site, on purpose: this is the one screen that
+   is meant to feel like a broadcast rather than a page. */
+.urt-hero{position:relative;min-height:min(88vh,860px);background:#07090d;
+  display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+#urt-hero-canvas{position:absolute;inset:0;z-index:0}
+#urt-hero-canvas canvas{display:block;width:100%;height:100%}
+
+/* Warmth at the horizon so the black is a desert at night rather than a void, and a
+   vignette so the type has something to sit on. */
+.urt-hero:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(90% 60% at 78% 18%, rgba(255,138,40,.16), transparent 62%),
+    radial-gradient(70% 50% at 12% 88%, rgba(53,208,255,.09), transparent 60%),
+    linear-gradient(180deg, rgba(7,9,13,.72) 0%, rgba(7,9,13,.16) 34%,
+                    rgba(7,9,13,.62) 76%, #07090d 100%)}
+/* Hand off to the sand page underneath instead of ending on a hard edge. */
+.urt-hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:130px;z-index:2;
+  pointer-events:none;background:linear-gradient(180deg,transparent,var(--bg))}
+
+.urt-hero-in{position:relative;z-index:3;width:100%;max-width:1180px;margin:0 auto;
+  padding:0 26px 78px}
+
+.urt-eyebrow{display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:11px;letter-spacing:2.2px;text-transform:uppercase;
+  color:#ffd7ae;background:rgba(255,122,26,.11);border:1px solid rgba(255,150,70,.34);
+  padding:7px 14px;border-radius:999px;margin:0 0 22px}
+.urt-eyebrow i{width:7px;height:7px;border-radius:50%;background:#ff7a1a;font-style:normal;
+  box-shadow:0 0 0 0 rgba(255,122,26,.7);animation:urt-pulse 2.2s infinite}
+
+.urt-hero h1{font-family:var(--display);color:#fff;margin:0 0 20px;
+  font-size:clamp(46px,7.4vw,116px);line-height:.93;letter-spacing:-.035em;
+  text-wrap:balance;text-shadow:0 2px 40px rgba(0,0,0,.55)}
+.urt-hero h1 em{font-style:normal;color:#ff9542}
+
+.urt-hero-sub{color:#c9d3df;font-size:clamp(15px,1.5vw,19px);max-width:56ch;
+  margin:0 0 30px;line-height:1.5}
+
+/* The numbers, treated as a broadcast strip rather than cards. */
+.urt-strip{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid rgba(255,255,255,.14);
+  padding-top:20px}
+.urt-strip div{padding:0 30px 0 0;margin-right:30px;
+  border-right:1px solid rgba(255,255,255,.1)}
+.urt-strip div:last-child{border-right:0;margin-right:0;padding-right:0}
+.urt-strip b{display:block;font-family:var(--display);font-size:clamp(26px,3.4vw,42px);
+  color:#fff;line-height:1;letter-spacing:-.02em}
+.urt-strip u{display:block;text-decoration:none;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:1.5px;text-transform:uppercase;color:#8d9aa9;margin-top:7px}
+.urt-strip b.hot{color:#ff9542}
+
+.urt-hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin:32px 0 0}
+.urt-btn{display:inline-block;background:#ff7a1a;color:#200d02;font-weight:800;
+  font-size:14px;padding:15px 28px;border-radius:10px;letter-spacing:-.01em;
+  box-shadow:0 10px 30px -8px rgba(255,122,26,.6);
+  transition:transform var(--fast) var(--ease),box-shadow var(--med) var(--ease),
+             filter var(--fast) var(--ease)}
+.urt-btn:hover{transform:translateY(-2px);filter:brightness(1.05);color:#200d02;
+  box-shadow:0 16px 40px -10px rgba(255,122,26,.7)}
+.urt-btn.ghost{background:transparent;color:#e8edf4;border:1px solid rgba(255,255,255,.26);
+  box-shadow:none}
+.urt-btn.ghost:hover{background:rgba(255,255,255,.07);color:#fff;
+  border-color:rgba(255,255,255,.4)}
+
+/* If the race data will not load, say so rather than animating an empty map.
+   hero.js puts this class on #urt-hero-canvas ITSELF (host.classList.add), so the descendant
+   form alone never matched and the rule had never once applied. Both forms are kept: the
+   first for the element, the second in case an ancestor ever carries it. Found 2026-07-29,
+   when removing a wrongly-listed race left Badwater as the only live event and made the
+   no-race path reachable for the first time. */
+.urt-hero-nodata#urt-hero-canvas,
+.urt-hero-nodata #urt-hero-canvas{opacity:0}
+
+/* Headlines elsewhere pick up the display face so the page reads as one thing. */
+h1,h2.big,.sec-title{font-family:var(--display);letter-spacing:-.03em}
+h1{font-weight:400}
+
+@media (max-width:760px){
+  .urt-hero{min-height:min(84vh,720px)}
+  .urt-hero-in{padding:0 18px 54px}
+  .urt-strip div{padding-right:18px;margin-right:18px}
+  .urt-strip{gap:14px 0}
+  .urt-btn{flex:1 1 100%;text-align:center}
+}
+/* The hero lives inside .wrap, which constrains width. Breaking out here keeps the DOM
+   untouched, which matters because several scripts walk that structure. */
+.urt-hero{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);width:100vw}
+/* A scrim under the type so the route can run bright behind it without the headline
+   fighting the line for contrast. */
+.urt-hero-in:before{content:"";position:absolute;inset:-40px -30px -20px -50vw;z-index:-1;
+  background:linear-gradient(90deg,rgba(7,9,13,.93) 0%,rgba(7,9,13,.86) 52%,
+             rgba(7,9,13,.34) 78%,transparent 100%);pointer-events:none}
+@media(max-width:860px){.urt-hero-in:before{
+  background:linear-gradient(180deg,rgba(7,9,13,.5),rgba(7,9,13,.88) 45%)}}
+/* The hero sits on near-black inside an otherwise light page, so anything in it that
+   inherits the page ink would be invisible. No text is painted in that colour today;
+   this is so it stays true when someone adds some. */
+.urt-hero,.urt-hero div,.urt-hero p,.urt-hero span{color:#c9d3df}
+.urt-hero h1,.urt-strip b{color:#fff}
+.urt-hero h1 em{color:#ff9542}
+.urt-strip b.hot{color:#ff9542}
+.urt-strip u{color:#9aa7b6}
+/* the badge when nothing is running */
+.urt-eyebrow.urt-quiet{color:#c9d3df;background:rgba(255,255,255,.07);
+  border-color:rgba(255,255,255,.18)}
+.urt-eyebrow.urt-quiet i{display:none}
+
+/* ================= LAYOUT PASS =================================================
+ * Measured before writing any of this: the page is 4,911px tall and every section
+ * below the hero is the same 1,040px wide with 20 to 28px of vertical padding. Worse,
+ * .cheer-section, .prep and .spon are themselves styled as cards -- background, border,
+ * radius, padding -- so the sections ARE the boxes, and the cards inside them are boxes
+ * inside boxes. That is why it reads as a stack rather than a page.
+ *
+ * Three changes, in order of how much they matter:
+ *   1. sections stop being cards and become bands with real vertical rhythm
+ *   2. the live races get their own dark full-bleed band, because they are the product
+ *      and they were weighted the same as a footer link
+ *   3. section titles get a size, instead of 9px grey mono nobody reads
+ * ============================================================================== */
+
+/* ---- 1. bands, not boxes ---------------------------------------------------- */
+.cheer-section,.prep,.spon{
+  background:none;border:0;border-radius:0;box-shadow:none;
+  padding:0;margin:0}
+
+/* Every top-level band gets air. 24px on a 4,900px page is why it felt relentless. */
+section.cheer-section,section.prep,section.spon,section.about{
+  padding:88px 0;margin:0}
+section.about{border-top:1px solid var(--line)}
+
+/* Alternate tone so the eye can tell one band from the next without a border. */
+section.prep{background:linear-gradient(180deg,var(--bg-2),var(--bg))}
+section.spon{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
+
+/* The content inside a band keeps the card treatment; the band itself does not. */
+.prep>.wrap>*,.spon>.wrap>*{max-width:none}
+
+/* ---- 2. the live races are the product -------------------------------------- */
+/* They were two thin strips in the same column as everything else. This gives them a
+   full-bleed dark band, which also breaks the unbroken run of sand down the page. */
+.urt-liveband{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);width:100vw;
+  background:
+    radial-gradient(80% 60% at 70% 10%, rgba(255,138,40,.10), transparent 60%),
+    linear-gradient(180deg,#0c1119,#0a0e14);
+  padding:66px 0 72px;border-top:1px solid #1b2431;border-bottom:1px solid #1b2431}
+.urt-liveband .wrap{max-width:1180px}
+.urt-liveband .live-card{background:linear-gradient(100deg,#141b25,#10161e 60%);
+  border:1px solid #22303f;border-left:3px solid var(--acc-bright);
+  box-shadow:0 18px 50px -20px rgba(0,0,0,.8)}
+.urt-liveband .live-card:hover{border-color:#3a5266}
+.urt-liveband .live-title,.urt-liveband b,.urt-liveband .live-card b{color:#f2f6fa}
+.urt-liveband .live-stats u,.urt-liveband u,.urt-liveband small{color:#8c9aab}
+.urt-liveband a{color:var(--acc-bright)}
+.urt-liveband .sec-title{color:#fff}
+.urt-liveband .sec-kicker{color:#8c9aab}
+
+/* ---- 3. section titles that exist ------------------------------------------- */
+/* .sec was 9px grey uppercase mono. On a 4,900px page that is not a title, it is a
+   whisper, and it is why the page reads as one undifferentiated run of boxes. */
+.sec{font-family:var(--display);font-size:clamp(23px,2.7vw,34px);line-height:1.06;
+  letter-spacing:-.03em;color:var(--ink);text-transform:none;
+  margin:0 0 22px;font-weight:400}
+.urt-liveband .sec{color:#fff}
+
+/* ---- grids get room --------------------------------------------------------- */
+.wrap{max-width:1180px}
+.urt-hero-in{max-width:1180px}
+
+/* The pace grid was 19 near-identical boxes packed tight. Fewer columns, more air,
+   and the label leads instead of the border. */
+.prepg{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px}
+.prepg a{padding:15px 16px}
+
+.replays,#replays{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px}
+
+@media(max-width:760px){
+  section.cheer-section,section.prep,section.spon,section.about{padding:54px 0}
+  .urt-liveband{padding:44px 0 48px}
+  .prepg{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px}
+}
+
+/* ================= LAYOUT PASS TWO ============================================
+ * Working from the 2026 guide Nick sent. Three of its items apply directly to what is
+ * still wrong here, and one of them is the exact diagnosis:
+ *
+ *   "Anti-grid layouts: fluid compositions, asymmetrical arrangements, flowing shapes
+ *    replacing rigid rectangles, SVG shape dividers, curved section dividers."
+ *
+ * The page is still a centred column of rectangles. Also applying its scale-contrast
+ * and bold-typography points, and its warning not to add motion for decoration.
+ * ============================================================================== */
+
+/* ---- curved dividers instead of hard horizontal edges ----------------------- */
+/* The dark live band met the sand with a 1px rule. A curve is the difference between
+   two stacked blocks and one continuous page. */
+.urt-liveband{position:relative;border-top:0;border-bottom:0;
+  padding:96px 0 104px}
+/* The curve overhung the viewport at 104vw and gave the whole page a horizontal
+   scrollbar. Clipping to the band is what it should have been. */
+.urt-liveband{overflow:hidden}
+.urt-liveband:before,.urt-liveband:after{content:"";position:absolute;left:-2%;
+  width:104%;height:64px;background:var(--bg);pointer-events:none}
+.urt-liveband:before{top:-1px;border-radius:0 0 50% 50%/0 0 100% 100%}
+.urt-liveband:after{bottom:-1px;border-radius:50% 50% 0 0/100% 100% 0 0}
+
+/* ---- scale contrast: the archive is the biggest fact we have ---------------- */
+/* It was one grey sentence in the body copy. 2.99 million replayable race miles is the
+   single most impressive thing on the site and it was set at 14px. */
+.claim{font-family:var(--display);font-size:clamp(26px,3.6vw,50px);line-height:1.1;
+  letter-spacing:-.03em;color:var(--ink);max-width:20ch;margin:76px 0 0;
+  text-wrap:balance}
+.claim b,.claim strong{color:var(--acc)}
+.claim .cnum{color:var(--acc);white-space:nowrap}
+
+/* ---- asymmetry -------------------------------------------------------------- */
+/* Everything sat dead-centre in one 1,180px column. Offsetting the headers and letting
+   the grids run wider is most of what "anti-grid" means in practice. */
+section.prep .sec,section.spon .sec,section.about .sec{margin-left:0;max-width:16ch}
+section.prep>.wrap,section.spon>.wrap{max-width:1240px}
+.why{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:18px;align-items:start}
+.why>*:first-child{transform:translateY(-14px)}
+
+/* ---- kill the dead space in the sponsor band -------------------------------- */
+.spon .aud{margin:26px 0 18px}
+.spon .meta{margin-top:10px}
+.spon .grid2{margin-top:26px}
+
+/* ---- grids: fewer, larger, less wall ---------------------------------------- */
+.prepg{grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:14px}
+.prepg a{padding:17px 18px;border-radius:12px}
+.prepg a b,.prepg a strong{font-size:14.5px}
+
+/* ---- the pace-chart and sponsor panels stop being boxes inside boxes -------- */
+.prep>.wrap>.card,.spon>.wrap>.card{background:none;border:0;box-shadow:none;padding:0}
+
+@media(max-width:900px){
+  .why{grid-template-columns:1fr;gap:12px}
+  .why>*:first-child{transform:none}
+  .claim{margin-top:52px;max-width:none}
+  .urt-liveband{padding:64px 0 72px}
+  .urt-liveband:before,.urt-liveband:after{height:36px}
+  section.prep .sec,section.spon .sec,section.about .sec{max-width:none}
+}
+
+/* ---- layout pass three: defects visible in the render ----------------------- */
+/* The claim had no space under it and ran straight into the next section title. */
+.claim{margin:76px 0 84px;max-width:24ch}
+/* Its numbers come through in the mono face from the old inline styles, which fights
+   the display face around them. */
+.claim code,.claim .mono,.claim span{font-family:inherit;letter-spacing:inherit}
+
+/* The sponsor band's heading was still body-sized while every other section title
+   had been promoted, so that band read as a footnote. */
+.spon h2,.spon .sponh{font-family:var(--display);font-size:clamp(23px,2.7vw,34px);
+  line-height:1.06;letter-spacing:-.03em;color:var(--ink);margin:0 0 14px;font-weight:400}
+.spon .sppintro,.spon p{max-width:62ch}
+
+/* The two-column closing block was cramped against the band above it. */
+.about{padding-top:16px}
+.about .grid2,.about>.wrap>.grid2{gap:44px}
+
+/* ================= DESIGN PANEL PASS ==========================================
+ * Six specialists reviewed the live site and a skeptic attacked every finding.
+ * Average 5/10. 23 findings survived, 8 were rejected as taste.
+ *
+ * NOT built: their number one item, "the hero canvas is broken (class mismatch) and
+ * static". Verified against the running page before acting: the canvas signature
+ * changes across three samples 1.4s apart, the host carries .urt-hero-ready, and it
+ * renders 1440x836. It animates and it is not broken. They could not see pixels and
+ * inferred breakage from markup. Everything below IS reproducible from the DOM.
+ * ============================================================================== */
+
+/* ---- 1. the type scale had a cliff in it ----------------------------------- */
+/* Measured: hero 106.56px, section titles 34px. A 3.1x drop means the page loses all
+   hierarchy the moment you scroll past the fold, which is most of why the body reads
+   as a different, blander website than the hero. */
+.sec{font-size:clamp(34px,3.6vw,52px);line-height:1.02;letter-spacing:-.035em;
+  margin:0 0 26px}
+
+/* Orange with intent rather than decoration: a rule that ties every section title back
+   to the hero accent, and gives the eye something to travel down the page. */
+.sec{position:relative;padding-left:20px}
+.sec:before{content:"";position:absolute;left:0;top:.16em;bottom:.2em;width:4px;
+  border-radius:3px;background:linear-gradient(180deg,var(--acc-bright),#c4470a)}
+.urt-liveband .sec:before{background:linear-gradient(180deg,#ffb066,var(--acc-bright))}
+
+/* ---- 2. numerals were set in monospace at display sizes -------------------- */
+/* Verified in the DOM: the <b> elements inside .claim compute to ui-monospace. At 50px
+   that reads as a terminal readout, not a headline, and it fights Archivo Black either
+   side of it. My earlier rule only caught <span>. */
+.claim b,.claim strong,.claim code,.claim span,.claim i{
+  font-family:var(--display)!important;letter-spacing:-.03em;font-weight:400}
+.claim b,.claim strong{color:var(--acc)}
+
+/* Tabular figures wherever numbers are stacked, so columns line up. */
+.urt-strip b,.live-stats b,.big b,.aud b,.f b,td{font-variant-numeric:tabular-nums}
+
+/* ---- 3. the grids were the tell ------------------------------------------- */
+/* 20 pace boxes and 15 replay cards, every one identical, together about 35-40% of the
+   page height. A regular grid reads as generated; an irregular one reads as edited.
+   The first tile in each grid is promoted, which costs nothing and changes the
+   impression of the whole block. */
+.prepg>a:first-child{grid-column:span 2;padding:22px 24px}
+.prepg>a:first-child b{font-size:19px;letter-spacing:-.02em}
+
+#replays>*:first-child,.replays>*:first-child{grid-column:span 2}
+#replays>*:first-child .rn,#replays>*:first-child b{font-size:20px}
+
+/* Cards stop announcing themselves with a border on every side. The shadow and the
+   background already separate them from the sand. */
+.prepg a,#replays>*{border-color:transparent;box-shadow:var(--sh-1)}
+.prepg a:hover,#replays>*:hover{border-color:var(--acc);box-shadow:var(--sh-3)}
+
+/* ---- 4. section headers carry a kicker ------------------------------------ */
+/* The panel's point about confident hierarchy: a small label above a large title reads
+   as editorial. One line of markup-free CSS using the existing attribute. */
+.sec[data-kicker]:after{content:attr(data-kicker);display:block;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--ink-3);margin-top:12px;font-weight:400}
+
+@media(max-width:760px){
+  .sec{font-size:clamp(27px,7vw,34px);padding-left:14px}
+  .sec:before{width:3px}
+  .prepg>a:first-child,#replays>*:first-child{grid-column:span 1}
+}
+
+/* ---- race silhouettes: each card leads with its own shape ------------------- */
+/* The replay grid was 15 identical text boxes. Every card now opens with that race's
+   real finish-time distribution, so the archive reads as 108 different races rather
+   than 108 rows. */
+.rc{display:block;overflow:hidden;padding-top:0}
+.rc-art{display:block;margin:-1px -1px 12px;height:58px;overflow:hidden;
+  border-radius:12px 12px 0 0;background:linear-gradient(180deg,#fff6ea,#fffdfa);
+  border-bottom:1px solid var(--line)}
+.rc-art img{display:block;width:100%;height:58px;object-fit:fill;opacity:.9;
+  transition:opacity var(--med) var(--ease),transform var(--med) var(--ease)}
+.rc:hover .rc-art img{opacity:1;transform:scaleY(1.06)}
+.rc-top,.rc h3,.rc p,.rc .tag{padding-left:15px;padding-right:15px}
+.rc .tag{display:inline-block;margin-bottom:14px}
+/* The promoted first card gets a taller silhouette, since it has the room. */
+#replays>*:first-child .rc-art,#replays>*:first-child .rc-art img{height:86px}
+
+/* ---- pace tiles carry their own profile ------------------------------------ */
+/* Tall means slow. Each race's median segment pace from its finishers' splits, so the
+   grid stops being 20 copies of the same rectangle. */
+.prepg a{padding:0 0 15px;overflow:hidden}
+.pp-art{display:block;height:52px;overflow:hidden;margin:0 0 12px;
+  border-radius:12px 12px 0 0;background:linear-gradient(180deg,#fff7ed,#fffdfa);
+  border-bottom:1px solid var(--line)}
+.pp-art img{display:block;width:100%;height:52px;object-fit:fill;opacity:.88;
+  transition:opacity var(--med) var(--ease)}
+.prepg a:hover .pp-art img{opacity:1}
+.prepg a b,.prepg a span:not(.pp-art){padding-left:16px;padding-right:16px;display:block}
+.prepg>a:first-child .pp-art,.prepg>a:first-child .pp-art img{height:74px}
+
+/* ---- the archive, saying something ----------------------------------------- */
+/* Not a card. A quiet moment between the live race and the archive, where the site
+   notices something instead of just presenting rows. */
+.factband{margin:0 0 56px;padding:38px 0 34px;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.factlabel{display:block;font-family:var(--mono);font-size:10px;letter-spacing:2.2px;
+  text-transform:uppercase;color:var(--acc);margin:0 0 16px}
+.factbody{font-family:var(--display);font-size:clamp(21px,2.5vw,32px);line-height:1.18;
+  letter-spacing:-.025em;color:var(--ink);max-width:26ch;margin:0}
+.factbody a{color:var(--ink);text-decoration:none;
+  background-image:linear-gradient(var(--acc-bright),var(--acc-bright));
+  background-size:100% 2px;background-repeat:no-repeat;background-position:0 100%;
+  transition:background-size var(--med) var(--ease),color var(--fast) var(--ease)}
+.factbody a:hover{color:var(--acc);background-size:100% 100%;
+  background-image:linear-gradient(rgba(255,122,26,.16),rgba(255,122,26,.16))}
+.factdetail{font-size:14px;color:var(--ink-2);margin:14px 0 0;max-width:56ch}
+.factmore{margin-top:20px;background:none;border:1px solid var(--line-2);
+  color:var(--ink-2);font-family:var(--mono);font-size:10.5px;letter-spacing:1.4px;
+  text-transform:uppercase;padding:9px 16px;border-radius:999px;cursor:pointer;
+  transition:border-color var(--fast) var(--ease),color var(--fast) var(--ease)}
+.factmore:hover{border-color:var(--acc);color:var(--acc)}
+@media(max-width:760px){.factband{padding:30px 0 26px;margin-bottom:38px}
+  .factbody{max-width:none}}
+
+/* urtnav: the same five destinations everywhere. Lives here rather than being inlined into
+   each page, which is how the athlete pages ended up with no navigation at all — a per-page
+   copy is only correct on the pages somebody remembered to update. */
+.urtnavbar{border-bottom:1px solid var(--line,#e8e0d4)}
+.urtnavbar>.urtnav{max-width:1180px;margin:0 auto;padding:0 20px 10px}
+.urtnav{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.urtnav a{font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.7px;
+  text-transform:uppercase;text-decoration:none;padding:7px 11px;border-radius:8px;
+  color:var(--ink-2,#4d463f);white-space:nowrap;
+  transition:background .16s ease,color .16s ease}
+.urtnav a:hover{background:rgba(255,122,26,.1);color:var(--acc,#a83a06)}
+.urtnav a[aria-current="page"]{color:var(--acc,#a83a06);background:rgba(255,122,26,.09)}
+@media (max-width:760px){.urtnav{gap:0}.urtnav a{padding:6px 8px;font-size:10px}}

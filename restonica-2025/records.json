@@ -1,0 +1,86 @@
+{
+ "men": null,
+ "women": {
+  "name": "Maud COMBARIEU",
+  "sex": "f",
+  "year": 2025,
+  "seconds": 76628,
+  "time": "21:17:08"
+ },
+ "top10": [
+  {
+   "name": "Alexis SEVENNEC",
+   "sex": "",
+   "year": 2025,
+   "seconds": 58484,
+   "time": "16:14:44"
+  },
+  {
+   "name": "Paul ZUNINO",
+   "sex": "",
+   "year": 2025,
+   "seconds": 61461,
+   "time": "17:04:21"
+  },
+  {
+   "name": "R\u00e9mi BERCHET",
+   "sex": "",
+   "year": 2025,
+   "seconds": 61977,
+   "time": "17:12:57"
+  },
+  {
+   "name": "Jean SEGUELAS",
+   "sex": "",
+   "year": 2025,
+   "seconds": 65156,
+   "time": "18:05:56"
+  },
+  {
+   "name": "Valentin BRICQUET",
+   "sex": "",
+   "year": 2025,
+   "seconds": 66734,
+   "time": "18:32:14"
+  },
+  {
+   "name": "Gerald MOUTIAPOULLE",
+   "sex": "",
+   "year": 2025,
+   "seconds": 68656,
+   "time": "19:04:16"
+  },
+  {
+   "name": "Sylvain CAMUS",
+   "sex": "",
+   "year": 2025,
+   "seconds": 69121,
+   "time": "19:12:01"
+  },
+  {
+   "name": "Yoann MORISSE",
+   "sex": "",
+   "year": 2025,
+   "seconds": 70411,
+   "time": "19:33:31"
+  },
+  {
+   "name": "Pierre ZUCCARELLI",
+   "sex": "",
+   "year": 2025,
+   "seconds": 70528,
+   "time": "19:35:28"
+  },
+  {
+   "name": "Alban LEROUX",
+   "sex": "",
+   "year": 2025,
+   "seconds": 70890,
+   "time": "19:41:30"
+  }
+ ],
+ "years_parsed": [
+  2025
+ ],
+ "generated": "fastest finishes in 2025-2025 as published by the race"
+}

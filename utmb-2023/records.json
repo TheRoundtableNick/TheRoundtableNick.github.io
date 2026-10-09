@@ -1,0 +1,95 @@
+{
+ "men": {
+  "name": "Tom EVANS",
+  "sex": "m",
+  "year": 2025,
+  "seconds": 69538,
+  "time": "19:18:58"
+ },
+ "women": {
+  "name": "Katie SCHIDE",
+  "sex": "f",
+  "year": 2024,
+  "seconds": 79771,
+  "time": "22:09:31"
+ },
+ "top10": [
+  {
+   "name": "Tom EVANS",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 69538,
+   "time": "19:18:58"
+  },
+  {
+   "name": "Jim WALMSLEY",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 70663,
+   "time": "19:37:43"
+  },
+  {
+   "name": "Kilian JORNET BURGADA",
+   "sex": "m",
+   "year": 2022,
+   "seconds": 71370,
+   "time": "19:49:30"
+  },
+  {
+   "name": "Ben DHIMAN",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 71497,
+   "time": "19:51:37"
+  },
+  {
+   "name": "Vincent BOUILLARD",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 71663,
+   "time": "19:54:23"
+  },
+  {
+   "name": "Mathieu BLANCHARD",
+   "sex": "m",
+   "year": 2022,
+   "seconds": 71690,
+   "time": "19:54:50"
+  },
+  {
+   "name": "Zach MILLER",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 71938,
+   "time": "19:58:58"
+  },
+  {
+   "name": "Josh WADE",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 72306,
+   "time": "20:05:06"
+  },
+  {
+   "name": "Germain GRANGIER",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 72652,
+   "time": "20:10:52"
+  },
+  {
+   "name": "Ji DUO",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 72905,
+   "time": "20:15:05"
+  }
+ ],
+ "years_parsed": [
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "generated": "fastest finishes in 2022-2025 as published by the race"
+}

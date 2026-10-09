@@ -1,0 +1,51 @@
+{
+ "curve": [
+  [
+   0,
+   0.0
+  ],
+  [
+   7.39,
+   1.465
+  ],
+  [
+   14.79,
+   2.982
+  ],
+  [
+   31.62,
+   7.14
+  ],
+  [
+   36.27,
+   8.255
+  ],
+  [
+   45.71,
+   10.713
+  ],
+  [
+   54.07,
+   13.178
+  ],
+  [
+   61.11,
+   15.215
+  ],
+  [
+   67.38,
+   17.641
+  ],
+  [
+   76.75,
+   20.554
+  ]
+ ],
+ "family": "chianti",
+ "finishers": 471,
+ "holdout_err_h": {
+  "badwater_curve": null,
+  "own_curve": null
+ },
+ "note": "median finisher shape derived from this race's own archived results"
+}

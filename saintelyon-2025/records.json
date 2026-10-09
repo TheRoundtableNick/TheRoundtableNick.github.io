@@ -1,0 +1,86 @@
+{
+ "men": null,
+ "women": {
+  "name": "Enora NIORT",
+  "sex": "f",
+  "year": 2025,
+  "seconds": 86285,
+  "time": "23:58:05"
+ },
+ "top10": [
+  {
+   "name": "Elwan MEHL",
+   "sex": "",
+   "year": 2025,
+   "seconds": 77781,
+   "time": "21:36:21"
+  },
+  {
+   "name": "Samuel CAIGNAN",
+   "sex": "",
+   "year": 2025,
+   "seconds": 78401,
+   "time": "21:46:41"
+  },
+  {
+   "name": "Jeffrey DORSEY",
+   "sex": "",
+   "year": 2025,
+   "seconds": 78512,
+   "time": "21:48:32"
+  },
+  {
+   "name": "Nicolas FIRMIN",
+   "sex": "",
+   "year": 2025,
+   "seconds": 78654,
+   "time": "21:50:54"
+  },
+  {
+   "name": "Simon JONET",
+   "sex": "",
+   "year": 2025,
+   "seconds": 78876,
+   "time": "21:54:36"
+  },
+  {
+   "name": "Maxime GENDROT",
+   "sex": "",
+   "year": 2025,
+   "seconds": 79457,
+   "time": "22:04:17"
+  },
+  {
+   "name": "Nathan COURANT",
+   "sex": "",
+   "year": 2025,
+   "seconds": 79498,
+   "time": "22:04:58"
+  },
+  {
+   "name": "Wandrille RENOUX",
+   "sex": "",
+   "year": 2025,
+   "seconds": 79805,
+   "time": "22:10:05"
+  },
+  {
+   "name": "Fran\u00e7ois-Olivier WEICHERT",
+   "sex": "",
+   "year": 2025,
+   "seconds": 79826,
+   "time": "22:10:26"
+  },
+  {
+   "name": "Pierre-Antoine CUEFF",
+   "sex": "",
+   "year": 2025,
+   "seconds": 80146,
+   "time": "22:15:46"
+  }
+ ],
+ "years_parsed": [
+  2025
+ ],
+ "generated": "fastest finishes in 2025-2025 as published by the race"
+}

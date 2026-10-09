@@ -1,0 +1,31 @@
+{
+ "_comment": "Curated official broadcast destinations, one per race family. Every entry verified before inclusion: the channel's own og:title identifies the organisation, or the race's own site links the exact URL. Verified 2026-07-30. A family absent here shows no chip - absence is the honest default, never a guess.",
+ "utmb": {
+  "url": "https://live.utmb.world",
+  "label": "UTMB Live"
+ },
+ "ccc": {
+  "url": "https://live.utmb.world",
+  "label": "UTMB Live"
+ },
+ "occ": {
+  "url": "https://live.utmb.world",
+  "label": "UTMB Live"
+ },
+ "tds": {
+  "url": "https://live.utmb.world",
+  "label": "UTMB Live"
+ },
+ "ptl": {
+  "url": "https://live.utmb.world",
+  "label": "UTMB Live"
+ },
+ "western-states-100": {
+  "url": "https://www.youtube.com/@WesternStates",
+  "label": "Western States on YouTube"
+ },
+ "badwater-135": {
+  "url": "https://www.youtube.com/@adventurecorps",
+  "label": "Badwater on YouTube"
+ }
+}

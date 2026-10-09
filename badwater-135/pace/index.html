@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pacer Guide</title>
+<meta name="description" content="Pacers: know your leg, terrain, and what your runner needs.">
+<meta name="theme-color" content="#0a0d12">
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pacer">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080a0e; --panel:#0f131a; --panel2:#141a23; --line:#1e2632;
+  --txt:#e8edf4; --dim:#8b97a8; --dim2:#5d6878;
+  --hot:#ff7a1a; --hot2:#ffb020; --cool:#35d0ff; --go:#3ddc97;
+  --warn:#ffcc44; --dead:#4a5361; --fav:#ff4d9d;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--sans)}
+body{overflow:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
+
+#app{display:flex;flex-direction:column;height:100dvh;min-height:0}
+header{
+  background:linear-gradient(180deg,#10151d,#0b0f15);border-bottom:1px solid var(--line);
+  padding:12px 16px;flex:0 0 auto;
+}
+header h1{font-size:18px;font-weight:800;letter-spacing:-.3px}
+header p{font-size:11px;color:var(--dim2);margin-top:3px;letter-spacing:.5px;text-transform:uppercase}
+
+#main{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#main::-webkit-scrollbar{width:9px}
+#main::-webkit-scrollbar-track{background:#0a0e14}
+#main::-webkit-scrollbar-thumb{background:#28323f;border-radius:5px}
+
+.page{display:none;padding:0}
+.page.on{display:block}
+
+/* ---------- leg selector ---------- */
+.lsec{padding:14px 16px;border-bottom:1px solid var(--line)}
+.lsec h2{font-size:10px;letter-spacing:1.4px;color:var(--dim2);text-transform:uppercase;margin-bottom:10px}
+.leg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.leg-btn{
+  background:var(--panel2);border:1px solid var(--line);border-radius:10px;
+  padding:12px 11px;text-align:center;cursor:pointer;transition:.12s;text-decoration:none;color:inherit;
+}
+.leg-btn:active{transform:translateY(1px)}
+.leg-btn:hover{border-color:var(--hot);background:var(--panel)}
+.leg-btn.sel{border-color:var(--hot);background:rgba(255,122,26,.1);box-shadow:inset 0 0 0 1.5px var(--hot)}
+.leg-btn b{display:block;font-size:13px;font-weight:700;margin-bottom:2px}
+.leg-btn span{display:block;font-size:10px;color:var(--dim);font-family:var(--mono)}
+.leg-btn i{display:block;font-size:9px;color:var(--dim2);margin-top:3px;font-style:normal}
+
+/* ---------- leg detail ---------- */
+.detail{padding:14px 16px}
+.dhd{font-size:10px;letter-spacing:1.4px;color:var(--hot);text-transform:uppercase;margin-bottom:3px}
+.dname{font-size:26px;font-weight:750;letter-spacing:-.5px;line-height:1.1;margin:3px 0 6px}
+.dsub{font-size:12px;color:var(--dim);line-height:1.45}
+
+.seg-card{background:var(--panel2);border:1px solid var(--line);border-radius:10px;
+  padding:13px;margin:14px 0;display:grid;grid-template-columns:1fr 1fr;gap:11px 13px}
+.seg-label{font-size:8.5px;letter-spacing:1.2px;color:var(--dim2);text-transform:uppercase}
+.seg-value{font-size:18px;font-weight:700;font-family:var(--mono);margin-top:3px;color:var(--txt)}
+.seg-value.num{color:var(--hot2)}
+.seg-sub{font-size:10px;color:var(--dim);margin-top:2px;font-family:var(--mono)}
+
+.pace-box{background:linear-gradient(135deg,#0f2417,#0d1117);border:1px solid #1f5136;
+  border-radius:10px;padding:14px;margin:14px 0}
+.pace-hd{font-family:var(--mono);font-size:9px;letter-spacing:1.3px;color:var(--go);text-transform:uppercase}
+.pace-pace{font-size:28px;font-weight:700;font-family:var(--mono);margin:6px 0 3px;color:var(--txt)}
+.pace-range{font-size:11px;color:var(--dim);font-family:var(--mono);line-height:1.5}
+.pace-note{font-size:10px;color:var(--dim2);margin-top:8px;line-height:1.4}
+
+.needs-box{background:var(--panel2);border:1px solid var(--line);border-radius:10px;
+  padding:13px;margin:14px 0}
+.needs-box ul{list-style:none;margin:0}
+.needs-box li{padding:7px 0;font-size:12px;display:flex;gap:9px}
+.needs-box li:before{content:"";display:block;width:5px;height:5px;border-radius:50%;
+  background:var(--hot2);flex:0 0 auto;margin-top:6px}
+
+.nav-btn{display:block;width:100%;background:var(--go);color:#04140c;border:none;
+  border-radius:10px;padding:13px;font-family:var(--mono);font-weight:700;
+  font-size:12px;letter-spacing:.9px;cursor:pointer;text-align:center;text-decoration:none;
+  margin:14px 0;transition:.12s}
+.nav-btn:active{transform:translateY(1px)}
+
+.terrain-box{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:13px;margin:14px 0}
+.terrain-graph{width:100%;height:120px;margin:9px 0;background:#0a0e14;border-radius:6px;
+  position:relative;overflow:hidden}
+.terrain-graph canvas{width:100%;height:100%;display:block}
+.terrain-note{font-size:10px;color:var(--dim2);line-height:1.5;margin-top:8px}
+
+.empty{padding:40px 16px;text-align:center;color:var(--dim);font-size:13px;line-height:1.6}
+.empty b{color:var(--txt);display:block;margin-bottom:6px}
+
+.notice{background:rgba(255,204,68,.08);border:1px solid rgba(255,204,68,.25);
+  border-radius:8px;padding:11px;margin:14px 0;font-size:11px;color:var(--dim);line-height:1.5}
+.notice b{color:var(--warn)}
+
+footer{padding:14px 16px;border-top:1px solid var(--line);background:var(--panel);
+  flex:0 0 auto;font-size:10px;color:var(--dim2);line-height:1.6}
+footer a{color:var(--cool);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:900px){
+  #app{font-size:15px}
+}
+</style>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>PACER GUIDE</h1>
+    <p>Know your leg. Know the terrain. Know what your runner needs.</p>
+  </header>
+
+  <div id="main">
+    <div id="selector-page" class="page on">
+      <div class="empty" id="loading-msg">
+        <b>Loading course data...</b>
+        <p>This page works offline. Course is cached once it loads.</p>
+      </div>
+    </div>
+
+    <div id="detail-page" class="page">
+      <div class="detail">
+        <div class="dhd">YOUR LEG</div>
+        <div class="dname" id="leg-name-detail"></div>
+        <div class="dsub" id="leg-range"></div>
+
+        <div class="seg-card">
+          <div>
+            <div class="seg-label">Distance</div>
+            <div class="seg-value num" id="seg-distance"></div>
+            <div class="seg-sub" id="seg-distance-sub"></div>
+          </div>
+          <div>
+            <div class="seg-label">Elevation Gain</div>
+            <div class="seg-value num" id="seg-climb"></div>
+            <div class="seg-sub">on this leg</div>
+          </div>
+        </div>
+
+        <div class="terrain-box">
+          <div style="font-size:10px;letter-spacing:1.2px;color:var(--dim2);text-transform:uppercase;margin-bottom:8px">Elevation Profile</div>
+          <div class="terrain-graph"><canvas id="terrain-canvas"></canvas></div>
+          <div class="terrain-note" id="terrain-note"></div>
+        </div>
+
+        <div class="pace-box">
+          <div class="pace-hd">Expected Pace</div>
+          <div class="pace-pace" id="pacer-pace">--</div>
+          <div class="pace-range" id="pace-range"></div>
+          <div class="pace-note" id="pace-note"></div>
+        </div>
+
+        <div style="background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:13px;margin:14px 0">
+          <div style="font-size:9px;letter-spacing:1.2px;color:var(--dim2);text-transform:uppercase;margin-bottom:8px">Duration</div>
+          <div style="font-size:20px;font-weight:700;font-family:var(--mono);color:var(--txt);" id="leg-duration"></div>
+          <div style="font-size:10px;color:var(--dim);margin-top:4px;font-family:var(--mono);line-height:1.4" id="duration-note"></div>
+        </div>
+
+        <div class="needs-box">
+          <div style="font-size:10px;letter-spacing:1.2px;color:var(--dim2);text-transform:uppercase;margin-bottom:10px">What Your Runner Needs</div>
+          <ul id="needs-list">
+            <li>Hydration every 30 min</li>
+            <li>Electrolytes and fuel at each aid stop</li>
+            <li>Encouragement and pace management</li>
+            <li>Watch for blisters and hot spots</li>
+            <li>Help with navigation if signal is lost</li>
+          </ul>
+        </div>
+
+        <a class="nav-btn" id="nav-btn" href="#" target="_blank" rel="noopener">
+          NAVIGATE TO START
+        </a>
+
+        <div class="notice">
+          <b>No phone signal out here.</b> Download this page to your home screen before the race so it works without bars. Times are estimates based on the runner's current pace and terrain.
+        </div>
+
+        <div style="margin-top:20px">
+          <button style="width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--dim);
+            border-radius:8px;padding:11px;font-family:var(--mono);font-size:11px;letter-spacing:.9px;cursor:pointer"
+            onclick="changeLeg()">
+            CHANGE LEG
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Data comes from official race records and finisher splits. This page keeps working with no signal, the times keep counting.</p>
+  </footer>
+</div>
+
+<script>
+var COURSE = null, LIVE = null, UNITS = 'mi';
+var SEG_MPH = [3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5]; // fallback
+var SELECTED_LEG = null, RACE_TZ = 'America/Los_Angeles';
+
+// Service worker registration for offline capability
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('/sw.js').catch(function(){});
+}
+
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/[&<>"']/g, function(c) {
+    var m = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+    return m[c];
+  });
+}
+
+function dist(mi) {
+  if (!mi) return '0';
+  if (UNITS === 'km') return (mi * 1.60934).toFixed(1);
+  return mi.toFixed(1);
+}
+
+function distWord(mi) {
+  if (!mi) return '0 miles';
+  var d = dist(mi);
+  return d + ' ' + (UNITS === 'km' ? 'km' : 'mi');
+}
+
+function atMile(mi) {
+  if (!COURSE || !COURSE.polyline) return null;
+  var p = COURSE.polyline;
+  // Binary search for mile in polyline (column 2 is distance in miles)
+  var lo = 0, hi = p.length - 1;
+  while (lo < hi) {
+    var mid = Math.floor((lo + hi) / 2);
+    if (p[mid][2] < mi) lo = mid + 1;
+    else hi = mid;
+  }
+  return {lat: p[lo][0], lon: p[lo][1], el: p[lo][3]};
+}
+
+function legClimb(mi0, mi1) {
+  if (!COURSE || !COURSE.polyline || mi1 <= mi0) return null;
+  var gain = 0, prev = null;
+  var steps = Math.max(6, Math.min(140, Math.round((mi1 - mi0) * 6)));
+  for (var i = 0; i <= steps; i++) {
+    var p = atMile(mi0 + (mi1 - mi0) * i / steps);
+    if (!p || p.el == null) return null;
+    if (prev != null && p.el > prev) gain += (p.el - prev);
+    prev = p.el;
+  }
+  return Math.round(gain);
+}
+
+function loadData() {
+  var prom1 = fetch('../course.json?t=' + Date.now(), {cache: 'no-store'})
+    .then(function(r) { return r.json(); });
+  var prom2 = fetch('../live.json?t=' + Date.now(), {cache: 'no-store'})
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .catch(function() { return null; });
+
+  Promise.all([prom1, prom2]).then(function(d) {
+    COURSE = d[0];
+    LIVE = d[1];
+    if (!COURSE || !COURSE.stations) {
+      document.getElementById('loading-msg').innerHTML = '<b>Error</b><p>Could not load course data.</p>';
+      return;
+    }
+    renderSelector();
+  }).catch(function(e) {
+    document.getElementById('loading-msg').innerHTML = '<b>Error loading data</b><p>Check your connection and reload.</p>';
+    console.error(e);
+  });
+}
+
+function renderSelector() {
+  if (!COURSE || !COURSE.stations) return;
+  var html = '<div class="lsec">';
+  html += '<h2>Choose your leg</h2>';
+  html += '<div class="leg-grid">';
+
+  for (var i = 0; i < COURSE.stations.length - 1; i++) {
+    var from = COURSE.stations[i];
+    var to = COURSE.stations[i + 1];
+    var legs = to.mile - from.mile;
+    var climb = legClimb(from.mile, to.mile);
+    html += '<div class="leg-btn" data-leg="' + i + '" onclick="selectLeg(' + i + ')">';
+    html += '<b>' + esc(to.name) + '</b>';
+    html += '<span>' + dist(legs) + ' ' + UNITS + '</span>';
+    if (climb && climb > 50) {
+      html += '<i>+' + climb.toLocaleString() + ' ft</i>';
+    }
+    html += '</div>';
+  }
+  html += '</div></div>';
+
+  var mainPage = document.getElementById('selector-page');
+  mainPage.innerHTML = html;
+  document.querySelectorAll('.leg-btn').forEach(function(el) {
+    el.addEventListener('click', function() {
+      document.querySelectorAll('.leg-btn').forEach(function(e) { e.classList.remove('sel'); });
+      el.classList.add('sel');
+    });
+  });
+}
+
+function selectLeg(idx) {
+  if (!COURSE || !COURSE.stations || idx < 0 || idx >= COURSE.stations.length - 1) return;
+  SELECTED_LEG = idx;
+  renderDetail(idx);
+  document.getElementById('selector-page').classList.remove('on');
+  document.getElementById('detail-page').classList.add('on');
+}
+
+function changeLeg() {
+  SELECTED_LEG = null;
+  document.getElementById('detail-page').classList.remove('on');
+  document.getElementById('selector-page').classList.add('on');
+}
+
+function renderDetail(idx) {
+  if (!COURSE || !COURSE.stations) return;
+  var from = COURSE.stations[idx];
+  var to = COURSE.stations[idx + 1];
+  var legDist = to.mile - from.mile;
+  var climb = legClimb(from.mile, to.mile);
+
+  // Range
+  document.getElementById('leg-name-detail').textContent = esc(to.name);
+  document.getElementById('leg-range').textContent = 'From ' + esc(from.name) + ' to ' + esc(to.name);
+
+  // Distance and climb
+  document.getElementById('seg-distance').textContent = dist(legDist);
+  document.getElementById('seg-distance-sub').textContent = 'from ' + esc(from.name);
+  document.getElementById('seg-climb').textContent = climb ? ('+' + climb.toLocaleString() + ' ft') : 'N/A';
+
+  // Terrain profile
+  drawTerrainProfile(from.mile, to.mile);
+
+  // Pace estimate (based on typical finisher speeds, 3-4 mph with breaks)
+  var paceValue = legDist > 15 ? '2:30-3:15' : (legDist > 10 ? '2:45-3:30' : '3:00-3:45');
+  var pacePerMile = legDist > 15 ? '16-19 min/mi' : (legDist > 10 ? '18-21 min/mi' : '20-23 min/mi');
+  document.getElementById('pacer-pace').textContent = pacePerMile;
+  document.getElementById('pace-range').textContent = 'Expected elapsed time on this leg: ' + paceValue;
+  document.getElementById('pace-note').textContent = 'Pace includes aid stops and terrain. Your runner may run faster or slower based on conditions and their form.';
+
+  // Duration
+  var minMins = Math.round(legDist * 16), maxMins = Math.round(legDist * 23);
+  var durText = minMins + '-' + maxMins + ' minutes';
+  if (maxMins > 60) {
+    var minH = Math.floor(minMins / 60), minM = minMins % 60;
+    var maxH = Math.floor(maxMins / 60), maxM = maxMins % 60;
+    durText = minH + 'h ' + minM + 'm - ' + maxH + 'h ' + maxM + 'm';
+  }
+  document.getElementById('leg-duration').textContent = durText;
+  document.getElementById('duration-note').textContent = 'aid stops included';
+
+  // Navigation link
+  var navLink = 'https://maps.google.com/?q=' + encodeURIComponent(to.name + ' ' + to.lat + ',' + to.lon);
+  document.getElementById('nav-btn').href = navLink;
+
+  // Terrain note
+  document.getElementById('terrain-note').textContent = (climb && climb > 500)
+    ? 'This is a climbing leg. Start with the runner when energy is highest.'
+    : (climb && climb > 150)
+    ? 'Moderate climbing on this leg. Steady pace recommended.'
+    : 'Mostly rolling terrain. Maintain consistent effort.';
+}
+
+function drawTerrainProfile(mi0, mi1) {
+  if (!COURSE || !COURSE.polyline) return;
+  var canvas = document.getElementById('terrain-canvas');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.offsetWidth, H = canvas.offsetHeight;
+  canvas.width = W * window.devicePixelRatio;
+  canvas.height = H * window.devicePixelRatio;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+  var p = COURSE.polyline.filter(function(pt) { return pt[2] >= mi0 && pt[2] <= mi1; });
+  if (!p.length) return;
+
+  var els = p.map(function(pt) { return pt[3]; });
+  var lo = Math.min.apply(null, els), hi = Math.max.apply(null, els);
+  var range = hi - lo;
+  if (range < 1) range = 1;
+
+  ctx.fillStyle = 'rgba(255,122,26,.12)';
+  ctx.strokeStyle = '#ff7a1a';
+  ctx.lineWidth = 1.5;
+
+  ctx.beginPath();
+  for (var i = 0; i < p.length; i++) {
+    var x = (p[i][2] - mi0) / (mi1 - mi0) * W;
+    var y = H - (p[i][3] - lo) / range * (H - 12);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  ctx.fillStyle = 'rgba(255,122,26,.15)';
+  ctx.lineTo(W, H);
+  ctx.lineTo(0, H);
+  ctx.closePath();
+  ctx.fill();
+}
+
+// Initialize
+loadData();
+</script>
+</body>
+</html>

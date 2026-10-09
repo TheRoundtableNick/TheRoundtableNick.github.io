@@ -1,0 +1,43 @@
+{
+ "curve": [
+  [
+   0,
+   0.0
+  ],
+  [
+   47.92,
+   14.556
+  ],
+  [
+   59.86,
+   17.165
+  ],
+  [
+   69.02,
+   19.695
+  ],
+  [
+   75.91,
+   21.772
+  ],
+  [
+   84.48,
+   23.946
+  ],
+  [
+   88.57,
+   25.049
+  ],
+  [
+   97.39,
+   27.074
+  ]
+ ],
+ "family": "saintelyon",
+ "finishers": 420,
+ "holdout_err_h": {
+  "badwater_curve": null,
+  "own_curve": null
+ },
+ "note": "median finisher shape derived from this race's own archived results"
+}

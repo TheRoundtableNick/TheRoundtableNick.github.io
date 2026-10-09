@@ -1,0 +1,40 @@
+{
+ "by_hours_since_split": {
+  "0.5": {
+   "n": 13730,
+   "median_mi": 0.1,
+   "p75_mi": 0.19,
+   "p90_mi": 0.36
+  },
+  "1": {
+   "n": 12957,
+   "median_mi": 0.2,
+   "p75_mi": 0.38,
+   "p90_mi": 0.68
+  },
+  "2": {
+   "n": 8634,
+   "median_mi": 0.33,
+   "p75_mi": 0.6,
+   "p90_mi": 0.98
+  },
+  "3": {
+   "n": 1320,
+   "median_mi": 0.42,
+   "p75_mi": 0.77,
+   "p90_mi": 1.17
+  }
+ },
+ "buckets": [
+  0.5,
+  1,
+  2,
+  3,
+  4,
+  6,
+  8,
+  12
+ ],
+ "family": "transgrancanaria",
+ "note": "absolute miles between our estimated position and where a runner actually was, measured across this race's own archived runners"
+}

@@ -1,0 +1,86 @@
+{
+ "men": null,
+ "women": {
+  "name": "Agathe BES",
+  "sex": "f",
+  "year": 2025,
+  "seconds": 40429,
+  "time": "11:13:49"
+ },
+ "top10": [
+  {
+   "name": "Remy BRASSAC",
+   "sex": "",
+   "year": 2025,
+   "seconds": 34650,
+   "time": "9:37:30"
+  },
+  {
+   "name": "Remi GIROUD",
+   "sex": "",
+   "year": 2025,
+   "seconds": 35451,
+   "time": "9:50:51"
+  },
+  {
+   "name": "Tom JOLY",
+   "sex": "",
+   "year": 2025,
+   "seconds": 36257,
+   "time": "10:04:17"
+  },
+  {
+   "name": "Matis LERAY",
+   "sex": "",
+   "year": 2025,
+   "seconds": 36303,
+   "time": "10:05:03"
+  },
+  {
+   "name": "Jack CHAMBERLAIN",
+   "sex": "",
+   "year": 2025,
+   "seconds": 36573,
+   "time": "10:09:33"
+  },
+  {
+   "name": "Sylvain ROTA",
+   "sex": "",
+   "year": 2025,
+   "seconds": 36912,
+   "time": "10:15:12"
+  },
+  {
+   "name": "Maxime CAZAJOUS",
+   "sex": "",
+   "year": 2025,
+   "seconds": 37058,
+   "time": "10:17:38"
+  },
+  {
+   "name": "J\u00f8rgen JEVNE",
+   "sex": "",
+   "year": 2025,
+   "seconds": 37082,
+   "time": "10:18:02"
+  },
+  {
+   "name": "Clement CHRETIEN",
+   "sex": "",
+   "year": 2025,
+   "seconds": 37205,
+   "time": "10:20:05"
+  },
+  {
+   "name": "Romain BODET",
+   "sex": "",
+   "year": 2025,
+   "seconds": 37230,
+   "time": "10:20:30"
+  }
+ ],
+ "years_parsed": [
+  2025
+ ],
+ "generated": "fastest finishes in 2025-2025 as published by the race"
+}

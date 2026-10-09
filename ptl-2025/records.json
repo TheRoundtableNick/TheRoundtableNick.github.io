@@ -1,0 +1,92 @@
+{
+ "men": {
+  "name": "Team Argo",
+  "sex": "m",
+  "year": 2025,
+  "seconds": 59399,
+  "time": "16:29:59"
+ },
+ "women": {
+  "name": "Les Aravissantes",
+  "sex": "f",
+  "year": 2025,
+  "seconds": 525158,
+  "time": "145:52:38"
+ },
+ "top10": [
+  {
+   "name": "Team Argo",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 59399,
+   "time": "16:29:59"
+  },
+  {
+   "name": "Les Obstin\u00e9s",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 270743,
+   "time": "75:12:23"
+  },
+  {
+   "name": "Csibe Futam",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 271999,
+   "time": "75:33:19"
+  },
+  {
+   "name": "Les Coqs Du Trail",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 272593,
+   "time": "75:43:13"
+  },
+  {
+   "name": "Nantes Aventures",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 278221,
+   "time": "77:17:01"
+  },
+  {
+   "name": "Alpsxperience",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 280850,
+   "time": "78:00:50"
+  },
+  {
+   "name": "Les Rorochois",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 282383,
+   "time": "78:26:23"
+  },
+  {
+   "name": "PIANO B",
+   "sex": "",
+   "year": 2025,
+   "seconds": 285265,
+   "time": "79:14:25"
+  },
+  {
+   "name": "Les Juniors C\u00e9lestes",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 286753,
+   "time": "79:39:13"
+  },
+  {
+   "name": "La Bande \u00c0 Philippe",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 286837,
+   "time": "79:40:37"
+  }
+ ],
+ "years_parsed": [
+  2025
+ ],
+ "generated": "fastest finishes in 2025-2025 as published by the race"
+}

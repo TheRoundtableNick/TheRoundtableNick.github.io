@@ -1,0 +1,46 @@
+{
+ "by_hours_since_split": {
+  "0.5": {
+   "n": 39866,
+   "median_mi": 0.15,
+   "p75_mi": 0.27,
+   "p90_mi": 0.42
+  },
+  "1": {
+   "n": 37230,
+   "median_mi": 0.29,
+   "p75_mi": 0.53,
+   "p90_mi": 0.82
+  },
+  "2": {
+   "n": 23655,
+   "median_mi": 0.49,
+   "p75_mi": 0.87,
+   "p90_mi": 1.32
+  },
+  "3": {
+   "n": 5139,
+   "median_mi": 0.59,
+   "p75_mi": 1.08,
+   "p90_mi": 1.76
+  },
+  "4": {
+   "n": 980,
+   "median_mi": 0.75,
+   "p75_mi": 1.46,
+   "p90_mi": 2.38
+  }
+ },
+ "buckets": [
+  0.5,
+  1,
+  2,
+  3,
+  4,
+  6,
+  8,
+  12
+ ],
+ "family": "the-bear-100",
+ "note": "absolute miles between our estimated position and where a runner actually was, measured across this race's own archived runners"
+}

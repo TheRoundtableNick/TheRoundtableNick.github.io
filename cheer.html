@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cheer wall — UltraRunTrack</title>
+<meta name="description" content="Send a message to a runner out on course. Their crew reads it to them at the next aid station.">
+<meta name="theme-color" content="#080a0e">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UltraRunTrack">
+<meta property="og:title" content="Cheer wall — UltraRunTrack">
+<meta property="og:description" content="Send a message to a runner out on course. Their crew reads it to them at the next aid station.">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{box-sizing:border-box}
+body{background:#080a0e;color:#e8edf4;margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.5;
+  padding:0 0 env(safe-area-inset-bottom)}
+a{color:#35d0ff;text-decoration:none}
+.wrap{max-width:640px;margin:0 auto;padding:16px 15px 60px}
+header{display:flex;align-items:center;gap:9px;padding:12px 15px;border-bottom:1px solid #1a2029;
+  position:sticky;top:0;background:rgba(8,10,14,.94);backdrop-filter:blur(8px);z-index:5}
+header a.bk{color:#8b97a8;font-size:12px;font-family:ui-monospace,monospace;letter-spacing:.4px}
+header .sp{flex:1}
+header .lg{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:1.2px;color:#5c6675}
+
+.hero{padding:22px 0 4px}
+.kick{font-family:ui-monospace,monospace;font-size:10.5px;letter-spacing:1.6px;color:#ff7a1a;margin:0 0 7px}
+h1{font-size:29px;line-height:1.15;letter-spacing:-.7px;margin:0 0 5px;font-weight:750}
+.sub{color:#8b97a8;font-size:14px;margin:0}
+.sub b{color:#e8edf4;font-weight:650}
+
+.stats{display:flex;gap:26px;margin:20px 0 4px}
+.st{display:flex;flex-direction:column;gap:1px}
+.st .n{font-family:ui-monospace,monospace;font-size:40px;font-weight:700;color:#ff7a1a;
+  letter-spacing:-1.5px;line-height:1}
+.st .l{font-size:12px;color:#8b97a8;font-family:ui-monospace,monospace;letter-spacing:.7px}
+#wst .n{color:#35d0ff}
+.def{font-size:11.5px;color:#5c6675;margin:0 0 18px}
+
+.box{background:#0e1218;border:1px solid #1c232e;border-radius:13px;padding:15px}
+.box.send{border-color:#2a2118;background:linear-gradient(180deg,#12100c,#0e1218)}
+label{display:block;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:1.1px;
+  color:#7d8899;margin:0 0 6px}
+input,textarea{width:100%;background:#080a0e;border:1px solid #232b37;border-radius:9px;
+  color:#e8edf4;font:inherit;font-size:16px;padding:11px 12px;resize:none}
+input:focus,textarea:focus{outline:none;border-color:#ff7a1a}
+.row{display:flex;gap:9px;margin-bottom:10px}
+.row>div:first-child{width:40%}
+.row>div:last-child{flex:1}
+.cc{font-size:11px;color:#5c6675;text-align:right;margin-top:5px;font-family:ui-monospace,monospace}
+button.go{width:100%;margin-top:11px;background:#ff7a1a;color:#12080a;border:0;border-radius:9px;
+  font-family:ui-monospace,monospace;font-weight:700;font-size:13.5px;letter-spacing:.8px;
+  padding:14px;cursor:pointer}
+button.go:active{transform:translateY(1px)}
+button.go[disabled]{opacity:.45;cursor:default}
+.note{font-size:11.5px;color:#5c6675;margin:9px 0 0;line-height:1.5}
+.msg{font-size:13px;margin:10px 0 0;padding:10px 12px;border-radius:8px;display:none}
+.msg.ok{display:block;background:#0d2318;border:1px solid #1d5137;color:#5fe0a0}
+.msg.err{display:block;background:#2a1416;border:1px solid #5c2429;color:#ff8f8f}
+
+h2{font-size:12px;font-family:ui-monospace,monospace;letter-spacing:1.3px;color:#7d8899;
+  margin:30px 0 4px;display:flex;align-items:center;gap:8px}
+h2 .bar{flex:1;height:1px;background:#1a2029}
+.crewtip{font-size:12.5px;color:#5c6675;margin:0 0 13px;line-height:1.55}
+
+.wall{display:flex;flex-direction:column;gap:9px}
+.c{background:#0e1218;border:1px solid #1a2029;border-left:2px solid #ff7a1a;
+  border-radius:9px;padding:12px 14px}
+.c .t{font-size:17.5px;line-height:1.45;color:#f2f6fb;margin:0 0 5px;word-wrap:break-word}
+.c .m{font-size:11.5px;color:#7d8899;font-family:ui-monospace,monospace;letter-spacing:.3px}
+.c .m b{color:#ff9d4d;font-weight:600}
+.empty{background:#0e1218;border:1px dashed #232b37;border-radius:11px;padding:26px 18px;
+  text-align:center;color:#7d8899;font-size:13.5px;line-height:1.6}
+.more{text-align:center;color:#5c6675;font-size:12px;margin:14px 0 0}
+.share{display:flex;gap:9px;margin-top:13px}
+.share button{flex:1;background:#141922;border:1px solid #232b37;color:#c8d2df;border-radius:9px;
+  font-family:ui-monospace,monospace;font-size:11.5px;letter-spacing:.6px;padding:12px 8px;cursor:pointer}
+.share button:active{background:#1a2029}
+footer{margin-top:34px;padding-top:16px;border-top:1px solid #151b23;color:#5c6675;font-size:11.5px;
+  line-height:1.6}
+@media(max-width:420px){
+  h1{font-size:24px}
+  .st .n{font-size:34px}
+  .stats{gap:20px}
+  .row{flex-direction:column;gap:10px}
+  .row>div:first-child{width:100%}
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="bk" href="/" id="bk">&larr; RACE</a>
+  <span class="sp"></span>
+  <span class="lg">ULTRARUNTRACK</span>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <p class="kick" id="kick">CHEER WALL</p>
+    <h1 id="who">Loading…</h1>
+    <p class="sub" id="where"></p>
+  </div>
+
+  <div class="stats">
+    <div class="st"><span class="n" id="cn">–</span><span class="l" id="cl">cheers</span></div>
+    <div class="st" id="wst" hidden><span class="n" id="wn">–</span><span class="l">watching now</span></div>
+  </div>
+  <p class="def">Cheers are distinct devices, not taps. Watching is distinct devices that
+    loaded this race in the last 5 minutes. Both come off our own server log.</p>
+
+  <div class="box send">
+    <div class="row">
+      <div>
+        <label for="nm">YOUR NAME</label>
+        <input id="nm" maxlength="28" placeholder="Sarah" autocomplete="name">
+      </div>
+      <div>
+        <label for="tx">MESSAGE</label>
+        <input id="tx" maxlength="90" placeholder="Keep going. We are all watching." enterkeyhint="send">
+      </div>
+    </div>
+    <div style="position:absolute;left:-9999px" aria-hidden="true">
+      <input id="hp" tabindex="-1" autocomplete="off">
+    </div>
+    <button class="go" id="go">SEND IT TO THE CREW</button>
+    <div class="msg" id="fb"></div>
+    <p class="note" id="note">Their crew reads these out at the next aid station. Out here there is no
+      phone signal, so this is the only way a message reaches them.</p>
+  </div>
+
+  <h2><span>THE WALL</span><span class="bar"></span><span id="wc"></span></h2>
+  <p class="crewtip">Crew: open this at the aid station and read it to them. Newest first.</p>
+  <div class="wall" id="wall"></div>
+  <p class="more" id="more"></p>
+
+  <div class="share">
+    <button id="sh">SHARE THIS WALL</button>
+    <button id="cp">COPY LINK</button>
+  </div>
+
+  <footer>
+    Messages appear only here, on this runner's own wall. They are never posted to the race
+    board and runners are never ranked by cheers.
+    <span id="ft"></span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var P = location.pathname.replace(/\/+$/,'').split('/');
+  var q = new URLSearchParams(location.search);
+  // /badwater-135/cheer/42  -> race, bib. Query string is the fallback form.
+  var RACE = (q.get('r') || (P.length>=4 ? P[P.length-3] : '') || '').toLowerCase();
+  var BIB  = q.get('b') || (P.length>=4 ? P[P.length-1] : '') || '';
+  var $ = function(i){ return document.getElementById(i); };
+  var runner = null, sent = false;
+
+  function esc(s){ var d=document.createElement('div'); d.textContent=s==null?'':s; return d.innerHTML; }
+
+  function ago(iso){
+    var t = Date.parse(iso); if(isNaN(t)) return '';
+    var m = Math.floor((Date.now()-t)/60000);
+    if(m < 1) return 'just now';
+    if(m < 60) return m+'m ago';
+    var h = Math.floor(m/60);
+    if(h < 24) return h+'h ago';
+    return Math.floor(h/24)+'d ago';
+  }
+
+  if(!RACE || !BIB){
+    $('who').textContent = 'Pick a runner first';
+    $('where').innerHTML = 'Open a race, tap a runner, then tap Cheer. <a href="/">See all races &rarr;</a>';
+    $('go').disabled = true;
+    return;
+  }
+  $('bk').href = '/'+RACE+'/#'+BIB;
+
+  // Runner identity comes from the race feed we already publish. No new source of truth.
+  fetch('/'+RACE+'/live.json',{cache:'no-store'}).then(function(r){ return r.json(); })
+   .then(function(j){
+      var list = (j && j.runners) || [];
+      for(var i=0;i<list.length;i++){ if(String(list[i].bib)===String(BIB)){ runner=list[i]; break; } }
+      var ev = (j && j.event) || 'the race';
+      if(runner){
+        $('who').textContent = runner.name || ('Bib '+BIB);
+        var bits = ['Bib '+BIB];
+        if(runner.status==='finished' && runner.finish_time) bits.push('finished in '+runner.finish_time);
+        else if(runner.status==='dnf') bits.push('did not finish');
+        else if(runner.mile) bits.push('mile '+Number(runner.mile).toFixed(1));
+        $('where').innerHTML = bits.join(' &middot; ') + ' &middot; <b>'+esc(ev)+'</b>';
+        if(runner.status==='finished'){
+          $('kick').textContent = 'THEY MADE IT';
+          $('note').textContent = 'They are done. These messages are still worth sending, and still worth reading.';
+        } else if(runner.status==='dnf'){
+          $('kick').textContent = 'CHEER WALL';
+          $('note').textContent = 'Their day ended early. A message now lands harder than one at the finish.';
+        }
+        $('tx').placeholder = 'Keep going ' + String(runner.first||runner.name||'').split(' ')[0] + '. We are watching.';
+      } else {
+        $('who').textContent = 'Bib '+BIB;
+        $('where').innerHTML = '<b>'+esc(ev)+'</b>';
+      }
+      document.title = ($('who').textContent) + ' — cheer wall — UltraRunTrack';
+   }).catch(function(){ $('who').textContent = 'Bib '+BIB; });
+
+  function paint(d){
+    $('cn').textContent = d.count || 0;
+    $('cl').textContent = (d.count===1 ? 'cheer' : 'cheers');
+    var c = d.cheers || [], w = $('wall');
+    $('wc').textContent = c.length ? c.length + (c.length===1?' MESSAGE':' MESSAGES') : '';
+    if(!c.length){
+      w.innerHTML = '<div class="empty">No messages yet.<br>Be the first thing they hear at the next aid station.</div>';
+      $('more').textContent = '';
+      return;
+    }
+    var h = '';
+    for(var i=0;i<c.length;i++){
+      var m = c[i];
+      if(!m.msg && !m.name) continue;
+      h += '<div class="c">'
+         + (m.msg ? '<p class="t">'+esc(m.msg)+'</p>' : '')
+         + '<div class="m">'+(m.name?'<b>'+esc(m.name)+'</b>':'<b>Someone</b>')
+         + ' &middot; '+esc(ago(m.ts))+'</div></div>';
+    }
+    w.innerHTML = h;
+    $('more').textContent = c.length>=300 ? 'Showing the 300 most recent.' : '';
+  }
+
+  function load(){
+    fetch('/api/cheers?race='+encodeURIComponent(RACE)+'&bib='+encodeURIComponent(BIB),
+          {cache:'no-store'})
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.ok) paint(d); })
+      .catch(function(){});
+  }
+  load();
+  setInterval(load, 30000);
+
+  /* The number that lands hardest at 3am: not how many cheered, but how many are watching
+     them right this second. Same measured feed the race page shows, no new claim. */
+  function watchers(){
+    fetch('/viewers.json?t='+Date.now(),{cache:'no-store'})
+      .then(function(r){ return r.json(); })
+      .then(function(v){
+        if(!v || v.now==null) return;
+        var n = (v.by_race && v.by_race[RACE]!=null) ? v.by_race[RACE] : v.now;
+        if(n > 0){ $('wn').textContent = n; $('wst').hidden = false; }
+        else $('wst').hidden = true;
+      }).catch(function(){});
+  }
+  watchers();
+  setInterval(watchers, 60000);
+
+  function fb(kind, text){
+    var e = $('fb'); e.className = 'msg ' + kind; e.textContent = text;
+  }
+
+  function send(){
+    var nm = $('nm').value.trim(), tx = $('tx').value.trim();
+    if(!tx && !nm){ fb('err','Write something first.'); $('tx').focus(); return; }
+    $('go').disabled = true;
+    fetch('/api/cheer', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({race:RACE, bib:BIB, name:nm, msg:tx, website:$('hp').value})
+    }).then(function(r){ return r.json().then(function(j){ return {s:r.status, j:j}; }); })
+      .then(function(o){
+        if(o.j && o.j.ok){
+          fb('ok', sent ? 'Added to the wall.' : 'Sent. Their crew will read it out.');
+          sent = true;
+          $('tx').value = '';
+          try{ localStorage.setItem('urt_cheer_name', nm); }catch(e){}
+          try{ localStorage.setItem('urt_cheered_'+RACE+'_'+BIB, '1'); }catch(e){}
+          load();
+        } else {
+          fb('err', (o.j && o.j.error) || 'Could not send that.');
+        }
+        $('go').disabled = false;
+      })
+      .catch(function(){ fb('err','Network dropped. Try again.'); $('go').disabled = false; });
+  }
+  $('go').addEventListener('click', send);
+  $('tx').addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); send(); } });
+  try{ var n = localStorage.getItem('urt_cheer_name'); if(n) $('nm').value = n; }catch(e){}
+
+  function shareUrl(){ return location.origin + '/' + RACE + '/cheer/' + BIB; }
+  $('sh').addEventListener('click', function(){
+    var t = ($('who').textContent||'this runner') + ' is out on course. Send them a message.';
+    if(navigator.share){ navigator.share({title:'Cheer wall', text:t, url:shareUrl()}).catch(function(){}); }
+    else { navigator.clipboard.writeText(shareUrl()); fb('ok','Link copied.'); }
+  });
+  $('cp').addEventListener('click', function(){
+    navigator.clipboard.writeText(shareUrl()).then(function(){ fb('ok','Link copied.'); },
+      function(){ fb('err','Could not copy.'); });
+  });
+})();
+</script>
+</body>
+</html>

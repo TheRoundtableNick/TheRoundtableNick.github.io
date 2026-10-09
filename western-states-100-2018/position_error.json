@@ -1,0 +1,40 @@
+{
+ "by_hours_since_split": {
+  "0.5": {
+   "n": 29883,
+   "median_mi": 0.11,
+   "p75_mi": 0.21,
+   "p90_mi": 0.38
+  },
+  "1": {
+   "n": 21720,
+   "median_mi": 0.2,
+   "p75_mi": 0.36,
+   "p90_mi": 0.59
+  },
+  "2": {
+   "n": 2564,
+   "median_mi": 0.29,
+   "p75_mi": 0.56,
+   "p90_mi": 0.9
+  },
+  "3": {
+   "n": 113,
+   "median_mi": 0.58,
+   "p75_mi": 1.3,
+   "p90_mi": 1.92
+  }
+ },
+ "buckets": [
+  0.5,
+  1,
+  2,
+  3,
+  4,
+  6,
+  8,
+  12
+ ],
+ "family": "western-states-100",
+ "note": "absolute miles between our estimated position and where a runner actually was, measured across this race's own archived runners"
+}

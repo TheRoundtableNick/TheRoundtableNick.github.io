@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Restore your runners — UltraRunTrack</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/urt.css">
+<style>
+.rw{max-width:640px;margin:0 auto;padding:60px 20px 90px}
+.rw h1{font-family:var(--display);font-size:clamp(28px,5vw,44px);letter-spacing:-.035em;
+  line-height:1.05;margin:0 0 14px}
+.rw p{font-size:16px;color:var(--ink-2);line-height:1.6;margin:0 0 16px}
+.rlist{margin:22px 0;display:grid;gap:8px}
+.rlist a{display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:12px 15px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.rlist a:hover{border-color:var(--acc)}
+.rbtn{display:inline-block;background:var(--acc-bright,#ff7a1a);color:#141d26;border:0;
+  border-radius:10px;padding:13px 22px;font:inherit;font-size:15px;font-weight:700;
+  cursor:pointer;text-decoration:none}
+.rnote{font-size:13px;color:var(--ink-3);margin-top:22px}
+</style></head><body>
+<header><div style="max-width:640px;margin:0 auto;padding:16px 20px">
+  <a class="logo" href="/" style="font-weight:800;font-size:15px">ULTRA<i>RUN</i>TRACK</a>
+</div></header>
+
+<div class="rw">
+  <span class="factlabel">Your runners</span>
+  <h1 id="rh">Restoring your list.</h1>
+  <p id="rp">One moment.</p>
+  <div class="rlist" id="rl"></div>
+  <p id="ra"></p>
+  <p class="rnote" id="rn"></p>
+</div>
+
+<script src="/follow.js"></script>
+<script>
+/* Restore a follow list from a backup link.
+ *
+ * Follows live in localStorage, with no account behind them - which is the right trade for a
+ * site that is free and asks for nothing, and a real limitation: clear your browser, or pick up
+ * a different phone, and the list is gone with no way to get it back.
+ *
+ * The backup is the list itself, encoded into the URL FRAGMENT. A fragment is never sent to the
+ * server - not in the request, not in the logs, not in a referrer - so this restores a list
+ * without us ever holding one. No account, no email required, nothing stored here.
+ *
+ * Merges rather than replaces: someone restoring an old list onto a phone that already follows
+ * people should end up with both, not with whichever they happened to open last.
+ */
+(function () {
+  var h = document.getElementById('rh'), p = document.getElementById('rp'),
+      l = document.getElementById('rl'), a = document.getElementById('ra'),
+      n = document.getElementById('rn');
+
+  function esc(t) {
+    return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function decode(frag) {
+    try {
+      var b64 = frag.replace(/-/g, '+').replace(/_/g, '/');
+      var pad = '='.repeat((4 - (b64.length % 4)) % 4);
+      var json = decodeURIComponent(escape(atob(b64 + pad)));
+      var d = JSON.parse(json);
+      return (d && d.a) || [];
+    } catch (e) { return null; }
+  }
+
+  var frag = (location.hash || '').replace(/^#/, '');
+  if (!frag) {
+    h.textContent = 'Nothing to restore.';
+    p.innerHTML = 'This page restores a saved list of runners. Open the backup link you saved ' +
+      'and your follows come back. <a href="/">Go to the races</a>.';
+    return;
+  }
+
+  var list = decode(frag);
+  if (!list || !list.length) {
+    h.textContent = 'That link did not work.';
+    p.innerHTML = 'The backup could not be read - it may have been cut short when it was ' +
+      'copied. <a href="/">Start again</a> and save a fresh one.';
+    return;
+  }
+
+  var added = 0, already = 0;
+  list.forEach(function (r) {
+    if (!r || !r.i) return;
+    if (window.URTFollow && URTFollow.isFollowing('athletes', r.i)) { already++; return; }
+    if (window.URTFollow) { URTFollow.toggle('athletes', r.i, { name: r.n || r.i }); added++; }
+  });
+
+  h.textContent = added ? 'Your runners are back.' : 'Already on this device.';
+  p.textContent = added
+    ? ('Added ' + added + (already ? ', ' + already + ' were already here' : '') +
+       '. They are saved on this device now.')
+    : ('All ' + already + ' of these were already saved here. Nothing changed.');
+
+  l.innerHTML = list.slice(0, 25).map(function (r) {
+    return '<a href="/a/' + esc(r.i) + '">' + esc(r.n || r.i) + '</a>';
+  }).join('');
+
+  a.innerHTML = '<a class="rbtn" href="/">See what is running</a>';
+  n.textContent = 'Nothing about this list was sent to us. The backup travels in the part of ' +
+    'the link a browser never transmits, so we could not read it even if we wanted to.';
+}());
+</script>
+<script src="/urt.js" defer></script>
+</body></html>

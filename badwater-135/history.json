@@ -1,0 +1,2178 @@
+{
+  "57": {
+    "person_id": "3491",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "47": {
+    "person_id": "5117",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "73": {
+    "person_id": "4002",
+    "starts": 2,
+    "finishes": 1,
+    "dnfs": 1,
+    "best_time": "43:33:47",
+    "best_year": 2023,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2023,
+        "time": "43:33:47",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      }
+    ]
+  },
+  "10": {
+    "person_id": "2922",
+    "starts": 8,
+    "finishes": 7,
+    "dnfs": 1,
+    "best_time": "34:03:47",
+    "best_year": 2019,
+    "best_place": null,
+    "buckle_count": 7,
+    "races": [
+      {
+        "year": 2025,
+        "time": "40:03:46",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2024,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      },
+      {
+        "year": 2023,
+        "time": "39:15:50",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "44:09:55",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2019,
+        "time": "34:03:47",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "34:30:53",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2017,
+        "time": "35:48:31",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2016,
+        "time": "41:02:04",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "25": {
+    "person_id": "2327",
+    "starts": 11,
+    "finishes": 10,
+    "dnfs": 1,
+    "best_time": "30:36:44",
+    "best_year": 2014,
+    "best_place": null,
+    "buckle_count": 10,
+    "races": [
+      {
+        "year": 2024,
+        "time": "45:21:22",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2023,
+        "time": "40:48:29",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "41:57:48",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2021,
+        "time": "41:08:58",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2019,
+        "time": "40:36:09",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "35:54:13",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2017,
+        "time": "35:30:19",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2016,
+        "time": "32:47:57",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2015,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      },
+      {
+        "year": 2014,
+        "time": "30:36:44",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2013,
+        "time": "38:40:54",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "44": {
+    "person_id": "4783",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "64": {
+    "person_id": "5077",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "28": {
+    "person_id": "5123",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "50": {
+    "person_id": "5125",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "90": {
+    "person_id": "5127",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "48": {
+    "person_id": "4973",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "76": {
+    "person_id": "3687",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "42:14:31",
+    "best_year": 2022,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2022,
+        "time": "42:14:31",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "71": {
+    "person_id": "3831",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "39": {
+    "person_id": "5130",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "58": {
+    "person_id": "5131",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "61": {
+    "person_id": "4476",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "3": {
+    "person_id": "5136",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "49": {
+    "person_id": "2076",
+    "starts": 13,
+    "finishes": 13,
+    "dnfs": 0,
+    "best_time": "39:09:40",
+    "best_year": 2022,
+    "best_place": null,
+    "buckle_count": 13,
+    "races": [
+      {
+        "year": 2025,
+        "time": "44:31:26",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2024,
+        "time": "44:25:02",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2023,
+        "time": "40:28:31",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "39:09:40",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2021,
+        "time": "41:23:34",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2019,
+        "time": "40:24:15",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "44:32:45",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2017,
+        "time": "43:09:03",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2016,
+        "time": "43:05:05",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2015,
+        "time": "44:44:12",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2014,
+        "time": "40:44:09",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2013,
+        "time": "46:24:30",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2012,
+        "time": "40:24:35",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "42": {
+    "person_id": "4565",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "66": {
+    "person_id": "5138",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "24": {
+    "person_id": "5143",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "38": {
+    "person_id": "4180",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "43:08:56",
+    "best_year": 2023,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2023,
+        "time": "43:08:56",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "77": {
+    "person_id": "3320",
+    "starts": 3,
+    "finishes": 3,
+    "dnfs": 0,
+    "best_time": "30:48:47",
+    "best_year": 2021,
+    "best_place": null,
+    "buckle_count": 3,
+    "races": [
+      {
+        "year": 2022,
+        "time": "35:35:42",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2021,
+        "time": "30:48:47",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "35:13:35",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "79": {
+    "person_id": "5144",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "21": {
+    "person_id": "4784",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "18": {
+    "person_id": "5146",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "70": {
+    "person_id": "5147",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "78": {
+    "person_id": "5151",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "14": {
+    "person_id": "4418",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "44:56:09",
+    "best_year": 2024,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2024,
+        "time": "44:56:09",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "60": {
+    "person_id": "5155",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "56": {
+    "person_id": "5156",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "97": {
+    "person_id": "5157",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "69": {
+    "person_id": "3854",
+    "starts": 2,
+    "finishes": 2,
+    "dnfs": 0,
+    "best_time": "40:50:30",
+    "best_year": 2024,
+    "best_place": null,
+    "buckle_count": 2,
+    "races": [
+      {
+        "year": 2024,
+        "time": "40:50:30",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "47:16:11",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "46": {
+    "person_id": "4811",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "81": {
+    "person_id": "2567",
+    "starts": 9,
+    "finishes": 9,
+    "dnfs": 0,
+    "best_time": "37:54:22",
+    "best_year": 2017,
+    "best_place": null,
+    "buckle_count": 9,
+    "races": [
+      {
+        "year": 2025,
+        "time": "42:40:14",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2024,
+        "time": "43:34:21",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "39:20:24",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2021,
+        "time": "40:50:59",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "41:31:50",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2017,
+        "time": "37:54:22",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2016,
+        "time": "41:42:20",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2015,
+        "time": "42:52:09",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2014,
+        "time": "44:40:40",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "84": {
+    "person_id": "84",
+    "starts": 18,
+    "finishes": 18,
+    "dnfs": 0,
+    "best_time": "32:22:58",
+    "best_year": 2007,
+    "best_place": null,
+    "buckle_count": 18,
+    "races": [
+      {
+        "year": 2025,
+        "time": "45:29:00",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2024,
+        "time": "42:23:58",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2023,
+        "time": "38:39:26",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "45:37:32",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2021,
+        "time": "39:05:46",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2019,
+        "time": "37:57:09",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "37:16:41",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2017,
+        "time": "35:25:16",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2016,
+        "time": "36:14:40",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2015,
+        "time": "36:39:17",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2014,
+        "time": "38:25:08",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2013,
+        "time": "42:41:28",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2012,
+        "time": "33:22:00",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2011,
+        "time": "38:29:58",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2010,
+        "time": "37:13:19",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2009,
+        "time": "35:51:44",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2008,
+        "time": "36:31:46",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2007,
+        "time": "32:22:58",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "29": {
+    "person_id": "4544",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "63": {
+    "person_id": "5160",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "99": {
+    "person_id": "4152",
+    "starts": 2,
+    "finishes": 1,
+    "dnfs": 1,
+    "best_time": "40:42:56",
+    "best_year": 2024,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2024,
+        "time": "40:42:56",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2023,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      }
+    ]
+  },
+  "15": {
+    "person_id": "5115",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "22": {
+    "person_id": "4134",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "34:34:13",
+    "best_year": 2025,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2025,
+        "time": "34:34:13",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "32": {
+    "person_id": "5118",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "12": {
+    "person_id": "2959",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "38:56:41",
+    "best_year": 2019,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2019,
+        "time": "38:56:41",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "98": {
+    "person_id": "5119",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "75": {
+    "person_id": "2788",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "54": {
+    "person_id": "3634",
+    "starts": 3,
+    "finishes": 2,
+    "dnfs": 1,
+    "best_time": "32:03:22",
+    "best_year": 2021,
+    "best_place": null,
+    "buckle_count": 2,
+    "races": [
+      {
+        "year": 2023,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      },
+      {
+        "year": 2021,
+        "time": "32:03:22",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2019,
+        "time": "36:05:18",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "51": {
+    "person_id": "2868",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "37:46:56",
+    "best_year": 2016,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2016,
+        "time": "37:46:56",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "80": {
+    "person_id": "5124",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "40": {
+    "person_id": "5128",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "52": {
+    "person_id": "5129",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "53": {
+    "person_id": "5078",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "2": {
+    "person_id": "5132",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "55": {
+    "person_id": "5133",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "59": {
+    "person_id": "5134",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "88": {
+    "person_id": "4404",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "43:35:12",
+    "best_year": 2024,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2024,
+        "time": "43:35:12",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "62": {
+    "person_id": "5135",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "11": {
+    "person_id": "5139",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "17": {
+    "person_id": "4878",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "95": {
+    "person_id": "5140",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "68": {
+    "person_id": "5141",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "6": {
+    "person_id": "5142",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "93": {
+    "person_id": "4181",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "38:48:43",
+    "best_year": 2023,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2023,
+        "time": "38:48:43",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "67": {
+    "person_id": "4377",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "94": {
+    "person_id": "4798",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "83": {
+    "person_id": "5153",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "27": {
+    "person_id": "4194",
+    "starts": 2,
+    "finishes": 2,
+    "dnfs": 0,
+    "best_time": "37:34:36",
+    "best_year": 2023,
+    "best_place": null,
+    "buckle_count": 2,
+    "races": [
+      {
+        "year": 2025,
+        "time": "40:46:21",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2023,
+        "time": "37:34:36",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "8": {
+    "person_id": "3278",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "89": {
+    "person_id": "5158",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "4": {
+    "person_id": "3722",
+    "starts": 4,
+    "finishes": 4,
+    "dnfs": 0,
+    "best_time": "33:49:45",
+    "best_year": 2025,
+    "best_place": null,
+    "buckle_count": 4,
+    "races": [
+      {
+        "year": 2025,
+        "time": "33:49:45",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2024,
+        "time": "38:04:58",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2023,
+        "time": "36:44:21",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "40:52:06",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "30": {
+    "person_id": "5116",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "36": {
+    "person_id": "5120",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "31": {
+    "person_id": "5121",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "13": {
+    "person_id": "5122",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "20": {
+    "person_id": "4682",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "72": {
+    "person_id": "5126",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "33": {
+    "person_id": "3313",
+    "starts": 3,
+    "finishes": 2,
+    "dnfs": 1,
+    "best_time": "26:49:06",
+    "best_year": 2021,
+    "best_place": null,
+    "buckle_count": 2,
+    "races": [
+      {
+        "year": 2024,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      },
+      {
+        "year": 2021,
+        "time": "26:49:06",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "32:24:52",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "92": {
+    "person_id": "5137",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "34": {
+    "person_id": "3314",
+    "starts": 3,
+    "finishes": 3,
+    "dnfs": 0,
+    "best_time": "28:13:55",
+    "best_year": 2019,
+    "best_place": null,
+    "buckle_count": 3,
+    "races": [
+      {
+        "year": 2022,
+        "time": "30:26:40",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2019,
+        "time": "28:13:55",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "35:27:53",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "87": {
+    "person_id": "2622",
+    "starts": 9,
+    "finishes": 7,
+    "dnfs": 2,
+    "best_time": "21:56:32",
+    "best_year": 2016,
+    "best_place": null,
+    "buckle_count": 7,
+    "races": [
+      {
+        "year": 2025,
+        "time": "22:42:42",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2024,
+        "time": "35:28:55",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2021,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      },
+      {
+        "year": 2019,
+        "time": "35:32:29",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      },
+      {
+        "year": 2017,
+        "time": "28:18:07",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2016,
+        "time": "21:56:32",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2015,
+        "time": "23:27:10",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2014,
+        "time": "30:38:09",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "35": {
+    "person_id": "1903",
+    "starts": 14,
+    "finishes": 14,
+    "dnfs": 0,
+    "best_time": "23:40:52",
+    "best_year": 2016,
+    "best_place": null,
+    "buckle_count": 14,
+    "races": [
+      {
+        "year": 2025,
+        "time": "26:17:01",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2024,
+        "time": "36:41:22",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2023,
+        "time": "27:06:49",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "27:16:35",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2021,
+        "time": "25:50:23",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2019,
+        "time": "26:11:18",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "38:55:30",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2017,
+        "time": "26:45:59",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2016,
+        "time": "23:40:52",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2015,
+        "time": "39:12:22",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2014,
+        "time": "23:52:55",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2013,
+        "time": "25:49:50",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2012,
+        "time": "26:15:31",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2011,
+        "time": "30:08:03",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "43": {
+    "person_id": "3788",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "29:26:09",
+    "best_year": 2025,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2025,
+        "time": "29:26:09",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "5": {
+    "person_id": "3266",
+    "starts": 3,
+    "finishes": 2,
+    "dnfs": 1,
+    "best_time": "33:11:10",
+    "best_year": 2021,
+    "best_place": null,
+    "buckle_count": 2,
+    "races": [
+      {
+        "year": 2021,
+        "time": "33:11:10",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2019,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      },
+      {
+        "year": 2017,
+        "time": "36:38:06",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "45": {
+    "person_id": "4182",
+    "starts": 2,
+    "finishes": 1,
+    "dnfs": 1,
+    "best_time": "33:50:18",
+    "best_year": 2024,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2024,
+        "time": "33:50:18",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2023,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      }
+    ]
+  },
+  "100": {
+    "person_id": "3199",
+    "starts": 2,
+    "finishes": 2,
+    "dnfs": 0,
+    "best_time": "29:11:28",
+    "best_year": 2024,
+    "best_place": null,
+    "buckle_count": 2,
+    "races": [
+      {
+        "year": 2024,
+        "time": "29:11:28",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "30:09:59",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "91": {
+    "person_id": "5145",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "1": {
+    "person_id": "4017",
+    "starts": 2,
+    "finishes": 2,
+    "dnfs": 0,
+    "best_time": "21:44:35",
+    "best_year": 2023,
+    "best_place": null,
+    "buckle_count": 2,
+    "races": [
+      {
+        "year": 2023,
+        "time": "21:44:35",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "24:09:34",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "85": {
+    "person_id": "4018",
+    "starts": 4,
+    "finishes": 4,
+    "dnfs": 0,
+    "best_time": "22:07:16",
+    "best_year": 2025,
+    "best_place": null,
+    "buckle_count": 4,
+    "races": [
+      {
+        "year": 2025,
+        "time": "22:07:16",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2024,
+        "time": "28:06:34",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2023,
+        "time": "29:48:12",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "24:02:57",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "82": {
+    "person_id": "5148",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "16": {
+    "person_id": "5149",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "65": {
+    "person_id": "3747",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "36:10:47",
+    "best_year": 2021,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2021,
+        "time": "36:10:47",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "19": {
+    "person_id": "5150",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "7": {
+    "person_id": "5152",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "96": {
+    "person_id": "5154",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "41": {
+    "person_id": "716",
+    "starts": 17,
+    "finishes": 16,
+    "dnfs": 1,
+    "best_time": "27:43:32",
+    "best_year": 2014,
+    "best_place": null,
+    "buckle_count": 15,
+    "races": [
+      {
+        "year": 2025,
+        "time": "30:45:59",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2024,
+        "time": null,
+        "place": null,
+        "status": "dnf",
+        "buckle": 0
+      },
+      {
+        "year": 2023,
+        "time": "33:16:41",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "34:09:31",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2021,
+        "time": "36:23:39",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2019,
+        "time": "34:29:31",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2018,
+        "time": "33:59:02",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2017,
+        "time": "30:23:20",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2016,
+        "time": "31:33:29",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2015,
+        "time": "33:57:14",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2014,
+        "time": "27:43:32",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2013,
+        "time": "37:30:17",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2012,
+        "time": "35:59:53",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2011,
+        "time": "42:19:42",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2010,
+        "time": "38:59:07",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2009,
+        "time": "50:25:24",
+        "place": null,
+        "status": "finish",
+        "buckle": 0
+      },
+      {
+        "year": 2008,
+        "time": "37:54:25",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "23": {
+    "person_id": "4658",
+    "starts": 1,
+    "finishes": 1,
+    "dnfs": 0,
+    "best_time": "40:45:42",
+    "best_year": 2025,
+    "best_place": null,
+    "buckle_count": 1,
+    "races": [
+      {
+        "year": 2025,
+        "time": "40:45:42",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  },
+  "9": {
+    "person_id": "4031",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "74": {
+    "person_id": "5159",
+    "starts": 0,
+    "finishes": 0,
+    "dnfs": 0,
+    "best_time": null,
+    "best_year": null,
+    "best_place": null,
+    "buckle_count": 0,
+    "races": []
+  },
+  "86": {
+    "person_id": "3654",
+    "starts": 5,
+    "finishes": 5,
+    "dnfs": 0,
+    "best_time": "28:13:11",
+    "best_year": 2019,
+    "best_place": null,
+    "buckle_count": 5,
+    "races": [
+      {
+        "year": 2025,
+        "time": "28:53:19",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2023,
+        "time": "28:46:59",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2022,
+        "time": "30:12:39",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2021,
+        "time": "34:20:25",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      },
+      {
+        "year": 2019,
+        "time": "28:13:11",
+        "place": null,
+        "status": "finish",
+        "buckle": 1
+      }
+    ]
+  }
+}

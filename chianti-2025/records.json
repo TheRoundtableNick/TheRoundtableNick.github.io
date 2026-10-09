@@ -1,0 +1,92 @@
+{
+ "men": {
+  "name": "Jim WALMSLEY",
+  "sex": "m",
+  "year": 2025,
+  "seconds": 35988,
+  "time": "9:59:48"
+ },
+ "women": {
+  "name": "Fiona PASCALL",
+  "sex": "f",
+  "year": 2025,
+  "seconds": 45299,
+  "time": "12:34:59"
+ },
+ "top10": [
+  {
+   "name": "Jim WALMSLEY",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 35988,
+   "time": "9:59:48"
+  },
+  {
+   "name": "Kilian JORNET BURGADA",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 37647,
+   "time": "10:27:27"
+  },
+  {
+   "name": "Vincent BOUILLARD",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 37677,
+   "time": "10:27:57"
+  },
+  {
+   "name": "Aubin FERRARI",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 40571,
+   "time": "11:16:11"
+  },
+  {
+   "name": "Lambert SANTELLI",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 41817,
+   "time": "11:36:57"
+  },
+  {
+   "name": "Tom\u00e1\u0161 F\u00c1RN\u00cdK",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 43427,
+   "time": "12:03:47"
+  },
+  {
+   "name": "Juuso SIMPANEN",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 43697,
+   "time": "12:08:17"
+  },
+  {
+   "name": "Elliot PHILLIPPON",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 44034,
+   "time": "12:13:54"
+  },
+  {
+   "name": "Loan LE ROHELLEC",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 44856,
+   "time": "12:27:36"
+  },
+  {
+   "name": "Ugo FERRARI",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 45278,
+   "time": "12:34:38"
+  }
+ ],
+ "years_parsed": [
+  2025
+ ],
+ "generated": "fastest finishes in 2025-2025 as published by the race"
+}

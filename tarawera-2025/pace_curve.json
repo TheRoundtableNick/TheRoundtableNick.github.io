@@ -1,0 +1,55 @@
+{
+ "curve": [
+  [
+   0,
+   0.0
+  ],
+  [
+   6.58,
+   1.4
+  ],
+  [
+   13.37,
+   2.893
+  ],
+  [
+   18.52,
+   3.963
+  ],
+  [
+   34.75,
+   8.359
+  ],
+  [
+   54.85,
+   13.667
+  ],
+  [
+   73.79,
+   19.689
+  ],
+  [
+   83.19,
+   22.869
+  ],
+  [
+   90.58,
+   25.693
+  ],
+  [
+   96.77,
+   27.747
+  ],
+  [
+   101.08,
+   28.81
+  ]
+ ],
+ "family": "tarawera",
+ "finishers": 340,
+ "holdout_err_h": {
+  "badwater_curve": null,
+  "own_curve": null
+ },
+ "note": "median finisher shape derived from this race's own archived results"
+}

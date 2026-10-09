@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img"
+     aria-label="UltraRunTrack">
+  <!-- The mark is the product: a runner's position on a course between checkpoints.
+       A ridge line (every ultra is defined by its climb), tick marks where the timing
+       stations are, and one lit dot part-way along it. Nothing decorative -- the dot
+       sitting BETWEEN two ticks is literally what this site does that others cannot. -->
+  <defs>
+    <linearGradient id="ridge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff7a1a"/>
+      <stop offset="1" stop-color="#ffb020"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#35d0ff" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#35d0ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="14" fill="#0d1117"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none"
+        stroke="#222c3a" stroke-width="1.5"/>
+
+  <!-- timing stations -->
+  <g stroke="#3a4657" stroke-width="1.6" stroke-linecap="round">
+    <path d="M14 47.5v4"/><path d="M27 47.5v4"/><path d="M40 47.5v4"/><path d="M53 47.5v4"/>
+  </g>
+
+  <!-- the course: out of the basin, over the pass, down and up to the finish -->
+  <path d="M8 44 L18 38 L24 26 L31 33 L38 17 L45 25 L52 14 L58 20"
+        fill="none" stroke="url(#ridge)" stroke-width="4"
+        stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- position: between stations, which is the whole point -->
+  <circle cx="31" cy="33" r="11" fill="url(#glow)"/>
+  <circle cx="31" cy="33" r="5.4" fill="#0d1117"/>
+  <circle cx="31" cy="33" r="3.9" fill="#35d0ff"/>
+</svg>

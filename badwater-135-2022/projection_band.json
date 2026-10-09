@@ -1,0 +1,35 @@
+{
+ "by_progress": {
+  "1": [
+   0.9113,
+   1.2844
+  ],
+  "2": [
+   0.8581,
+   1.1515
+  ],
+  "4": [
+   0.8573,
+   1.0595
+  ],
+  "5": [
+   0.9206,
+   1.0608
+  ],
+  "7": [
+   0.9827,
+   1.0233
+  ]
+ },
+ "buckets": 8,
+ "measured_coverage_pct": {
+  "1": 74,
+  "2": 90,
+  "4": 87,
+  "5": 83,
+  "7": 86
+ },
+ "mean_coverage_pct": 84,
+ "family": "badwater-135",
+ "note": "p10-p90 of (actual finish / projected finish) fitted on this race's earlier years; the coverage shown was then measured on later years the fit never saw."
+}

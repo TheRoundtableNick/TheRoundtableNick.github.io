@@ -1,0 +1,50 @@
+{
+ "by_progress": {
+  "0": [
+   0.8914,
+   1.1882
+  ],
+  "1": [
+   0.9156,
+   1.129
+  ],
+  "2": [
+   0.9207,
+   1.104
+  ],
+  "3": [
+   0.9316,
+   1.097
+  ],
+  "4": [
+   0.9389,
+   1.0862
+  ],
+  "5": [
+   0.9497,
+   1.0687
+  ],
+  "6": [
+   0.9725,
+   1.0463
+  ],
+  "7": [
+   0.9879,
+   1.0175
+  ]
+ },
+ "buckets": 8,
+ "measured_coverage_pct": {
+  "0": 85,
+  "1": 77,
+  "2": 74,
+  "3": 82,
+  "4": 84,
+  "5": 81,
+  "6": 82,
+  "7": 73
+ },
+ "mean_coverage_pct": 80,
+ "family": "the-bear-100",
+ "note": "p10-p90 of (actual finish / projected finish) fitted on this race's earlier years; the coverage shown was then measured on later years the fit never saw."
+}

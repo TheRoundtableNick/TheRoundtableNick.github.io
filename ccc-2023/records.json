@@ -1,0 +1,93 @@
+{
+ "men": {
+  "name": "Jonathan ALBON",
+  "sex": "m",
+  "year": 2023,
+  "seconds": 36865,
+  "time": "10:14:25"
+ },
+ "women": {
+  "name": "Yngvild KASPERSEN",
+  "sex": "f",
+  "year": 2023,
+  "seconds": 42682,
+  "time": "11:51:22"
+ },
+ "top10": [
+  {
+   "name": "Jonathan ALBON",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 36865,
+   "time": "10:14:25"
+  },
+  {
+   "name": "Hayden HAWKS",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 37211,
+   "time": "10:20:11"
+  },
+  {
+   "name": "Jiasheng SHEN",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 37350,
+   "time": "10:22:30"
+  },
+  {
+   "name": "Peter FRA\u0147O",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 37637,
+   "time": "10:27:17"
+  },
+  {
+   "name": "Adam PETERMAN",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 37730,
+   "time": "10:28:50"
+  },
+  {
+   "name": "Daniel JONES",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 38180,
+   "time": "10:36:20"
+  },
+  {
+   "name": "Dakota JONES",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 38500,
+   "time": "10:41:40"
+  },
+  {
+   "name": "Jonathan REA",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 38631,
+   "time": "10:43:51"
+  },
+  {
+   "name": "Huohua ZHANG",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 38734,
+   "time": "10:45:34"
+  },
+  {
+   "name": "Drew HOLMEN",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 38869,
+   "time": "10:47:49"
+  }
+ ],
+ "years_parsed": [
+  2023,
+  2024
+ ],
+ "generated": "fastest finishes in 2023-2024 as published by the race"
+}

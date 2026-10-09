@@ -1,0 +1,63 @@
+{
+ "by_hours_since_split": {
+  "0.5": {
+   "n": 11084,
+   "median_mi": 0.17,
+   "p75_mi": 0.32,
+   "p90_mi": 0.5
+  },
+  "1": {
+   "n": 11010,
+   "median_mi": 0.35,
+   "p75_mi": 0.62,
+   "p90_mi": 0.98
+  },
+  "2": {
+   "n": 9713,
+   "median_mi": 0.7,
+   "p75_mi": 1.27,
+   "p90_mi": 2.01
+  },
+  "3": {
+   "n": 9011,
+   "median_mi": 1.03,
+   "p75_mi": 1.87,
+   "p90_mi": 2.98
+  },
+  "4": {
+   "n": 7809,
+   "median_mi": 1.38,
+   "p75_mi": 2.5,
+   "p90_mi": 3.97
+  },
+  "6": {
+   "n": 5025,
+   "median_mi": 1.87,
+   "p75_mi": 3.43,
+   "p90_mi": 5.35
+  },
+  "8": {
+   "n": 2794,
+   "median_mi": 2.39,
+   "p75_mi": 4.27,
+   "p90_mi": 6.64
+  },
+  "12": {
+   "n": 562,
+   "median_mi": 2.57,
+   "p75_mi": 4.99,
+   "p90_mi": 8.09
+  }
+ },
+ "buckets": [
+  0.5,
+  1,
+  2,
+  3,
+  4,
+  6,
+  8,
+  12
+ ],
+ "note": "absolute miles between our estimated position and where a runner actually was, measured across archived Badwater runners. Used to show a position as a range once the estimate has aged."
+}

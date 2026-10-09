@@ -1,0 +1,52 @@
+{
+ "by_hours_since_split": {
+  "0.5": {
+   "n": 3149,
+   "median_mi": 0.12,
+   "p75_mi": 0.21,
+   "p90_mi": 0.33
+  },
+  "1": {
+   "n": 2841,
+   "median_mi": 0.22,
+   "p75_mi": 0.39,
+   "p90_mi": 0.61
+  },
+  "2": {
+   "n": 1842,
+   "median_mi": 0.42,
+   "p75_mi": 0.72,
+   "p90_mi": 1.13
+  },
+  "3": {
+   "n": 1358,
+   "median_mi": 0.58,
+   "p75_mi": 1.03,
+   "p90_mi": 1.58
+  },
+  "4": {
+   "n": 879,
+   "median_mi": 0.7,
+   "p75_mi": 1.29,
+   "p90_mi": 1.84
+  },
+  "6": {
+   "n": 256,
+   "median_mi": 0.87,
+   "p75_mi": 1.6,
+   "p90_mi": 2.23
+  }
+ },
+ "buckets": [
+  0.5,
+  1,
+  2,
+  3,
+  4,
+  6,
+  8,
+  12
+ ],
+ "family": "tarawera",
+ "note": "absolute miles between our estimated position and where a runner actually was, measured across this race's own archived runners"
+}

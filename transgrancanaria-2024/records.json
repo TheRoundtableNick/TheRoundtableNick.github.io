@@ -1,0 +1,87 @@
+{
+ "men": null,
+ "women": {
+  "name": "Henriette ALBON",
+  "sex": "f",
+  "year": 2025,
+  "seconds": 54170,
+  "time": "15:02:50"
+ },
+ "top10": [
+  {
+   "name": "Caleb OLSON",
+   "sex": "",
+   "year": 2025,
+   "seconds": 44245,
+   "time": "12:17:25"
+  },
+  {
+   "name": "Jonathan ALBON",
+   "sex": "",
+   "year": 2025,
+   "seconds": 44706,
+   "time": "12:25:06"
+  },
+  {
+   "name": "Josh WADE",
+   "sex": "",
+   "year": 2025,
+   "seconds": 45617,
+   "time": "12:40:17"
+  },
+  {
+   "name": "Ionel Cristian MANOLE MANOLE",
+   "sex": "",
+   "year": 2025,
+   "seconds": 47086,
+   "time": "13:04:46"
+  },
+  {
+   "name": "Raul BUTACI",
+   "sex": "",
+   "year": 2024,
+   "seconds": 48152,
+   "time": "13:22:32"
+  },
+  {
+   "name": "Miguel \u00c1ngel HERAS HERN\u00c1NDEZ",
+   "sex": "",
+   "year": 2024,
+   "seconds": 48768,
+   "time": "13:32:48"
+  },
+  {
+   "name": "Ionel Cristian MANOLE",
+   "sex": "",
+   "year": 2024,
+   "seconds": 49744,
+   "time": "13:49:04"
+  },
+  {
+   "name": "Abel CARRETERO ERNESTO",
+   "sex": "",
+   "year": 2024,
+   "seconds": 49780,
+   "time": "13:49:40"
+  },
+  {
+   "name": "Catalin SORECAU",
+   "sex": "",
+   "year": 2025,
+   "seconds": 50021,
+   "time": "13:53:41"
+  },
+  {
+   "name": "Jiasheng SHEN",
+   "sex": "",
+   "year": 2024,
+   "seconds": 50680,
+   "time": "14:04:40"
+  }
+ ],
+ "years_parsed": [
+  2024,
+  2025
+ ],
+ "generated": "fastest finishes in 2024-2025 as published by the race"
+}

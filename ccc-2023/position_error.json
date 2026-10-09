@@ -1,0 +1,46 @@
+{
+ "by_hours_since_split": {
+  "0.5": {
+   "n": 38840,
+   "median_mi": 0.1,
+   "p75_mi": 0.18,
+   "p90_mi": 0.3
+  },
+  "1": {
+   "n": 33774,
+   "median_mi": 0.18,
+   "p75_mi": 0.34,
+   "p90_mi": 0.54
+  },
+  "2": {
+   "n": 15031,
+   "median_mi": 0.33,
+   "p75_mi": 0.6,
+   "p90_mi": 0.93
+  },
+  "3": {
+   "n": 4185,
+   "median_mi": 0.4,
+   "p75_mi": 0.73,
+   "p90_mi": 1.12
+  },
+  "4": {
+   "n": 171,
+   "median_mi": 0.46,
+   "p75_mi": 0.79,
+   "p90_mi": 1.17
+  }
+ },
+ "buckets": [
+  0.5,
+  1,
+  2,
+  3,
+  4,
+  6,
+  8,
+  12
+ ],
+ "family": "ccc",
+ "note": "absolute miles between our estimated position and where a runner actually was, measured across this race's own archived runners"
+}

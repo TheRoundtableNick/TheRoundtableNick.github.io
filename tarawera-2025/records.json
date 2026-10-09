@@ -1,0 +1,92 @@
+{
+ "men": {
+  "name": "Sam HARVEY",
+  "sex": "m",
+  "year": 2025,
+  "seconds": 55014,
+  "time": "15:16:54"
+ },
+ "women": {
+  "name": "Kimino MIYAZAKI",
+  "sex": "f",
+  "year": 2025,
+  "seconds": 63637,
+  "time": "17:40:37"
+ },
+ "top10": [
+  {
+   "name": "Sam HARVEY",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 55014,
+   "time": "15:16:54"
+  },
+  {
+   "name": "Simon COCHRANE",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 56025,
+   "time": "15:33:45"
+  },
+  {
+   "name": "Ryan WHELAN",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 57371,
+   "time": "15:56:11"
+  },
+  {
+   "name": "Luca AHUMADA-PERCOCO",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 60147,
+   "time": "16:42:27"
+  },
+  {
+   "name": "Cullen RHIND",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 60262,
+   "time": "16:44:22"
+  },
+  {
+   "name": "Hajime MAMBA",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 60382,
+   "time": "16:46:22"
+  },
+  {
+   "name": "Takumi SAWAYANAGI",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 61265,
+   "time": "17:01:05"
+  },
+  {
+   "name": "Yutaro YOKOUCHI",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 61760,
+   "time": "17:09:20"
+  },
+  {
+   "name": "Kimino MIYAZAKI",
+   "sex": "f",
+   "year": 2025,
+   "seconds": 63637,
+   "time": "17:40:37"
+  },
+  {
+   "name": "Vajin ARMSTRONG",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 63816,
+   "time": "17:43:36"
+  }
+ ],
+ "years_parsed": [
+  2025
+ ],
+ "generated": "fastest finishes in 2025-2025 as published by the race"
+}

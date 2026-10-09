@@ -1,0 +1,36 @@
+{
+ "by_checkpoints": {
+  "1": [
+   0.824,
+   1.143
+  ],
+  "2": [
+   0.893,
+   1.151
+  ],
+  "3": [
+   0.928,
+   1.122
+  ],
+  "4": [
+   0.939,
+   1.08
+  ],
+  "5": [
+   0.962,
+   1.03
+  ]
+ },
+ "default": [
+  0.97,
+  1.03
+ ],
+ "within_10pct": {
+  "1": 60,
+  "2": 67,
+  "3": 78,
+  "4": 91,
+  "5": 97
+ },
+ "note": "Empirical p10-p90 of (projected finish / actual finish) measured across 1,316 archived Badwater finishers, by number of checkpoints completed. Used to show an honest range instead of false precision."
+}

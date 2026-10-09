@@ -1,0 +1,8 @@
+{
+ "lo": 0.819,
+ "hi": 1.271,
+ "median": 1.002,
+ "n": 11084,
+ "coverage_pct": 80,
+ "note": "p10-p90 of (actual next-segment time / predicted) across archived Badwater runners; turns the next-checkpoint ETA into an honest window"
+}

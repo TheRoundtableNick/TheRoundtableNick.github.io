@@ -1,0 +1,92 @@
+{
+ "men": {
+  "name": "Jimmy Elam",
+  "sex": "m",
+  "year": 2018,
+  "seconds": 27625,
+  "time": "7:40:25"
+ },
+ "women": {
+  "name": "Addie Bracy",
+  "sex": "f",
+  "year": 2018,
+  "seconds": 31878,
+  "time": "8:51:18"
+ },
+ "top10": [
+  {
+   "name": "Jimmy Elam",
+   "sex": "m",
+   "year": 2018,
+   "seconds": 27625,
+   "time": "7:40:25"
+  },
+  {
+   "name": "Frank Pipp",
+   "sex": "m",
+   "year": 2018,
+   "seconds": 29261,
+   "time": "8:07:41"
+  },
+  {
+   "name": "Oliver Knauer",
+   "sex": "m",
+   "year": 2018,
+   "seconds": 30561,
+   "time": "8:29:21"
+  },
+  {
+   "name": "Elijah Flenner",
+   "sex": "m",
+   "year": 2018,
+   "seconds": 31439,
+   "time": "8:43:59"
+  },
+  {
+   "name": "Patrick McGlade",
+   "sex": "m",
+   "year": 2018,
+   "seconds": 31679,
+   "time": "8:47:59"
+  },
+  {
+   "name": "Nick Pedatella",
+   "sex": "m",
+   "year": 2018,
+   "seconds": 31790,
+   "time": "8:49:50"
+  },
+  {
+   "name": "Addie Bracy",
+   "sex": "f",
+   "year": 2018,
+   "seconds": 31878,
+   "time": "8:51:18"
+  },
+  {
+   "name": "Clint Anders",
+   "sex": "m",
+   "year": 2018,
+   "seconds": 31998,
+   "time": "8:53:18"
+  },
+  {
+   "name": "Tyler Keyworth",
+   "sex": "m",
+   "year": 2018,
+   "seconds": 32435,
+   "time": "9:00:35"
+  },
+  {
+   "name": "Michele Yates",
+   "sex": "f",
+   "year": 2018,
+   "seconds": 32677,
+   "time": "9:04:37"
+  }
+ ],
+ "years_parsed": [
+  2018
+ ],
+ "generated": "fastest finishes in 2018-2018 as published by the race"
+}

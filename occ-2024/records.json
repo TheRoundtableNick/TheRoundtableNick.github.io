@@ -1,0 +1,92 @@
+{
+ "men": {
+  "name": "Eli HEMMING",
+  "sex": "m",
+  "year": 2024,
+  "seconds": 18708,
+  "time": "5:11:48"
+ },
+ "women": {
+  "name": "Miao YAO",
+  "sex": "f",
+  "year": 2024,
+  "seconds": 21243,
+  "time": "5:54:03"
+ },
+ "top10": [
+  {
+   "name": "Eli HEMMING",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 18708,
+   "time": "5:11:48"
+  },
+  {
+   "name": "Francesco PUPPI",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 18886,
+   "time": "5:14:46"
+  },
+  {
+   "name": "Antonio MARTINEZ PEREZ",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 19076,
+   "time": "5:17:56"
+  },
+  {
+   "name": "Juwei ZI",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 19337,
+   "time": "5:22:17"
+  },
+  {
+   "name": "Aritz EGEA CACERES",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 19627,
+   "time": "5:27:07"
+  },
+  {
+   "name": "Kristian JONES",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 19669,
+   "time": "5:27:49"
+  },
+  {
+   "name": "Daniel CASTILLO",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 19728,
+   "time": "5:28:48"
+  },
+  {
+   "name": "Tao LUO",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 19823,
+   "time": "5:30:23"
+  },
+  {
+   "name": "Hu ZHAO",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 19846,
+   "time": "5:30:46"
+  },
+  {
+   "name": "Robbie SIMPSON",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 19864,
+   "time": "5:31:04"
+  }
+ ],
+ "years_parsed": [
+  2024
+ ],
+ "generated": "fastest finishes in 2024-2024 as published by the race"
+}

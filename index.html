@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UltraRunTrack — Live tracking for ultramarathons</title>
+<meta name="description" content="Live position tracking for the world's hardest ultramarathons. Follow every runner, checkpoint to checkpoint, in real time. Free.">
+<meta name="theme-color" content="#080a0e">
+<meta property="og:title" content="UltraRunTrack — Live tracking for ultramarathons">
+<meta property="og:description" content="Follow every runner in the world's hardest ultras, checkpoint to checkpoint, in real time.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080a0e; --panel:#0f131a; --panel2:#141a23; --line:#1e2632;
+  --txt:#e8edf4; --dim:#8b97a8; --dim2:#5d6878;
+  --hot:#ff7a1a; --hot2:#ffb020; --cool:#35d0ff; --go:#3ddc97;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+header{border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#10151d,#0b0f15);position:sticky;top:0;z-index:10;
+  height:52px;display:flex;align-items:center}
+.hb{display:flex;align-items:center;gap:14px;width:100%}
+.logowrap{display:flex;align-items:center;gap:10px}
+.lmark{display:block;border-radius:8px;flex-shrink:0}
+.logo{font-size:17px;font-weight:800;letter-spacing:.4px}
+.logo i{font-style:normal;color:var(--hot)}
+.tagline{font-size:10px;color:var(--dim2);letter-spacing:1.5px;text-transform:uppercase;
+  font-family:var(--mono)}
+.free{margin-left:auto;font-size:9.5px;font-family:var(--mono);letter-spacing:1.2px;
+  color:var(--go);border:1px solid rgba(61,220,151,.3);border-radius:20px;padding:4px 11px}
+
+.hero{padding:40px 0;border-bottom:1px solid var(--line)}
+.herogrid{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center}
+.heroleft{min-width:0}
+.heroleft h1{font-size:clamp(32px,4.5vw,42px);font-weight:800;letter-spacing:-1px;
+  line-height:1.08;margin-bottom:12px}
+.heroleft h1 span{color:var(--hot)}
+.heroleft p{color:var(--dim);font-size:15px;margin-bottom:20px;max-width:60ch;line-height:1.5}
+.stat-pills{display:flex;flex-direction:column;gap:8px}
+.pill{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.8px;text-transform:uppercase;line-height:1.4;white-space:nowrap}
+.pill-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;animation:pulse 1.6s infinite}
+.pill-dot.live{background:#3ddc97;box-shadow:0 0 8px #3ddc97}
+.pill-dot.cool{background:#35d0ff;box-shadow:0 0 8px #35d0ff}
+.pill-dot.hot{background:#ff7a1a;box-shadow:0 0 8px #ff7a1a}
+.pill-val{font-weight:700;color:var(--txt)}
+
+.heroright{min-width:0;height:240px;border:1px solid var(--line);border-radius:12px;
+  background:#0a0e14;overflow:hidden;position:relative}
+.heroright canvas{width:100%;height:100%;display:block;background:#05070a}
+.map-label{position:absolute;top:8px;left:8px;font-family:var(--mono);font-size:9px;
+  letter-spacing:1.6px;color:var(--txt);background:rgba(8,10,14,.8);padding:4px 8px;
+  border-radius:4px;pointer-events:none}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.sec{padding:20px 0 8px;font-size:10px;color:var(--dim2);letter-spacing:1.6px;
+  text-transform:uppercase;font-family:var(--mono)}
+
+.cheer-section{background:linear-gradient(135deg,#12181f,var(--panel));border:1px solid var(--line);
+  border-radius:12px;padding:24px;margin:20px 0;overflow:hidden}
+.cheer-header{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-bottom:16px}
+.cheer-title{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;
+  letter-spacing:1.6px;text-transform:uppercase;color:var(--dim2)}
+.cheer-title>span:first-child{width:8px;height:8px;border-radius:50%;background:#3ddc97;flex-shrink:0;
+  box-shadow:0 0 8px #3ddc97;animation:pulse 1.6s infinite}
+.cheer-title b{color:var(--txt);font-weight:700;letter-spacing:0}
+/* The dot rule above used to be .cheer-title span, which also caught the race
+   name span added when the header became live-aware, shrinking it to 8px wide and
+   stacking it one word per line over the dot. */
+.cheer-title #cheer-race{white-space:nowrap}
+.cheer-title.is-past>span:first-child{background:#8a8078}
+.cheer-count{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--hot);
+  letter-spacing:-.4px}
+.cheer-card{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--hot);
+  border-radius:8px;padding:12px;min-height:80px;display:flex;flex-direction:column;
+  justify-content:space-between;margin:12px 0;font-size:13px;line-height:1.5}
+.cheer-name{font-weight:700;color:var(--txt);font-size:14px}
+.cheer-msg{color:var(--txt);margin:4px 0;word-wrap:break-word}
+.cheer-time{font-family:var(--mono);font-size:10px;color:var(--dim2);margin-top:6px}
+.cheer-cta{font-family:var(--mono);font-size:11px;color:var(--hot);text-align:center;margin-top:12px}
+
+.live-card{
+  display:block;background:linear-gradient(135deg,#1a1008,var(--panel));
+  border:1px solid #3a2410;border-left:4px solid var(--hot);border-radius:12px;
+  padding:20px;margin:20px 0;position:relative;overflow:hidden;transition:.16s;
+}
+.live-card:hover{border-color:var(--hot);transform:translateY(-2px)}
+.live-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#3ddc97;flex-shrink:0;
+  box-shadow:0 0 8px #3ddc97;animation:pulse 1.6s infinite}
+.live-badge{font-size:10px;font-family:var(--mono);letter-spacing:1.2px;color:var(--dim2);
+  text-transform:uppercase}
+.live-badge b{color:var(--txt);font-weight:700}
+.live-title{font-size:20px;font-weight:700;letter-spacing:-.4px;margin:6px 0 0}
+.live-meta{font-size:12px;color:var(--dim2);font-family:var(--mono);margin:4px 0}
+.live-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;
+  margin:16px 0}
+.stat-box{display:flex;flex-direction:column;gap:2px}
+.stat-box-val{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--txt);
+  letter-spacing:-.4px}
+.stat-box-val.cool{color:var(--cool)}
+.stat-box-val.hot{color:var(--hot)}
+.stat-box-label{font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--dim2)}
+.live-cta{font-family:var(--mono);font-size:10px;color:var(--hot);margin-top:8px}
+
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  margin:20px 0}
+.proof-cell{background:var(--panel);padding:14px 16px}
+.proof-val{display:block;font-family:var(--mono);font-size:20px;font-weight:700;
+  color:var(--txt);letter-spacing:-.4px}
+.proof-label{display:block;font-family:var(--mono);font-size:8px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--dim2);margin-top:3px}
+
+.claim{font-size:clamp(15px,1.8vw,18px);line-height:1.5;color:var(--dim);margin:20px 0;
+  max-width:70ch;letter-spacing:-.05px}
+.claim b{color:var(--txt);font-weight:700;font-family:var(--mono);letter-spacing:-.3px}
+
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:20px 0}
+.why div{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px}
+.why h4{font-size:13px;font-weight:700;margin-bottom:8px}
+.why p{font-size:12px;color:var(--dim);line-height:1.6}
+.why i{font-style:normal;color:var(--hot);font-family:var(--mono);font-size:9px;
+  letter-spacing:1.1px;display:block;margin-bottom:6px;text-transform:uppercase}
+
+.spon{background:linear-gradient(135deg,#12181f,var(--panel));border:1px solid var(--line);
+  border-radius:12px;padding:24px;margin:28px 0}
+.spon h3{font-size:18px;font-weight:700;letter-spacing:-.3px}
+.spon p{font-size:13px;color:var(--dim);margin:8px 0;max-width:74ch;line-height:1.5}
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:16px 0}
+.aud div{background:#0a0e14;border:1px solid var(--line);border-radius:9px;padding:12px}
+.aud b{display:block;font-family:var(--mono);font-size:18px;color:var(--hot2);font-weight:700}
+.aud u{display:block;text-decoration:none;font-size:8px;color:var(--dim2);
+  font-family:var(--mono);letter-spacing:.8px;text-transform:uppercase;margin-top:3px}
+.spon .win{font-family:var(--mono);font-size:10px;color:var(--dim2);margin:11px 0;line-height:1.6}
+.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:16px 0}
+.slots div{border:1px dashed #2a3444;border-radius:9px;padding:12px}
+.slots b{display:block;font-size:12px;color:var(--txt);font-weight:700}
+.slots span{display:block;font-size:11px;color:var(--dim2);margin:4px 0;line-height:1.5}
+.sbtn{display:inline-block;margin:12px 0;background:var(--hot);color:#12080a;font-weight:700;
+  font-size:12px;padding:10px 20px;border-radius:8px;font-family:var(--mono);letter-spacing:.6px}
+
+.prep{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:20px 0}
+.prep h3{font-size:17px;font-weight:700;letter-spacing:-.3px;margin-bottom:8px}
+.prep p{font-size:13px;color:var(--dim);max-width:72ch;line-height:1.5}
+.prepnote{font-family:var(--mono);font-size:10px;color:var(--dim2);margin:10px 0}
+.prepg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin:16px 0}
+.prepg a{background:#0a0e14;border:1px solid var(--line);border-radius:9px;padding:12px;
+  text-decoration:none;transition:.15s}
+.prepg a:hover{border-color:var(--hot);transform:translateY(-2px)}
+.prepg b{display:block;font-size:12px;color:var(--txt);font-weight:700;line-height:1.3}
+.prepg span{display:block;font-family:var(--mono);font-size:9px;color:var(--hot2);margin:5px 0}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:20px 0}
+.rc{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px;
+  transition:.16s;display:block}
+.rc:hover{border-color:var(--cool);transform:translateY(-2px)}
+.rc-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  flex-wrap:wrap}
+.rc-top .rate{white-space:nowrap;flex:0 0 auto}
+.rc .yr{font-family:var(--mono);font-size:10px;color:var(--dim2);letter-spacing:1px}
+.rc h3{font-size:15px;font-weight:700;margin:3px 0}
+.rc p{font-size:11px;color:var(--dim);margin:6px 0;line-height:1.5}
+.rc .tag{display:inline-block;margin:8px 0;font-size:8px;font-family:var(--mono);
+  letter-spacing:1px;color:var(--cool);border:1px solid rgba(53,208,255,.28);
+  border-radius:12px;padding:3px 8px}
+
+.about{padding:28px 0;border-top:1px solid var(--line);margin:28px 0}
+.about h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.about p{font-size:13px;color:var(--dim);max-width:70ch;margin-bottom:10px;line-height:1.5}
+.about b{color:var(--txt)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin:20px 0}
+
+#showall{display:none;margin:12px auto 0;background:var(--panel2);color:var(--txt);
+  border:1px solid var(--line);border-radius:8px;padding:11px 20px;font-family:var(--mono);
+  font-size:11px;letter-spacing:1px;cursor:pointer;min-height:44px}
+#showall:hover{border-color:var(--cool);color:var(--cool)}
+
+footer{border-top:1px solid var(--line);padding:20px 0 36px;font-size:10px;
+  color:var(--dim2);font-family:var(--mono);line-height:1.8}
+footer a{color:var(--dim);text-decoration:none}
+footer a:hover{color:var(--cool)}
+.builtby{display:inline-flex;align-items:center;gap:6px;margin:10px 0;padding:5px 10px;
+  border:1px solid var(--line);border-radius:20px;background:var(--panel);font-size:9px}
+.builtby span{color:var(--dim2);letter-spacing:.8px}
+.builtby a{color:var(--hot);font-weight:700}
+
+.signup{padding:20px 0;margin:28px 0;border-top:1px solid var(--line)}
+.su-box{background:linear-gradient(135deg,#12181f,var(--panel));border:1px solid var(--line);
+  border-radius:12px;padding:24px}
+.su-box h3{font-size:16px;font-weight:700;letter-spacing:-.2px;margin-bottom:6px}
+.su-box p{font-size:12px;color:var(--dim);margin-bottom:12px}
+#subf{display:flex;gap:8px;flex-wrap:wrap}
+#subemail{flex:1;min-width:200px;background:#0a0e14;border:1px solid var(--line);
+  border-radius:8px;padding:10px 12px;color:var(--txt);font-size:14px;font-family:inherit;outline:none}
+#subemail:focus{border-color:var(--hot)}
+#subhp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+#subf button{background:var(--hot);color:#12080a;border:none;border-radius:8px;
+  padding:10px 20px;font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;
+  letter-spacing:.8px;white-space:nowrap}
+#subf button:hover{filter:brightness(1.08)}
+#submsg{font-size:11px;margin:8px 0;font-family:var(--mono);min-height:16px;color:var(--dim2)}
+#submsg.ok{color:var(--go)}
+#submsg.err{color:#ff7a7a}
+
+@media(max-width:768px){
+  .herogrid{grid-template-columns:1fr;gap:20px}
+  .heroright{height:180px}
+  .live-stats{grid-template-columns:repeat(2,1fr)}
+  .proof-grid{grid-template-columns:repeat(2,1fr)}
+  .aud{grid-template-columns:repeat(2,1fr)}
+  .cols{grid-template-columns:1fr}
+  #subf{flex-direction:column}
+  #subemail{flex:auto}
+}
+@media(max-width:520px){
+  .herogrid{grid-template-columns:1fr}
+  .heroright{height:160px}
+  .logo{font-size:14px}
+  .tagline{font-size:8px}
+  .free{font-size:8px;padding:3px 9px}
+  .heroleft h1{font-size:clamp(24px,6vw,32px);line-height:1.1}
+  .heroleft p{font-size:13px}
+  .pill{font-size:10px}
+  .stat-pills{gap:6px}
+  .live-stats{grid-template-columns:1fr;gap:12px}
+  .proof-grid{grid-template-columns:repeat(2,1fr)}
+  .proof-cell{padding:10px 12px}
+  .proof-val{font-size:16px}
+  .proof-label{font-size:7px}
+  .aud{grid-template-columns:1fr;gap:6px}
+  .aud div{padding:10px}
+  .aud b{font-size:16px}
+  .aud u{font-size:7px}
+  .grid{grid-template-columns:1fr}
+}
+
+/* urt-rd-link */
+.rdband{border-top:1px solid var(--line);background:linear-gradient(180deg,#0b1016,#080a0e);
+ padding:34px 0}
+.rdinner{display:flex;gap:26px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.rdband h2{font-size:21px;font-weight:800;letter-spacing:-.5px;margin:0 0 7px;color:#e8edf4}
+.rdband p{font-size:13.5px;color:var(--dim);max-width:62ch;margin:0;line-height:1.6}
+.rdcta{flex:0 0 auto;background:var(--go,#3ddc97);color:#06120c;font-weight:800;font-size:12.5px;
+ font-family:var(--mono);letter-spacing:.9px;padding:14px 24px;border-radius:9px;
+ text-decoration:none;white-space:nowrap}
+.rdcta:hover{filter:brightness(1.08)}
+@media(max-width:640px){.rdcta{width:100%;text-align:center}.rdband{padding:26px 0}}
+
+
+/* urt-news: a shelf, not a list ------------------------------------------------------- */
+.urt-newswrap{position:relative;margin:2px 0 8px}
+.urt-newswrap .urt-shelf{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:4px 2px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.urt-newswrap .urt-shelf::-webkit-scrollbar{display:none}
+.urt-newswrap .urt-shelf > a{flex:0 0 300px;scroll-snap-align:start;display:flex;flex-direction:column;
+  min-height:186px;border-radius:14px;padding:16px 17px 14px;text-decoration:none;
+  box-shadow:0 1px 2px rgba(20,29,38,.04);
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease;
+  /* These cards are a LIGHT surface sitting inside the page's DARK band, and that band
+     redefines --ink to a near-white value. Inheriting it painted every headline white on a
+     white card: invisible, while the excerpt underneath stayed readable because it reads a
+     different variable. So the card pins its own palette locally rather than trusting what
+     it is nested inside. All four are checked against #fffdfa: 15.1, 9.0, 4.8 and 6.6 to 1. */
+  --c-bg:#fffdfa; --c-ink:#141d26; --c-ink2:#4d463f; --c-ink3:#6f665e; --c-acc:#a83a06;
+  background:var(--c-bg);border:1px solid #e7ded1;color:var(--c-ink)}
+.urt-newswrap .urt-shelf > a:hover,.urt-newswrap .urt-shelf > a:focus-visible{border-color:var(--c-acc);
+  box-shadow:0 8px 22px rgba(20,29,38,.10);transform:translateY(-2px);outline:none}
+.urt-newswrap .nsrc{font-family:var(--mono,ui-monospace,monospace);font-size:9px;letter-spacing:1.3px;
+  text-transform:uppercase;color:var(--c-ink3);display:flex;gap:7px;align-items:center}
+.urt-newswrap .nsrc i{width:4px;height:4px;border-radius:50%;background:#ff7a1a;
+  font-style:normal;flex:0 0 4px}
+.urt-newswrap .urt-shelf b.nttl{font-family:var(--display,inherit);font-size:17.5px;line-height:1.24;letter-spacing:-.015em;
+  margin:11px 0 0;color:var(--c-ink);font-weight:600}
+.urt-newswrap .nex{font-size:12.5px;line-height:1.5;color:var(--c-ink2);margin:8px 0 0;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.urt-newswrap .nfoot{margin-top:auto;padding-top:12px}
+.urt-newswrap .nrun{display:inline-flex;align-items:baseline;gap:6px;font-family:var(--mono,monospace);
+  font-size:10.5px;letter-spacing:.3px;color:var(--c-acc);
+  background:rgba(255,122,26,.07);border-radius:999px;padding:5px 10px}
+.urt-newswrap .nrun b{font-weight:700;color:var(--c-acc)}
+.urt-newswrap .nrun s{text-decoration:none;color:var(--c-ink3)}
+.urt-newswrap:after{content:"";position:absolute;top:0;right:-1px;width:52px;bottom:16px;
+  pointer-events:none;background:linear-gradient(90deg,transparent,var(--bg,#f7f2ea))}
+.urt-newsfoot{font-size:11.5px;color:var(--ink-3,#7b7168);margin:2px 0 0}
+.urt-newsfoot a{color:var(--ink-3,#7b7168)}
+@media (max-width:760px){
+  .urt-newswrap .urt-shelf > a{flex-basis:82vw;min-height:170px}
+  .urt-newswrap:after{width:26px}
+}
+@media (prefers-reduced-motion:reduce){ .urt-newswrap .urt-shelf{scroll-behavior:auto}
+  .urt-newswrap .urt-shelf > a{transition:none} }
+
+/* The publisher's own share image, their URL and their CDN. 16:9 so a shelf of mixed
+   sources still reads as one row, and lazy so twelve remote images cost nothing until seen. */
+.urt-newswrap .nimg{display:block;width:calc(100% + 34px);margin:-16px -17px 0;
+  aspect-ratio:16/9;object-fit:cover;background:#efe6da;
+  border-radius:14px 14px 0 0}
+.urt-newswrap .urt-shelf > a.hasimg{padding-top:0}
+.urt-newswrap .urt-shelf > a.hasimg .nsrc{margin-top:13px}
+@media (max-width:760px){ .urt-newswrap .nimg{aspect-ratio:2/1} }
+
+/* When nothing is running, the last three races are the true thing to show. Each is a replay
+   somebody can watch in the next ten seconds, which is the opposite of "come back later". */
+.lastraces{display:flex;gap:12px;flex-wrap:wrap;margin:2px 0 6px}
+.lastraces a{display:flex;flex-direction:column;gap:3px;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.13);border-radius:12px;padding:13px 16px;
+  text-decoration:none;min-width:190px;transition:border-color .18s ease,background .18s ease}
+.lastraces a:hover{border-color:var(--acc-bright,#ff7a1a);background:rgba(255,122,26,.09)}
+.lastraces b{font-family:var(--display,inherit);font-size:16px;letter-spacing:-.02em;
+  color:#f2f6fa;font-weight:600}
+.lastraces s{text-decoration:none;font-family:var(--mono,ui-monospace,monospace);font-size:10px;
+  letter-spacing:1.1px;text-transform:uppercase;color:#8b95a3}
+.lastraces em{font-style:normal;font-family:var(--mono,monospace);font-size:11px;
+  color:var(--acc-bright,#ff7a1a)}
+.why.why-one{display:block;max-width:70ch}
+.why.why-one > div{border:0;background:none;padding:0;box-shadow:none}
+
+/* urt-nav: the same five destinations on every page. Before this, /vs/ and proof.html had no
+   navigation at all and the upcoming schedule was unreachable from anywhere. */
+.urtnav{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.urtnav a{font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.7px;
+  text-transform:uppercase;text-decoration:none;padding:7px 11px;border-radius:8px;
+  color:var(--ink-2,#4d463f);white-space:nowrap;transition:background .16s ease,color .16s ease}
+.urtnav a:hover{background:rgba(255,122,26,.1);color:var(--acc,#a83a06)}
+.urtnav a[aria-current="page"]{color:var(--acc,#a83a06);background:rgba(255,122,26,.09)}
+@media (max-width:760px){
+  .urtnav{gap:0}
+  .urtnav a{padding:6px 8px;font-size:10px}
+}
+
+/* "Your runners": the only part of the homepage that is about you. Hidden entirely until you
+   follow somebody, because an empty personalisation panel is worse than none. */
+.yours{display:grid;gap:10px;margin:2px 0 8px}
+.yours a{display:flex;gap:13px;align-items:center;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.13);border-radius:12px;padding:12px 15px;
+  text-decoration:none;transition:border-color .18s ease,background .18s ease}
+.yours a:hover{border-color:var(--acc-bright,#ff7a1a);background:rgba(255,122,26,.09)}
+.yours img{width:74px;height:50px;object-fit:cover;border-radius:7px;flex:0 0 74px;
+  background:#222c3a}
+.yours b{display:block;font-family:var(--display,inherit);font-size:16px;letter-spacing:-.02em;
+  color:#f2f6fa;font-weight:600}
+.yours s{text-decoration:none;display:block;font-family:var(--mono,ui-monospace,monospace);
+  font-size:10.5px;letter-spacing:.5px;color:#8b95a3;margin-top:3px}
+.yours em{font-style:normal;color:var(--acc-bright,#ff7a1a)}
+.yoursnote{font-size:11.5px;color:#8b95a3;margin:8px 0 0}
+
+#urt-backup-link{background:none;border:1px solid rgba(255,255,255,.22);color:#c9d3df;
+  border-radius:7px;padding:4px 10px;font:inherit;font-size:11px;cursor:pointer;
+  margin-left:4px;transition:border-color .15s ease,color .15s ease}
+#urt-backup-link:hover{border-color:var(--acc-bright,#ff7a1a);color:var(--acc-bright,#ff7a1a)}
+
+/* The field: a dense wall of real runners. The homepage had no faces below the hero and read
+   like a spreadsheet of a sport that is entirely about people. Sits inside the dark band so it
+   extends the broadcast section rather than interrupting the cream below it. */
+.faces{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:12px;
+  margin:2px 0 6px}
+.faces a{display:block;text-decoration:none;color:inherit;border-radius:11px;overflow:hidden;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
+  transition:transform .16s ease,border-color .16s ease,background .16s ease}
+.faces a:hover{transform:translateY(-3px);border-color:var(--acc-bright,#ff7a1a);
+  background:rgba(255,122,26,.1)}
+.faces img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#1a222c}
+.faces .fm{padding:8px 9px 10px}
+.faces b{display:block;font-size:12px;font-weight:600;color:#eef2f7;line-height:1.25;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.faces s{text-decoration:none;display:block;font-family:var(--mono,ui-monospace,monospace);
+  font-size:9.5px;letter-spacing:.5px;color:var(--acc-bright,#ff7a1a);margin-top:4px}
+.facesfoot{font-size:11.5px;color:#8b95a3;margin:10px 0 0}
+.facesfoot a{color:#c9d3df}
+@media(max-width:640px){
+  .faces{grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:9px}
+  .faces b{font-size:11px}
+}
+
+/* urt-thesis: the argument the site is built on, set as a statement instead of as a card in a
+   section headed "Why this exists". A label, then a rounded box, then a grid — four times over —
+   is what makes a page read as outlined by a machine rather than written by somebody. */
+.urt-thesis{max-width:1180px;margin:56px auto 44px;padding:0 20px}
+.urt-thesis p{font-family:var(--display,inherit);font-size:clamp(23px,3.3vw,40px);
+  line-height:1.14;letter-spacing:-.032em;color:var(--ink,#141d26);margin:0;
+  /* the container, not a narrow column: at 19ch this ran ten lines down an empty page */
+  max-width:min(100%,17em)}
+.urt-thesis p.t2{margin-top:22px;font-size:clamp(16px,1.7vw,20px);color:var(--ink-2,#4d463f);
+  max-width:min(100%,34em);letter-spacing:-.01em;line-height:1.45;font-family:inherit;
+  font-weight:500}
+.urt-thesis em{font-style:normal;color:var(--acc,#a83a06)}
+@media(max-width:640px){.urt-thesis{margin:36px auto 30px}.urt-thesis p{max-width:none}}
+
+/* ppmeta: what the card is actually about. Without it the tile carried a name and a texture. */
+.prepg a .ppmeta{display:block;font-family:var(--mono,ui-monospace,monospace);font-size:9.5px;
+  letter-spacing:.5px;color:var(--ink-3,#8a8378);margin:5px 0 0;line-height:1.5}
+
+/* thisweek: what is about to happen, where "No race running right now" used to be. */
+.thisweek .twlede{font-family:var(--display,inherit);font-size:clamp(20px,2.6vw,30px);
+  letter-spacing:-.02em;color:#fff;margin:2px 0 16px;line-height:1.2}
+.thisweek .twlede b{color:var(--acc-bright,#ff7a1a)}
+.twgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.twgrid a{display:block;text-decoration:none;color:inherit;border-radius:12px;overflow:hidden;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);
+  transition:transform .16s ease,border-color .16s ease}
+.twgrid a:hover{transform:translateY(-3px);border-color:var(--acc-bright,#ff7a1a)}
+.twgrid img{display:block;width:100%;height:96px;object-fit:cover;background:#1a222c}
+.twgrid .twm{display:block;padding:11px 13px 13px}
+.twgrid i{font-style:normal;display:block;font-family:var(--mono,ui-monospace,monospace);
+  font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--acc-bright,#ff7a1a)}
+.twgrid b{display:block;font-size:14px;color:#eef2f7;margin-top:5px;line-height:1.3}
+.twgrid s{text-decoration:none;display:block;font-family:var(--mono,ui-monospace,monospace);
+  font-size:9.5px;letter-spacing:.4px;color:#8b95a3;margin-top:5px;line-height:1.5}
+.twfoot{font-size:11.5px;color:#8b95a3;margin:12px 0 0}
+.twfoot a{color:#c9d3df}
+</style>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ultraruntrack.com/og.png">
+<meta property="og:url" content="https://ultraruntrack.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ultraruntrack.com/og.png">
+
+
+  <link rel="stylesheet" href="/urt.css">
+</head>
+<body data-urt-no-empty-sep>
+<header><div class="wrap hb">
+  <div>
+    <div class="logowrap"><svg class="lmark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0d1117"/><rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="#222c3a" stroke-width="1.5"/><g stroke="#3a4657" stroke-width="1.6" stroke-linecap="round"><path d="M14 47.5v4"/><path d="M27 47.5v4"/><path d="M40 47.5v4"/><path d="M53 47.5v4"/></g><path d="M8 44 L18 38 L24 26 L31 33 L38 17 L45 25 L52 14 L58 20" fill="none" stroke="#ff7a1a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="31" cy="33" r="5.4" fill="#0d1117"/><circle cx="31" cy="33" r="3.9" fill="#35d0ff"/></svg><div class="logo">ULTRA<i>RUN</i>TRACK</div></div>
+    <div class="tagline">Live ultramarathon tracking</div>
+  </div>
+  <span class="free">FREE · NO ACCOUNT</span>
+</div></header>
+<div class="urtnavbar"><div style="max-width:1180px;margin:0 auto;padding:0 20px 10px"><nav class="urtnav"><a href="/" aria-current="page">Races</a><a href="/upcoming/">Upcoming</a><a href="/vs/">Head to head</a><a href="/sponsors.html">Sponsors</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></nav></div></div>
+
+<div class="wrap">
+  <section class="urt-hero" id="hero">
+  <div id="urt-hero-canvas" data-race="badwater-135"></div>
+  <div class="urt-hero-in">
+    <span class="urt-eyebrow"><i></i>Live now</span>
+    <h1 id="hero-h1"><span id="runners-running">46</span> runners are crossing
+      <em>Death Valley</em> right now.</h1>
+    <!-- urt-voice -->
+    <p class="urt-hero-sub" id="hero-sub">135 miles from the lowest point in North America
+      to the Mt. Whitney portal. In July. The cutoff is 48 hours and nobody out
+      there is carrying a GPS unit, so we read the official splits and put every runner on
+      the course, mile by mile. Not just the front.</p>
+    <div class="urt-strip">
+      <div id="cell-live" hidden><b class="hot" id="watching-count">-</b><u>watching now</u></div>
+      <div><b class="hot" id="strip-miles">-</b><u>race miles tracked</u></div>
+      <div><b id="strip-athletes">-</b><u>runners on record</u></div>
+      <div><b id="strip-finishes">-</b><u>finishes since 1994</u></div>
+      <div id="cell-races"><b id="strip-races">-</b><u>races in the archive</u></div>
+      <div id="cell-msgs" hidden><b id="cheers-tonight">-</b><u>messages sent to runners</u></div>
+    </div>
+    <div class="urt-hero-cta">
+      <a class="urt-btn" href="/badwater-135/">Watch the live race</a>
+      <a class="urt-btn ghost" href="/race-directors">Track your race, free</a>
+    </div>
+    <div id="urt-search"></div>
+  </div>
+</section>
+
+  <section class="cheer-section">
+    <div class="cheer-header">
+      <div class="cheer-title" id="cheer-title">
+        <span></span>
+        <b id="cheer-state">LIVE NOW</b> · <span id="cheer-race">BADWATER 135</span>
+      </div>
+      <div class="cheer-count" id="cheer-count-big">277</div>
+    </div>
+    <div id="cheer-display" class="cheer-card">
+      <div class="cheer-name">Loading cheers...</div>
+    </div>
+    <div class="cheer-cta" id="cheer-cta">→ Send a cheer on the live race</div>
+  </section>
+
+  <div class="urt-liveband"><div class="wrap">
+    <div class="sec" id="yours-sec" hidden>Your runners</div>
+    <div class="yours" id="urt-yours" hidden></div>
+    <p class="yoursnote" id="urt-yoursnote" hidden></p>
+    <!-- What is about to happen, above what just finished. On the ~300 days a year with
+         nothing live, "No race running right now" was a dead end here. -->
+    <div class="sec" id="twmount-sec" hidden>Starting soon</div>
+    <div id="urt-thisweek" class="thisweek" hidden></div>
+    <div class="sec" id="racing-sec">Racing now</div>
+    <div id="live"></div>
+    <div id="urt-lastraces" class="lastraces" hidden></div>
+
+    <!-- urt-news: the sport's own reporting, credited and linked out. On the ~300 days a
+         year with no race running, "Racing now" said only "No race running right now",
+         which is a dead end on the most-scrolled part of the page. This gives someone a
+         reason to be here, and it is the one place a news feed can do something a magazine
+         cannot: when a headline names a runner we hold, it opens into their whole career. -->
+    <div class="sec" id="news-sec" style="display:none">In the sport</div>
+    <div class="urt-newswrap" id="urt-newswrap" style="display:none">
+      <div class="urt-shelf" id="urt-news" tabindex="0" role="list"
+           aria-label="Recent reporting from the sport's publications"></div>
+    </div>
+    <p class="urt-newsfoot" id="urt-newsfoot" style="display:none"></p>
+
+    <!-- urt-faces: the sport is people, and the front page showed none of them below the
+         hero. 582 runners have a real photograph on file; these are the ones most visitors
+         would recognise, each opening their whole career. -->
+    <div class="sec" id="faces-sec" hidden>The field</div>
+    <div class="faces" id="urt-faces" hidden></div>
+    <p class="facesfoot" id="urt-facesfoot" hidden></p>
+  </div></div>
+
+  <p class="claim" id="claim"></p>
+
+  <!-- The reason the site exists, set as a statement rather than a card inside a section
+       headed "Why this exists". Same words, no scaffolding. -->
+  <div class="urt-thesis">
+    <p>Badwater, Hardrock and Western States carry <em>no trackers</em>. No units, no beacons,
+       nothing to charge at mile 90 &mdash; every GPS tracker on the market is useless at
+       exactly the races people most want to watch.</p>
+    <p class="t2">We read the splits instead. That is why these races are here and nowhere
+       else.</p>
+  </div>
+
+  <div class="sec" id="urt-vs-cta">Kirk Apt and Mark Heaphy have started 18 of the same races since 1994</div>
+<p style="font-size:15.5px;color:var(--ink-2);max-width:62ch;margin:0 0 14px">Nobody has ever been able to look at that. Put any two runners side by side across every race they have both started. <a href="/vs/">Compare two runners</a>.</p>
+<div class="sec">The real splits behind a target finish time</div>
+  <section class="prep">
+    <h3>Pace charts from runners who actually finished</h3>
+    <p>Pick a target finish time and see the real cumulative split at every checkpoint from
+       everyone in our archive who ran it. Median and the middle-half spread, on the exact
+       course layout you will race. No model, no advice, just what they did.</p>
+    <div class="prepnote" id="prepnote"></div>
+    <div class="prepg" id="prepg"></div>
+  </section>
+
+  <section class="spon">
+    <h3>Sponsor the sport's most engaged 12 hours</h3>
+    <p>Ultra fans do not skim. During a race they sit on one page for hours, refreshing to
+       see whether one specific person is still moving. It is a small, fanatical, hard to
+       reach audience, and it arrives on its own.</p>
+    <div class="aud" id="aud"></div>
+    <div class="win" id="audwin"></div>
+    <div class="slots">
+      <div><b>Race page banner</b><span>One placement above the leaderboard, visible for
+        the full duration of a race.</span></div>
+      <div><b>Presented-by line</b><span>Your name on the race header and in every shared
+        link preview.</span></div>
+      <div><b>Replay archive</b><span>Persistent placement across the full replay archive,
+        which keeps drawing traffic year round.</span></div>
+    </div>
+    <a class="sbtn" href="/sponsors">TALK TO US</a>
+  </section>
+
+  <div id="urt-fact" class="factband"></div>
+  <div class="sec">Race replays <span id="repcount"></span></div>
+  <div class="grid" id="replays"></div>
+  <button id="showall" type="button">SHOW ALL RACES</button>
+  <div class="arch-note" id="archnote" style="font-size:11px;color:var(--dim2);margin:14px 0;font-family:var(--mono);line-height:1.7"></div>
+
+  <section class="about">
+    <div class="cols">
+      <div>
+        <h3>How it works</h3>
+        <p>Most of these races have <b>no GPS on the runners.</b> The only truth is the time
+           each athlete crosses a checkpoint. We take those official splits and estimate
+           position between stations using the field's real historical pace for that exact
+           stretch of course, adjusted for how each runner is actually moving on the day.</p>
+        <p>A runner is never shown past a checkpoint they have not reached. If they are
+           overdue, they hold at that checkpoint and get flagged, so the map never invents
+           progress that did not happen.</p>
+      </div>
+      <div>
+        <h3>Built for crews and families</h3>
+        <p>Every runner has a shareable link, an estimated arrival time at their next
+           checkpoint, and their full race history. Follow anyone with a star and they stay
+           pinned on your map.</p>
+        <p>Slept through the night? Drag the scrubber back and watch it from the gun. These races run 48 hours. Nobody watches all of it live, including us.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="wrap signup">
+  <div class="su-box">
+    <h3>Get told when the next race goes live</h3>
+    <p>One email per race, when tracking opens. Nothing else, and one click to stop.</p>
+    <form id="subf" novalidate>
+      <input id="subemail" type="email" inputmode="email" autocomplete="email"
+             placeholder="you@example.com" aria-label="Email address">
+      <input id="subhp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit">NOTIFY ME</button>
+    </form>
+    <div id="submsg"></div>
+  </div>
+</section>
+
+
+<!-- urt-rd-link: the only place on the site that asks a race director for their race -->
+<section class="rdband"><div class="wrap">
+  <div class="rdinner">
+    <div>
+      <h2>Do you put on a race?</h2>
+      <p>If your timing publishes checkpoint splits, we can track it. No GPS units, nothing
+      to install, nothing to pay, now or later. Your runners get live positions, their crews
+      get a page telling them where to be next, and their families get to leave a message
+      that gets read out at the next aid station.</p>
+    </div>
+    <a class="rdcta" href="/race-directors">GET YOUR RACE TRACKED</a>
+  </div>
+</div></section>
+<footer><div class="wrap">
+  UltraRunTrack · independent fan project, not affiliated with any race organiser.<br>
+  Timing data belongs to the races and their timing partners. Positions between checkpoints
+  are estimates, not GPS.<br>
+  <!-- urt-rd-link -->
+  <a href="/about">About</a> · <a href="/race-directors">For race directors</a> ·
+  <a href="/sponsors">Sponsors</a> ·
+  <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+  <br><span class="builtby"><span>BUILT BY</span>
+  <a href="https://forgebuiltai.com" target="_blank" rel="noopener">FORGE BUILT AI</a></span>
+</div></footer>
+
+<script>
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function num(n){ return (n==null)?'':n.toLocaleString(); }
+
+function drawMapCanvas(){
+  var canvas=document.getElementById('map-canvas');
+  if(!canvas) return;
+  var ctx=canvas.getContext('2d');
+  if(!ctx) return;
+
+  // Set canvas size to match display size
+  var rect=canvas.getBoundingClientRect();
+  canvas.width=Math.max(rect.width*window.devicePixelRatio,1);
+  canvas.height=Math.max(rect.height*window.devicePixelRatio,1);
+  ctx.scale(window.devicePixelRatio,window.devicePixelRatio);
+
+  var W=rect.width, H=rect.height;
+  ctx.fillStyle='#05070a';
+  ctx.fillRect(0,0,W,H);
+
+  fetch('badwater-135/live.json?t='+Date.now()).then(function(r){return r.json();}).then(function(j){
+    if(!j||!j.stations) return;
+
+    fetch('badwater-135/course.json').then(function(r){return r.json();}).catch(function(){return null;}).then(function(course){
+      var PL=8,PR=8,PT=12,PB=18;
+      var total=(j.stations[j.stations.length-1]||{}).mile||135;
+      var prof=[];
+
+      if(course&&course.polyline&&course.polyline.length){
+        var P=course.polyline, N=100;
+        for(var i=0;i<=N;i++){
+          var idx=Math.min(P.length-1,Math.round(i/N*(P.length-1)));
+          var pt=P[idx];
+          prof.push(pt&&pt.length>2?pt[2]:0);
+        }
+      }
+
+      var mx=Math.max.apply(null,prof.concat([1])), mn=Math.min.apply(null,prof.concat([0]));
+      var X=function(mi){ return PL+(W-PL-PR)*(mi/total); };
+      var Yp=function(el){ return H-PB-((el-mn)/((mx-mn)||1))*(H-PT-PB)*0.78; };
+
+      // Draw elevation profile
+      if(prof.length>2){
+        ctx.fillStyle='rgba(255,122,26,0.12)';
+        ctx.beginPath();
+        ctx.moveTo(PL,H-PB);
+        for(var i=0;i<prof.length;i++){
+          ctx.lineTo(X(total*i/(prof.length-1)),Yp(prof[i]));
+        }
+        ctx.lineTo(W-PR,H-PB);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.strokeStyle='#ff7a1a';
+        ctx.lineWidth=1.8;
+        ctx.lineJoin='round';
+        ctx.beginPath();
+        for(var i=0;i<prof.length;i++){
+          var x=X(total*i/(prof.length-1)), y=Yp(prof[i]);
+          if(i===0) ctx.moveTo(x,y);
+          else ctx.lineTo(x,y);
+        }
+        ctx.stroke();
+      } else {
+        ctx.strokeStyle='#ff7a1a';
+        ctx.lineWidth=1.8;
+        ctx.beginPath();
+        ctx.moveTo(PL,H-PB-30);
+        ctx.lineTo(W-PR,H-PB-30);
+        ctx.stroke();
+      }
+
+      // Draw station markers
+      ctx.strokeStyle='#1c2531';
+      ctx.lineWidth=0.8;
+      j.stations.forEach(function(st){
+        var x=X(st.mile);
+        ctx.beginPath();
+        ctx.moveTo(x,PT);
+        ctx.lineTo(x,H-PB);
+        ctx.stroke();
+      });
+
+      // Draw runners
+      var moving=j.runners.filter(function(r){return r.status==='running'||r.status==='due';});
+      moving.forEach(function(r){
+        var x=X(r.mile), y=prof.length>2?Yp(prof[Math.min(prof.length-1,
+              Math.round(r.mile/total*(prof.length-1)))]):(H-PB-30);
+        var lead=(r.live_rank===1);
+        var sz=lead?4.2:2.4;
+
+        ctx.fillStyle=lead?'#ff7a1a':'#35d0ff';
+        ctx.globalAlpha=lead?1:0.7;
+        ctx.beginPath();
+        ctx.arc(x,y,sz,0,Math.PI*2);
+        ctx.fill();
+        ctx.globalAlpha=1;
+
+        if(lead){
+          ctx.strokeStyle='#ff7a1a';
+          ctx.lineWidth=1.2;
+          ctx.globalAlpha=0.45;
+          ctx.beginPath();
+          ctx.arc(x,y,8.5,0,Math.PI*2);
+          ctx.stroke();
+          ctx.globalAlpha=1;
+        }
+      });
+    });
+  }).catch(function(){
+    ctx.fillStyle='var(--dim2)';
+    ctx.font='12px var(--mono)';
+    ctx.textAlign='center';
+    ctx.fillText('Map unavailable',W/2,H/2);
+  });
+}
+
+function updateHeroStats(){
+  fetch('badwater-135/live.json?t='+Date.now()).then(function(r){return r.json();}).then(function(j){
+    if(!j||!j.runners) return;
+    var moving=j.runners.filter(function(r){return r.status==='running'||r.status==='due';});
+    document.getElementById('runners-running').textContent=moving.length;
+  }).catch(function(){});
+}
+
+drawMapCanvas();
+setInterval(drawMapCanvas,60000);
+updateHeroStats();
+setInterval(updateHeroStats,60000);
+
+fetch('viewers.json?t='+Date.now()).then(function(r){return r.json();}).then(function(v){
+  if(v&&v.now){
+    document.getElementById('watching-count').textContent=v.now;
+  }
+}).catch(function(){});
+
+function loadCheers(){
+  fetch('api/cheers/feed?race=badwater-135&limit=50&t='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(!d.ok||!d.feed||d.feed.length===0){
+        document.getElementById('cheer-display').innerHTML=
+          '<div style="color:var(--dim2);text-align:center;padding:8px 0;font-size:13px">No cheers yet. Be the first to send one.</div>';
+        document.getElementById('cheer-count-big').textContent='—';
+        var cp0=document.getElementById('cheers-tonight');
+        if(cp0) cp0.textContent='0';
+        return;
+      }
+      var host=document.getElementById('cheer-display');
+      var count=d.total||0;
+      document.getElementById('cheer-count-big').textContent=count;
+      /* urt-cheer-pill-live: the hero pill was a build-time literal and drifted
+         to a different number than the wall on the same screen. */
+      var cp=document.getElementById('cheers-tonight');
+      if(cp) cp.textContent=count;
+
+      var idx=0, feed=d.feed;
+      function showCheer(){
+        if(feed.length===0) return;
+        var msg=feed[idx%feed.length];
+        var ago=Math.floor((Date.now()-new Date(msg.ts).getTime())/60000);
+        var ago_str=ago===0?'just now':(ago===1?'1 min ago':ago+' min ago');
+        host.innerHTML='<div class="cheer-name">'+esc(msg.name||'Anonymous')+'</div>'
+          +'<div class="cheer-msg">'+esc(msg.msg)+'</div>'
+          +'<div class="cheer-time">'+ago_str+'</div>';
+        idx++;
+      }
+      showCheer();
+      setInterval(showCheer,5000);
+    })
+    .catch(function(){
+      document.getElementById('cheer-display').innerHTML=
+        '<div style="color:var(--dim2);text-align:center;padding:8px 0;font-size:13px">Cheers unavailable.</div>';
+    });
+}
+loadCheers();
+setInterval(loadCheers,30000);
+
+fetch('stats.json?t='+Date.now()).then(function(r){return r.json();}).then(function(s){
+  /* These two were hardcoded in the markup as 108 and 33,035, so every import silently made
+     the hero contradict its own sub-headline. Tonight's SainteLyon import put 39,187 in one
+     line and 33,035 in the strip beside it, on a site whose whole claim is that every number
+     is checkable. Both now come from stats.json. */
+  try{
+    var _p=(s&&s.platform)||{}, _n=function(v){return (v==null?'-':Number(v).toLocaleString());};
+    var _r=document.getElementById('strip-races'), _f=document.getElementById('strip-finishes');
+    if(_r&&_p.races!=null) _r.textContent=_n(_p.races);
+    if(_f&&_p.finishes!=null) _f.textContent=_n(_p.finishes);
+    /* The archive's scale, which is the number that actually means something to a sponsor.
+       3,293,787 shows as 3.29M because the strip has one line to say it in. */
+    var _m=document.getElementById('strip-miles');
+    if(_m&&_p.finish_miles!=null){
+      var mi=Number(_p.finish_miles);
+      _m.textContent = mi>=1e6 ? (mi/1e6).toFixed(2)+'M' : _n(mi);
+    }
+  }catch(e){}
+  var p=s.platform||{}, box=document.getElementById('claim');
+  if(box&&p.races){
+    var mi=p.finish_miles>=1e6?(p.finish_miles/1e6).toFixed(2)+' million':num(p.finish_miles);
+    box.innerHTML='<b>'+num(p.finishes)+'</b> finishes across <b>'+num(p.races)
+      +'</b> races, going back to <b>'+p.year_from+'</b>. Every split, every checkpoint, '
+      +'<b>'+mi+'</b> race miles you can replay minute by minute. Free, no account, no app.';
+  }
+  var a=s.audience, ab=document.getElementById('aud'), aw=document.getElementById('audwin');
+  if(a&&ab){
+    ab.innerHTML=
+       '<div><b>'+num(a.unique_visitors)+'</b><u>Unique visitors</u></div>'
+      +'<div><b>'+num(a.page_views)+'</b><u>Page views</u></div>'
+      +'<div><b>'+a.mobile_pct+'%</b><u>On mobile</u></div>'
+      +'<div><b>'+num(a.peak_concurrent)+'</b><u>Peak concurrent</u></div>';
+    var top=(a.top_referrers||[])[0];
+    aw.textContent='Measured over '+a.days_measured+' day'+(a.days_measured===1?'':'s')
+      +' from our own server logs, bots excluded'
+      +(top?'. Most arrivals came from '+top.host+', unpaid.':'.')
+      +' We publish what we can prove, not a projection.';
+  } else if(ab){
+    ab.parentNode.removeChild(ab);
+  }
+}).catch(function(){});
+
+fetch('races.json?t='+Date.now()).then(function(r){return r.json();}).then(function(d){
+  var live=d.races.filter(function(r){return r.status==='live';});
+  var rep=d.races.filter(function(r){return r.status==='replay';});
+
+  var lh='';
+  live.forEach(function(r){
+    lh+='<div class="live-card">'
+      +'<div class="live-header">'
+      +'<span class="live-dot"></span>'
+      +'<span class="live-badge"><b>LIVE NOW</b> · '+esc(r.name)+' '+r.year+'</span>'
+      +'</div>'
+      /* urt-no-empty-sep: a GPS race publishes no location, and joining blindly left a
+         bare separator sitting where the course description belongs. */
+      +'<h2 class="live-title">'+[r.distance,r.location].filter(Boolean).map(esc).join(' · ')+'</h2>'
+      +'<div class="live-stats" id="ls-'+esc(r.slug)+'"></div>'
+      +'<a href="'+esc(r.path)+'" class="live-cta">→ Watch the live map &amp; leaderboard</a>'
+      +'</div>';
+  });
+  document.getElementById('live').innerHTML=lh||'';
+  /* The what-starts-this-week block lives in its own element: #live has three writers, and
+     the "Last raced" shelf ends by clearing it, which wiped this a second after it rendered. */
+  if(!lh) thisWeek();
+
+  rep.sort(function(a,b){return b.year-a.year;});
+  (function(){
+    var g=document.getElementById('prepg'); if(!g) return;
+    var seen={}, out=[];
+    (live.concat(rep)).forEach(function(r){
+      if(seen[r.name]) return; seen[r.name]=1;
+      /* That race's median pace per segment, from build_pace_art.py. Decorative
+         in the accessibility sense: the real chart is one click away. */
+      var pslug=String(r.path||'').replace(/\/$/,'');
+      /* The numbers were always on this row and the card never used one of them. Nineteen
+         name-only tiles with a decorative squiggle read as one tile repeated. */
+      var m=[];
+      if(r.distance) m.push(String(r.distance));
+      if(r.starters) m.push(r.starters+' started');
+      if(r.finish_rate!=null) m.push(r.finish_rate+'% finished');
+      var meta=m.length
+        ? '<span class="ppmeta">'+esc(m.join(' · '))+(r.year?' &middot; '+r.year:'')+'</span>'
+        : '';
+      out.push('<a href="/'+esc(r.path)+'pace/">'
+        +'<span class="pp-art"><img src="/art/pace/'+esc(pslug)+'.svg" alt="" '
+        +'loading="lazy" width="260" height="58" onerror="this.parentNode.style.display=&quot;none&quot;"></span>'
+        +'<b>'+esc(r.name)+'</b>'
+        +meta
+        +'<span>PACE CHART →</span></a>');
+    });
+    g.innerHTML=out.join('');
+    var n=document.getElementById('prepnote');
+    if(n) n.textContent='Built from every finisher in the archive, grouped by the time they '
+      +'actually ran. Free and printable.';
+  })();
+
+
+/* What is actually about to happen. Same upcoming.json the schedule page renders, asked a
+   different question: not "what is coming" but "what starts in the next few days". */
+function thisWeek(){
+  var host=document.getElementById('urt-thisweek');
+  if(!host) return;
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  fetch('/upcoming.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){ return r.ok?r.json():null; })
+    .then(function(d){
+      var items=(d&&(d.races||d.items))||(Array.isArray(d)?d:[]);
+      var today=new Date(); today.setHours(0,0,0,0);
+      var soon=[];
+      items.forEach(function(r){
+        var p=String(r.date||'').slice(0,10).split('-');
+        if(p.length!==3) return;
+        var dt=new Date(+p[0],+p[1]-1,+p[2]);
+        var days=Math.round((dt-today)/86400000);
+        /* seven days, not nine: at nine, this Saturday and next Saturday both fall in a
+           bucket named "Saturday" and the headline adds them together. */
+        if(days>=0&&days<=7) soon.push({r:r,d:days,dt:dt});
+      });
+      if(!soon.length) return;          /* nothing to say beats an empty heading */
+      host.hidden=false;
+      var sec=document.getElementById('twmount-sec');
+      if(sec) sec.hidden=false;
+      soon.sort(function(a,b){ return a.d-b.d; });
+      var DOW=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      function when(x){
+        if(x.d===0) return 'Today';
+        if(x.d===1) return 'Tomorrow';
+        return DOW[x.dt.getDay()];
+      }
+      /* Lead with the DATE the most races start, never the weekday name — grouping by name
+         merged two Saturdays into one claim of eleven races. */
+      var byDate={};
+      soon.forEach(function(x){ (byDate[x.d]=byDate[x.d]||[]).push(x); });
+      var leadDay=Object.keys(byDate).sort(function(a,b){
+        var c=byDate[b].length-byDate[a].length;
+        return c || (a-b);                       /* ties go to the sooner day */
+      })[0];
+      var group=byDate[leadDay];
+      var lead=when(group[0]);
+      var n=group.length;
+
+      host.innerHTML='<p class="twlede"><b>'+n+' ultra'+(n===1?'':'s')+'</b> start'
+        +(n===1?'s':'')+' '+esc(lead.toLowerCase()==='today'?'today':lead)+'.</p>'
+        +'<div class="twgrid">'+soon.slice(0,8).map(function(x){
+          var r=x.r;
+          var href=r.url||'/upcoming/';
+          return '<a href="'+esc(href)+'"'+(r.url?' target="_blank" rel="noopener"':'')+'>'
+            +(r.banner?'<img src="'+esc(r.banner)+'" alt="" loading="lazy" '
+              +'referrerpolicy="no-referrer" onerror="this.remove()">':'')
+            +'<span class="twm"><i>'+esc(when(x))+'</i><b>'+esc(r.name||'')+'</b>'
+            +'<s>'+esc([r.distances||((r.courses&&r.courses.length)
+                ? r.courses.map(function(k){return Math.round(k)+' km';}).join(', ') : ''),
+              r.can_track?'we can follow this one live':''].filter(Boolean).join(' · '))+'</s>'
+            +'</span></a>';
+        }).join('')+'</div>'
+        +'<p class="twfoot"><a href="/upcoming/">All 233 races on the calendar</a></p>';
+    })
+    .catch(function(){});
+}
+
+  function cardHtml(r){
+    /* Each race's own finish-time distribution, generated from its results by
+       build_race_art.py. Decorative in the accessibility sense -- the numbers that
+       matter are in the card text and on the race page -- so alt is empty. */
+  /* "2026-07-27" -> "27 Jul 2026". Parsed by hand: new Date("2026-07-27") is UTC
+     midnight, which renders as the 26th anywhere west of Greenwich. On a page fixing wrong
+     dates, an off-by-one timezone bug would be a poor joke. */
+  var URT_MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function urtRaceDate(d, fallbackYear) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(d || ''));
+    if (!m) return fallbackYear ? String(fallbackYear) : '';
+    var mi = parseInt(m[2], 10) - 1;
+    if (mi < 0 || mi > 11) return m[1];
+    return parseInt(m[3], 10) + ' ' + URT_MON[mi] + ' ' + m[1];
+  }
+
+    var slug=String(r.path||'').replace(/\/$/,'');
+    return '<a class="rc" href="/'+esc(r.path)+'">'
+      +'<span class="rc-art"><img src="/art/race/'+esc(slug)+'.svg" alt="" '
+      +'loading="lazy" width="260" height="58" onerror="this.parentNode.style.display=&quot;none&quot;"></span>'
+      +'<div class="rc-top"><span class="yr">'+esc(r.name)+' · '
+      +esc(urtRaceDate(r.date, r.year))+'</span>'
+      +(r.finish_rate!=null?'<span class="rate" style="font-family:var(--mono);font-size:9px;color:var(--dim2)">'+r.finish_rate+'% finished</span>':'')+'</div>'
+      +(r.winner?'<h3>'+esc(r.winner)+'</h3><div style="font-family:var(--mono);font-size:11px;color:var(--hot2);margin-top:2px">'+esc(r.winner_time||'')+'</div>':
+        '<h3>'+esc(r.name)+'</h3>')
+      +'<p>'+esc(r.blurb)+'</p><span class="tag">WATCH REPLAY</span></a>';
+  }
+
+  var CAP=12, grid=document.getElementById('replays'), btn=document.getElementById('showall');
+  function paint(all){
+    var show=all?rep:rep.slice(0,CAP);
+    grid.innerHTML=show.map(cardHtml).join('');
+    if(btn){
+      if(rep.length<=CAP){ btn.style.display='none'; }
+      else{ btn.style.display='block';
+            btn.textContent=all?'SHOW FEWER':('SHOW ALL '+rep.length+' RACES'); }
+    }
+  }
+  if(btn) btn.addEventListener('click',function(){ shown=!shown; paint(shown); });
+  var shown=false;
+  paint(false);
+
+  var an=document.getElementById('archnote');
+  if(an&&d.note) an.textContent=d.note;
+  var cnt=document.getElementById('repcount');
+  if(cnt&&rep.length) cnt.textContent=rep.length+' races · '+rep[rep.length-1].year+'-'+rep[0].year;
+
+  live.forEach(function(r){
+    fetch(r.path+'live.json?t='+Date.now()).then(function(x){return x.json();}).then(function(j){
+      var c={}; j.runners.forEach(function(x){ c[x.status]=(c[x.status]||0)+1; });
+      var el=document.getElementById('ls-'+r.slug);
+      if(!el) return;
+      var gun=new Date(j.first_gun_utc).getTime();
+      var hrs=(Date.now()-gun)/3600000;
+      el.innerHTML=
+         '<div class="stat-box"><div class="stat-box-val">'+j.runners.length+'</div><div class="stat-box-label">Field</div></div>'
+        +'<div class="stat-box"><div class="stat-box-val cool">'+((c.running||0)+(c.due||0))+'</div><div class="stat-box-label">On course</div></div>'
+        +'<div class="stat-box"><div class="stat-box-val" style="color:var(--go)">'+(c.finished||0)+'</div><div class="stat-box-label">Finished</div></div>'
+        +'<div class="stat-box"><div class="stat-box-val hot">'
+          +(hrs<0?'PRE':Math.floor(hrs)+'h '+Math.floor((hrs%1)*60)+'m')+'</div><div class="stat-box-label">Race clock</div></div>';
+    }).catch(function(){});
+  });
+}).catch(function(){
+  document.getElementById('live').innerHTML=
+    '<div style="color:var(--dim2);font-size:13px">Race list unavailable.</div>';
+});
+
+document.getElementById('subf').addEventListener('submit',function(e){
+  e.preventDefault();
+  var em=document.getElementById('subemail').value.trim();
+  var msg=document.getElementById('submsg');
+  if(!/^[^@\s]+@[^@\s.]+\.[A-Za-z]{2,}$/.test(em)){
+    msg.className='err'; msg.textContent='That does not look like an email address.'; return;
+  }
+  msg.className=''; msg.textContent='Saving...';
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:em,src:'home',website:document.getElementById('subhp').value})})
+   .then(function(r){return r.json();})
+   .then(function(j){
+     if(j.ok){ msg.className='ok';
+       msg.textContent=j.already?'You are already on the list.':'Done. We will only email you when a race goes live.';
+       document.getElementById('subemail').value=''; }
+     else { msg.className='err'; msg.textContent=j.error||'Could not save that. Try again.'; }
+   })
+   .catch(function(){ msg.className='err'; msg.textContent='Network error. Try again in a moment.'; });
+});
+</script>
+
+<script>
+/* urt-hero-fallback: the hero is written for a live race and says so in static markup. When
+   the race ends it would keep promising live Death Valley coverage with nobody on course.
+   This swaps it for what is actually true on the other three hundred days of the year -- the
+   archive, and the fact that anyone who has run an ultra already has a page here.
+
+   Leads with finding yourself rather than with our own numbers, because that is a reason to
+   come back and a statistic is not. */
+(function(){
+  var h1=document.getElementById('hero-h1'), sub=document.getElementById('hero-sub');
+  if(!h1||!sub) return;
+  /* urt-fallback-anylive: this asked only whether badwater-135 was empty. With a second
+     race running to 1 August that gave the wrong answer -- hero.js switched the map to
+     the live race while this rewrote the headline to say the archive. Ask the registry
+     instead: is ANY listed race still carrying someone on course. */
+  fetch('/races.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){ return r.ok?r.json():null; })
+    .then(function(reg){
+      var live=((reg&&reg.races)||[]).filter(function(x){ return x.status==='live'&&x.path; });
+      if(!live.length) return 0;
+      return Promise.all(live.map(function(x){
+        var slug=String(x.path).replace(/\/$/,'');
+        return fetch('/'+slug+'/live.json?t='+Date.now(),{cache:'no-store'})
+          .then(function(r){ return r.ok?r.json():null; })
+          .then(function(d){ var c=(d&&d.counts)||{}; return (c.running||0)+(c.due||0); })
+          .catch(function(){ return 0; });
+      })).then(function(counts){
+        return counts.reduce(function(a,b){ return a+b; }, 0);
+      });
+    })
+    .then(function(onCourse){
+      if(onCourse>0) return;   /* something is still running; today's copy is correct */
+      return fetch('/stats.json?t='+Date.now(),{cache:'no-store'})
+        .then(function(r){ return r.ok?r.json():null; })
+        .then(function(st){
+          var p=(st&&st.platform)||{};
+          var races=p.races, fins=p.finishes, y0=p.year_from, y1=p.year_to;
+          h1.innerHTML='Every ultra we have ever tracked, kept for good.';
+          var bits=[];
+          if(races&&fins&&y0&&y1){
+            bits.push(races.toLocaleString()+' races and '+fins.toLocaleString()
+              +' finishes, '+y0+' to '+y1+'.');
+          }
+          bits.push('If you have run one of them, your record is already here.');
+          bits.push('Free. No app. No login.');
+          sub.textContent=bits.join(' ');
+        });
+    }).catch(function(){});
+})();
+</script>
+<script src="/s/search.js" defer></script>
+<script src="/urt.js" defer></script>
+<script src="/hero-replay.js" defer></script>
+<script src="/hero.js" defer></script>
+<script src="/facts.js" defer></script>
+<script>
+/* urt-news. Their headline, their words, their link: we show the title, the source and the
+   feed's own excerpt, and every click leaves for them. No article text is copied and no
+   images are hotlinked. Where a headline names somebody in the archive the card ends with a
+   link to their career, which is the only part of this a magazine could not publish. */
+fetch('/news.json?t='+Date.now(),{cache:'no-store'})
+  .then(function(r){ return r.ok?r.json():null; })
+  .then(function(d){
+    var host=document.getElementById('urt-news');
+    if(!host||!d||!d.items||!d.items.length) return;
+    function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function ago(ts){
+      if(!ts) return '';
+      var s=Math.max(0,Date.now()/1000-ts);
+      if(s<3600) return Math.max(1,Math.floor(s/60))+'m';
+      if(s<86400) return Math.floor(s/3600)+'h';
+      if(s<1209600) return Math.floor(s/86400)+'d';
+      return new Date(ts*1000).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+    }
+    var h='';
+    d.items.slice(0,12).forEach(function(it){
+      var r=(it.runners||[])[0];
+      var foot=r
+        ? '<span class="nrun"><b>'+esc(r.name)+'</b><s>'+esc(r.finishes)+' in our archive</s></span>'
+        : '';
+      var img=it.image
+        ? '<img class="nimg" src="'+esc(it.image)+'" alt="" loading="lazy" decoding="async" '
+          +'referrerpolicy="no-referrer" onerror="this.remove()">'
+        : '';
+      h+='<a role="listitem" class="'+(it.image?'hasimg':'')+'" href="'+esc(it.link)+'" '
+        +'target="_blank" rel="noopener nofollow">'
+        +img
+        +'<span class="nsrc"><i></i>'+esc(it.source)+(it.ts?' &middot; '+esc(ago(it.ts)):'')+'</span>'
+        +'<b class="nttl">'+esc(it.title)+'</b>'
+        +(it.excerpt?'<span class="nex">'+esc(it.excerpt)+'</span>':'')
+        +'<span class="nfoot">'+foot+'</span></a>';
+    });
+    host.innerHTML=h;
+    document.getElementById('urt-newswrap').style.display='';
+    var sec=document.getElementById('news-sec'); if(sec) sec.style.display='';
+    var f=document.getElementById('urt-newsfoot');
+    if(f){
+      f.textContent='Reporting by '+(d.sources||[]).map(function(x){return x.name;}).join(', ')
+        +'. Headlines, images and links are theirs, shown the way they publish them for sharing. Every click goes to them.';
+      f.style.display='';
+    }
+    /* A shelf you cannot tab through is not finished. */
+    host.addEventListener('keydown',function(e){
+      if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return;
+      e.preventDefault();
+      host.scrollBy({left:(e.key==='ArrowRight'?1:-1)*314,behavior:'smooth'});
+    });
+  }).catch(function(){});
+</script>
+<script>
+/* urt-cheer-live-state */
+(function(){
+  var athletesReady = fetch('/s/index.json')
+    .then(function(r){ return r.ok?r.json():null; })
+    .then(function(ix){
+      var el=document.getElementById('strip-athletes');
+      if(el&&ix&&ix.athletes) el.textContent=Number(ix.athletes).toLocaleString();
+    }).catch(function(){});
+
+  fetch('/races.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){ return r.ok?r.json():null; })
+    .then(function(reg){
+      var races=(reg&&reg.races)||[];
+      var live=races.filter(function(x){ return x.status==='live'&&x.path; });
+      return Promise.all(live.map(function(x){
+        var slug=String(x.path).replace(/\/$/,'');
+        return fetch('/'+slug+'/live.json?t='+Date.now(),{cache:'no-store'})
+          .then(function(r){ return r.ok?r.json():null; })
+          .then(function(d){ var c=(d&&d.counts)||{};
+            return {slug:slug,name:x.name,out:(c.running||0)+(c.due||0)}; })
+          .catch(function(){ return {slug:slug,name:x.name,out:0}; });
+      })).then(function(all){ return {on:all.filter(function(x){return x.out>0;}), races:races}; });
+    })
+    .then(function(st){
+      var stateEl=document.getElementById('cheer-state');
+      var raceEl=document.getElementById('cheer-race');
+      var cta=document.getElementById('cheer-cta');
+      var cellLive=document.getElementById('cell-live');
+      var cellMsgs=document.getElementById('cell-msgs');
+      var cellRaces=document.getElementById('cell-races');
+
+      if(st.on.length){
+        var r=st.on[0];
+        /* A race is on. Now "watching now" is worth leading with, and the message count is
+           live rather than historical. */
+        if(cellLive) cellLive.hidden=false;
+        if(cellMsgs) cellMsgs.hidden=false;
+        if(cellRaces) cellRaces.hidden=true;
+        if(stateEl) stateEl.textContent='LIVE NOW';
+        if(raceEl) raceEl.textContent=(r.name||r.slug).toUpperCase();
+        if(cta) cta.innerHTML='<a href="/'+r.slug+'/">&rarr; Send a cheer on the live race</a>';
+        return;
+      }
+
+      /* Nothing running. Name the race these messages belong to instead of claiming it is on. */
+      var reps=(st.races||[]).filter(function(x){ return x.status==='replay'&&x.path; })
+                             .sort(function(a,b){ return (b.year||0)-(a.year||0); });
+      var last=reps[0];
+      if(stateEl) stateEl.textContent='LAST MESSAGES';
+      var ct=document.getElementById('cheer-title');
+      if(ct) ct.classList.add('is-past');
+      if(raceEl&&last) raceEl.textContent=(last.name||'').toUpperCase()+(last.year?' '+last.year:'');
+      if(cta&&last) cta.innerHTML='<a href="/'+String(last.path).replace(/\/$/,'')
+        +'/">&rarr; Read the wall and replay the race</a>';
+    })
+    .catch(function(){});
+}());
+</script>
+<script>
+/* urt-lastraces: replaces "No race running right now" with the three most recent races and
+   their replays. Reads races.json, which already carries year and status, so this needs no
+   new data and cannot go stale. When something IS live the normal live cards render and this
+   stays hidden. */
+(function(){
+  fetch('/races.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){ return r.ok?r.json():null; })
+    .then(function(reg){
+      var all=(reg&&reg.races)||[];
+      if(all.some(function(x){ return x.status==='live'; })) return;
+      var reps=all.filter(function(x){ return x.status==='replay'&&x.path; })
+                  .sort(function(a,b){ return (b.year||0)-(a.year||0); }).slice(0,3);
+      if(!reps.length) return;
+      function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+      var host=document.getElementById('urt-lastraces');
+      host.innerHTML=reps.map(function(r){
+        return '<a href="/'+esc(String(r.path).replace(/\/$/,''))+'/">'
+          +'<s>'+esc(r.year||'')+'</s>'
+          +'<b>'+esc(r.name||r.slug)+'</b>'
+          +'<em>Watch the replay &rarr;</em></a>';
+      }).join('');
+      host.hidden=false;
+      var sec=document.getElementById('racing-sec');
+      if(sec) sec.textContent='Last raced';
+      var empty=document.getElementById('live');
+      if(empty) empty.innerHTML='';
+    }).catch(function(){});
+}());
+</script>
+<script src="/follow.js" defer></script>
+<script>
+/* urt-yours: who you follow, and anything published about them this week. Hidden entirely
+   when you follow nobody, because an empty personalisation block is worse than none. Built
+   from two files that already exist, so it costs nothing to keep current. */
+(function(){
+  function go(){
+    if(!window.URTFollow) return;
+    var mine=URTFollow.list('athletes');
+    if(!mine.length) return;
+    function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    fetch('/athlete_news.json?t='+Date.now(),{cache:'no-store'})
+      .then(function(r){ return r.ok?r.json():null; })
+      .then(function(d){
+        var news=(d&&d.athletes)||{};
+        var host=document.getElementById('urt-yours');
+        host.innerHTML=mine.slice(0,8).map(function(a){
+          var n=(news[a.id]||[])[0];
+          return '<a href="/a/'+esc(a.id)+'">'
+            +(n&&n.image?'<img src="'+esc(n.image)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">':'')
+            +'<span><b>'+esc(a.name||a.id)+'</b>'
+            +'<s>'+(n?esc(n.source)+' &middot; <em>'+esc(n.title.slice(0,64))+'</em>'
+                     :'Their full record')+'</s></span></a>';
+        }).join('');
+        host.hidden=false;
+        document.getElementById('yours-sec').hidden=false;
+        var note=document.getElementById('urt-yoursnote');
+        note.innerHTML='Following '+mine.length+' runner'+(mine.length===1?'':'s')
+          +' on this device. No account, so this list lives in this browser only. '
+          +'<button type="button" id="urt-backup-link">Copy a backup link</button>';
+        note.hidden=false;
+
+        /* The backup is the list, encoded into a URL fragment. A fragment never reaches a
+           server, so this carries a list to another device without us ever holding one. */
+        var bl=document.getElementById('urt-backup-link');
+        if(bl) bl.addEventListener('click',function(){
+          try{
+            var payload={a:mine.map(function(x){return {i:x.id,n:x.name||x.id};})};
+            var b64=btoa(unescape(encodeURIComponent(JSON.stringify(payload))))
+              .replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+            var url=location.origin+'/restore.html#'+b64;
+            (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject())
+              .then(function(){ bl.textContent='Copied - save it somewhere'; })
+              .catch(function(){
+                /* no clipboard (http, old browser, denied): show it so it can still be copied */
+                var i=document.createElement('input');
+                i.value=url; i.style.cssText='width:100%;margin-top:8px;font-size:11px';
+                bl.replaceWith(i); i.select();
+              });
+          }catch(e){ bl.textContent='Could not build a link'; }
+        });
+      }).catch(function(){});
+  }
+  if(document.readyState==='complete') go();
+  else window.addEventListener('load',go);
+}());
+</script>
+<script>
+/* urt-faces: the browse wall. One small file, and a tile only exists when we hold a real
+   photograph for that runner — a grid with grey holes in it reads as broken. */
+(function(){
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  fetch('/faces.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){ return r.ok?r.json():null; })
+    .then(function(d){
+      var rows=(d&&d.faces)||[];
+      if(!rows.length) return;
+      var host=document.getElementById('urt-faces');
+      host.innerHTML=rows.map(function(f){
+        return '<a href="/a/'+esc(f.p)+'" title="'+esc(f.n)+(f.c?' \u00b7 '+esc(f.c):'')+'">'
+          +'<img src="'+esc(f.i)+'" alt="" loading="lazy" referrerpolicy="no-referrer" '
+          +'onerror="this.closest(\'a\').remove()">'
+          +'<span class="fm"><b>'+esc(f.n)+'</b><s>'+esc(f.s)+'</s></span></a>';
+      }).join('');
+      host.hidden=false;
+      document.getElementById('faces-sec').hidden=false;
+      var ft=document.getElementById('urt-facesfoot');
+      ft.innerHTML='Every runner on this site has a page, whether they won or finished last. '
+        +'<a href="/vs/">Put two of them side by side</a>.';
+      ft.hidden=false;
+    }).catch(function(){});
+}());
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About Ultraruntrack</title>
+<meta name="description" content="Live race tracking for ultramarathons. Ultraruntrack estimates runner position between official checkpoints using historical pace data. Free, no tracking, no login.">
+<meta name="theme-color" content="#080a0e">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="About Ultraruntrack">
+<meta property="og:description" content="Live race tracking for ultramarathons. Ultraruntrack estimates runner position between official checkpoints using historical pace data. Free, no tracking, no login.">
+<meta property="og:image" content="https://ultraruntrack.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080a0e;--panel:#0f131a;--panel2:#141a23;--line:#1e2632;--txt:#e8edf4;
+ --dim:#8b97a8;--dim2:#5d6878;--hot:#ff7a1a;--go:#3ddc97;
+ --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+ --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.65;
+ -webkit-font-smoothing:antialiased}
+a{color:var(--hot);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#10151d,#0b0f15)}
+.hb{display:flex;align-items:center;gap:16px;padding:13px 0;flex-wrap:wrap}
+.logo{font-size:16px;font-weight:800;letter-spacing:.4px;color:var(--txt)}
+.logo i{font-style:normal;color:var(--hot)}
+nav{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap}
+nav a{font-size:11px;font-family:var(--mono);letter-spacing:1px;text-transform:uppercase;
+ color:var(--dim2)}
+nav a:hover,nav a.on{color:var(--hot);text-decoration:none}
+main{padding:38px 0 20px}
+main h1{font-size:clamp(26px,4.6vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:22px}
+main h2{font-size:19px;font-weight:700;margin:30px 0 10px;letter-spacing:-.2px}
+main h3{font-size:15px;font-weight:700;margin:22px 0 8px;color:var(--txt)}
+main p{color:var(--dim);margin-bottom:13px;font-size:14.5px}
+main ul{color:var(--dim);margin:0 0 15px 20px;font-size:14.5px}
+main li{margin-bottom:7px}
+main strong,main b{color:var(--txt)}
+.back{display:inline-block;margin:26px 0 6px;font-family:var(--mono);font-size:11px;
+ letter-spacing:1px;text-transform:uppercase}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 46px;
+ font-size:11px;color:var(--dim2);font-family:var(--mono);line-height:1.9}
+footer a{color:var(--dim)}
+.builtby{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:6px 12px;
+ border:1px solid var(--line);border-radius:20px;background:var(--panel)}
+.builtby span{color:var(--dim2);font-size:10px;letter-spacing:1px}
+.builtby a{color:var(--hot);font-weight:700}
+
+/* urt-nav: the same five destinations on every page. Before this, /vs/ and proof.html had no
+   navigation at all and the upcoming schedule was unreachable from anywhere. */
+.urtnav{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.urtnav a{font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.7px;
+  text-transform:uppercase;text-decoration:none;padding:7px 11px;border-radius:8px;
+  color:var(--ink-2,#4d463f);white-space:nowrap;transition:background .16s ease,color .16s ease}
+.urtnav a:hover{background:rgba(255,122,26,.1);color:var(--acc,#a83a06)}
+.urtnav a[aria-current="page"]{color:var(--acc,#a83a06);background:rgba(255,122,26,.09)}
+@media (max-width:760px){
+  .urtnav{gap:0}
+  .urtnav a{padding:6px 8px;font-size:10px}
+}
+</style>
+  <link rel="stylesheet" href="/urt.css">
+
+<style>
+/* The page was nine generic headings and no hierarchy. This gives it one thing to say first. */
+.abhero{margin:8px 0 40px;padding:0 0 32px;border-bottom:1px solid var(--line,#e8e0d4)}
+.abclaim{font-family:var(--display,inherit);font-size:clamp(24px,3.6vw,42px);line-height:1.14;
+  letter-spacing:-.032em;color:var(--ink,#141d26);margin:0;max-width:16em}
+.abclaim em{font-style:normal;color:var(--acc,#a83a06)}
+.absub{font-size:clamp(15px,1.7vw,18px);color:var(--ink-2,#4d463f);margin:18px 0 0;
+  max-width:52ch;line-height:1.55}
+.abnums{display:flex;gap:34px;flex-wrap:wrap;margin:30px 0 0;padding:22px 0 0;
+  border-top:1px solid var(--line,#e8e0d4)}
+.abnums div{min-width:96px}
+.abnums b{display:block;font-family:var(--display,inherit);font-size:27px;line-height:1;
+  letter-spacing:-.02em;color:var(--ink,#141d26)}
+.abnums s{text-decoration:none;display:block;font-family:var(--mono,ui-monospace,monospace);
+  font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-3,#8a8378);
+  margin-top:7px}
+@media(max-width:640px){.abnums{gap:22px}.abnums b{font-size:22px}}
+</style>
+</head>
+<body>
+<header><div class="wrap hb">
+  <a class="logo" href="/">ULTRA<i>RUN</i>TRACK</a>
+  
+</div></header>
+<div class="urtnavbar"><div style="max-width:1180px;margin:0 auto;padding:0 20px 10px"><nav class="urtnav"><a href="/">Races</a><a href="/upcoming/">Upcoming</a><a href="/vs/">Head to head</a><a href="/sponsors.html">Sponsors</a><a href="/about.html" aria-current="page">About</a><a href="/contact.html">Contact</a></nav></div></div>
+<div class="wrap"><main>
+<h1>About UltraRunTrack</h1>
+
+  <!-- The most credible sentence on this site was in a bullet list in 15px type. A backtested
+       accuracy claim, stated plainly, by a site that could have said nothing at all. -->
+  <div class="abhero">
+    <p class="abclaim">Mean error is roughly <em>one mile</em> between checkpoints.</p>
+    <p class="absub">Backtested against archived race data. Where we are unsure, we say so, and
+      where we have nothing we show nothing.</p>
+    <div class="abnums">
+      <div><b>109</b><s>Races in the archive</s></div>
+      <div><b>40,231</b><s>Runners on record</s></div>
+      <div><b>3.29M</b><s>Race miles tracked</s></div>
+      <div><b>1994</b><s>Earliest result held</s></div>
+    </div>
+  </div>
+<h2>These races carry no GPS. We read the splits instead.</h2>
+<p>Ultraruntrack is a live position tracker for ultramarathon races. It shows where runners are on course right now, based on timing data races publish at official checkpoints.</p>
+<p>Most elite ultramarathons—Badwater 135, Western States 100, and others—do not use GPS. Race organizers publish split times at official stations spaced 17 to 42 miles apart. That is the only official data.</p>
+<p>Ultraruntrack takes those checkpoint times and estimates each runner's position between stations. It fills the gap between checkpoints so you can watch the race unfold.</p>
+
+<h2>You know who is in front. You have no idea where they are twenty minutes later.</h2>
+<p>When a race publishes its first checkpoint, you know who is in front. You have no idea where they are 20 minutes later.</p>
+<p>For fans, that is boring. For crew, it is a planning problem. For race analysis, it is a hard stop.</p>
+<p>Ultraruntrack solves this. Crew can see when their runner approaches their station. Analysts can track pace trends live. Race fans can watch the race as it happens.</p>
+
+<h2>Three inputs, recalibrated at every checkpoint</h2>
+<p>Position between checkpoints is estimated using three inputs:</p>
+<ul>
+<li>Historical pace for each course segment, taken from median pace over that stretch in previous races.</li>
+<li>Adjustment for each runner's current form. Runners running faster than their historical average get an optimistic estimate. Runners falling behind get a conservative one.</li>
+<li>Recalibration at every checkpoint. When a runner reaches the next checkpoint, the real split time replaces the estimate.</li>
+</ul>
+<p>This method has been backtested against archived race data. Mean error is roughly 1 mile between checkpoints.</p>
+<p>The site never projects a runner past a checkpoint not yet reached. It never ranks runners with no confirmed split. When multiple runners share an estimated position, they appear as a single pack marker, not invented separation.</p>
+
+<h2>What we will not do</h2>
+<p>Estimates answer a simple question: roughly where is this runner right now. They are not precise. They are honest.</p>
+<p>We do not invent data. If a runner has not reached a checkpoint, we do not guess. If we lack historical data for a segment, we use conservative pace estimates.</p>
+<p>We do not rank runners with no confirmed split, and we do not show a projected finish or an average pace until a runner has cleared a real checkpoint. Once they have, we do show a projected finish, clearly labelled as a projection.</p>
+<p>They work because most ultrarunners hold a steady pace over familiar terrain. They break down in extreme conditions, major mechanicals, or when a runner changes strategy mid-race.</p>
+
+<h2>No accounts, no cookies, no analytics, no pixels</h2>
+<p>Ultraruntrack is free. No accounts. No login. No cookies, analytics, tracking pixels, or personal data collection.</p>
+<p>Traffic is measured from server logs only. An optional email list notifies you when the next race is tracked. That is the only data collected, and only if you opt in.</p>
+
+<h2>An independent fan project, not a race service</h2>
+<p>Ultraruntrack is an independent fan project. It is not affiliated with, endorsed by, or connected to any race organizer or timing partner.</p>
+<p>Timing data comes from races and their official timing partners. For Badwater, that is AdventureCORPS. We use their publicly published data.</p>
+<p>We are not a race service. We are a fan project built by Forge Built AI.</p>
+
+<h2>If you put on a race</h2>
+<p>If you run a race or manage its timing, email <a href="/contact.html">our contact form</a></p>
+
+  <form class="urt-contact-form" id="urt-contact-form" novalidate>
+    <div class="cfrow">
+      <input name="name" placeholder="Your name" aria-label="Your name" autocomplete="name">
+      <input name="email" type="email" placeholder="Your email" aria-label="Your email"
+             autocomplete="email" required>
+    </div>
+    <input name="race" placeholder="Which race?" aria-label="Which race">
+    <textarea name="message" rows="4" required
+      placeholder="Tell us about the race and how its timing is published."
+      aria-label="Message"></textarea>
+    <!-- honeypot: a real person never sees this, a bot fills it in -->
+    <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="cfhp">
+    <div class="cfrow2">
+      <button type="submit">Send it</button>
+      <span class="cfmsg" id="cf-msg"></span>
+    </div>
+  </form>
+  <p style="display:none">.</p>
+<p>We can track any race that publishes split times at official checkpoints and consents to live tracking and analysis.</p>
+
+<h2>Who built this</h2>
+<p>Ultraruntrack is built and operated by Forge Built AI, a systems studio that builds AI-driven tools for specific problems in specific industries.</p>
+<p>This site is both a free public service and a live demonstration of our work. Learn more at <a href="https://forgebuiltai.com">https://forgebuiltai.com</a>.</p>
+<a class="back" href="/">&larr; Back to live tracking</a>
+</main></div>
+<footer><div class="wrap">
+  UltraRunTrack &middot; independent fan project, not affiliated with any race organiser.<br>
+  Timing data belongs to the races and their timing partners. Positions between checkpoints
+  are estimates, not GPS.<br>
+  <a href="/contact.html">our contact form</a>
+  <br><span class="builtby"><span>BUILT BY</span>
+  <a href="https://forgebuiltai.com" target="_blank" rel="noopener">FORGE BUILT AI</a></span>
+</div></footer>
+<script src="/urt.js" defer></script>
+
+<style>
+/* The published mailto returns 554, so this is the only working way to reach the site. */
+.urt-contact-form{display:grid;gap:10px;max-width:560px;margin:18px 0 6px}
+.urt-contact-form input,.urt-contact-form textarea{background:var(--panel,#fdfaf4);
+  border:1px solid var(--line-2,#ddd2c2);border-radius:10px;padding:11px 13px;font:inherit;
+  font-size:14.5px;color:var(--ink,#141d26);width:100%;box-sizing:border-box}
+.urt-contact-form input:focus,.urt-contact-form textarea:focus{outline:2px solid
+  var(--acc-bright,#ff7a1a);outline-offset:1px}
+.cfrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cfhp{position:absolute;left:-9999px;width:1px;height:1px}
+.cfrow2{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.urt-contact-form button{background:var(--acc-bright,#ff7a1a);color:#141d26;border:0;
+  border-radius:10px;padding:12px 22px;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+.urt-contact-form button:disabled{opacity:.6;cursor:default}
+.cfmsg{font-size:13px;color:var(--ink-2,#4d463f)}
+@media(max-width:560px){.cfrow{grid-template-columns:1fr}}
+</style>
+<script>
+(function(){
+  var f=document.getElementById('urt-contact-form'); if(!f) return;
+  var msg=document.getElementById('cf-msg');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=f.querySelector('button');
+    var d={};
+    ['name','email','race','message','website'].forEach(function(k){
+      var el=f.querySelector('[name="'+k+'"]'); d[k]=el?el.value.trim():'';
+    });
+    if(d.message.length<10){ msg.textContent='Tell us a little more.'; return; }
+    b.disabled=true; msg.textContent='Sending...';
+    fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(d)})
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(j&&j.ok){
+          f.innerHTML='<p style="font-size:15px;color:var(--ink)">Got it. We read every one '
+            +'of these, and we will come back to you.</p>';
+        } else {
+          b.disabled=false;
+          msg.textContent=(j&&j.error)||'That did not go through. Try again in a moment.';
+        }
+      })
+      .catch(function(){
+        b.disabled=false;
+        msg.textContent='That did not go through. Try again in a moment.';
+      });
+  });
+}());
+</script>
+</body>
+</html>

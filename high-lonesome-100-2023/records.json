@@ -1,0 +1,100 @@
+{
+ "men": {
+  "name": "Jeffrey Colt",
+  "sex": "m",
+  "year": 2025,
+  "seconds": 67920,
+  "time": "18:52:00"
+ },
+ "women": {
+  "name": "Becca Bramley",
+  "sex": "f",
+  "year": 2026,
+  "seconds": 78949,
+  "time": "21:55:49"
+ },
+ "top10": [
+  {
+   "name": "Jeffrey Colt",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 67920,
+   "time": "18:52:00"
+  },
+  {
+   "name": "Jimmy Elam",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 70923,
+   "time": "19:42:03"
+  },
+  {
+   "name": "Ryan Sullivan",
+   "sex": "m",
+   "year": 2026,
+   "seconds": 71790,
+   "time": "19:56:30"
+  },
+  {
+   "name": "Gabe Joyes",
+   "sex": "m",
+   "year": 2026,
+   "seconds": 72683,
+   "time": "20:11:23"
+  },
+  {
+   "name": "Ryan Smith",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 72904,
+   "time": "20:15:04"
+  },
+  {
+   "name": "Christopher Hammes",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 72985,
+   "time": "20:16:25"
+  },
+  {
+   "name": "Ryan Smith",
+   "sex": "m",
+   "year": 2022,
+   "seconds": 75537,
+   "time": "20:58:57"
+  },
+  {
+   "name": "Ryan Smith",
+   "sex": "m",
+   "year": 2018,
+   "seconds": 75779,
+   "time": "21:02:59"
+  },
+  {
+   "name": "Alex Nichols",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 75968,
+   "time": "21:06:08"
+  },
+  {
+   "name": "John Herrick",
+   "sex": "m",
+   "year": 2021,
+   "seconds": 76980,
+   "time": "21:23:00"
+  }
+ ],
+ "years_parsed": [
+  2017,
+  2018,
+  2019,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "generated": "fastest finishes in 2017-2026 as published by the race"
+}

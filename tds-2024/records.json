@@ -1,0 +1,92 @@
+{
+ "men": {
+  "name": "Thibault MARQUET",
+  "sex": "m",
+  "year": 2024,
+  "seconds": 68386,
+  "time": "18:59:46"
+ },
+ "women": {
+  "name": "Marie DOHIN",
+  "sex": "f",
+  "year": 2024,
+  "seconds": 86771,
+  "time": "24:06:11"
+ },
+ "top10": [
+  {
+   "name": "Thibault MARQUET",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 68386,
+   "time": "18:59:46"
+  },
+  {
+   "name": "Alban BERSON",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 71810,
+   "time": "19:56:50"
+  },
+  {
+   "name": "Gautier AIRIAU",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 72452,
+   "time": "20:07:32"
+  },
+  {
+   "name": "Nicolas GOURDON",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 73863,
+   "time": "20:31:03"
+  },
+  {
+   "name": "Kevin ROUX",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 74703,
+   "time": "20:45:03"
+  },
+  {
+   "name": "Ales SEDLAK",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 75846,
+   "time": "21:04:06"
+  },
+  {
+   "name": "Zairan LI",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 76447,
+   "time": "21:14:07"
+  },
+  {
+   "name": "Marijn SINKELDAM",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 76490,
+   "time": "21:14:50"
+  },
+  {
+   "name": "Jason SCHLARB",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 76876,
+   "time": "21:21:16"
+  },
+  {
+   "name": "Cl\u00e9ment MUGNIER",
+   "sex": "m",
+   "year": 2024,
+   "seconds": 77206,
+   "time": "21:26:46"
+  }
+ ],
+ "years_parsed": [
+  2024
+ ],
+ "generated": "fastest finishes in 2024-2024 as published by the race"
+}

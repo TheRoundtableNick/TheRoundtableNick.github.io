@@ -1,0 +1,115 @@
+{
+ "men": {
+  "name": "Yoshihiko Ishikawa",
+  "sex": "m",
+  "year": 2019,
+  "seconds": 77581,
+  "time": "21:33:01"
+ },
+ "women": {
+  "name": "Ashley Paulson",
+  "sex": "f",
+  "year": 2023,
+  "seconds": 78275,
+  "time": "21:44:35"
+ },
+ "top10": [
+  {
+   "name": "Yoshihiko Ishikawa",
+   "sex": "m",
+   "year": 2019,
+   "seconds": 77581,
+   "time": "21:33:01"
+  },
+  {
+   "name": "Ashley Paulson",
+   "sex": "f",
+   "year": 2023,
+   "seconds": 78275,
+   "time": "21:44:35"
+  },
+  {
+   "name": "Simen Holvik",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 78465,
+   "time": "21:47:45"
+  },
+  {
+   "name": "Pete Kostelnick",
+   "sex": "m",
+   "year": 2016,
+   "seconds": 78992,
+   "time": "21:56:32"
+  },
+  {
+   "name": "Iv\u00e1n Penalba Lopez",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 79636,
+   "time": "22:07:16"
+  },
+  {
+   "name": "Simen Holvik",
+   "sex": "m",
+   "year": 2023,
+   "seconds": 80888,
+   "time": "22:28:08"
+  },
+  {
+   "name": "Pete Kostelnick",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 81762,
+   "time": "22:42:42"
+  },
+  {
+   "name": "Valmir Nunes",
+   "sex": "m",
+   "year": 2007,
+   "seconds": 82289,
+   "time": "22:51:29"
+  },
+  {
+   "name": "Mike Morton",
+   "sex": "m",
+   "year": 2012,
+   "seconds": 82375,
+   "time": "22:52:55"
+  },
+  {
+   "name": "Adam Kimble",
+   "sex": "m",
+   "year": 2025,
+   "seconds": 83188,
+   "time": "23:06:28"
+  }
+ ],
+ "years_parsed": [
+  2000,
+  2001,
+  2002,
+  2003,
+  2004,
+  2005,
+  2006,
+  2007,
+  2008,
+  2009,
+  2010,
+  2011,
+  2012,
+  2013,
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "generated": "fastest finishes in 2000-2025 as published by the race"
+}

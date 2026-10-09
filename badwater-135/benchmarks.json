@@ -1,0 +1,82 @@
+{
+  "field_2026": {
+    "nations": 16,
+    "men": 70,
+    "women": 28,
+    "wave_2000": 38,
+    "wave_2100": 31,
+    "wave_2200": 29,
+    "total": 98
+  },
+  "benchmarks_2021_2025": {
+    "finish_rate_pct": 85.6,
+    "median_finish_s": 137463,
+    "stations": [
+      {
+        "code": "FC",
+        "name": "Furnace Creek",
+        "mile": 17,
+        "median_finisher_s": 11580,
+        "median_late_s": 13320
+      },
+      {
+        "code": "SPW",
+        "name": "Stovepipe Wells",
+        "mile": 42,
+        "median_finisher_s": 30360,
+        "median_late_s": 34740
+      },
+      {
+        "code": "TP",
+        "name": "Towne Pass",
+        "mile": 58,
+        "median_finisher_s": 49440,
+        "median_late_s": 55680
+      },
+      {
+        "code": "PS",
+        "name": "Panamint Springs",
+        "mile": 72,
+        "median_finisher_s": 62760,
+        "median_late_s": 70740
+      },
+      {
+        "code": "DW",
+        "name": "Darwin",
+        "mile": 90,
+        "median_finisher_s": 86640,
+        "median_late_s": 99660
+      },
+      {
+        "code": "KLR",
+        "name": "Keeler",
+        "mile": 108,
+        "median_finisher_s": 108090,
+        "median_late_s": 124080
+      },
+      {
+        "code": "LP",
+        "name": "Lone Pine",
+        "mile": 122,
+        "median_finisher_s": 121560,
+        "median_late_s": 137220
+      },
+      {
+        "code": "PR",
+        "name": "Portal Road",
+        "mile": 131,
+        "median_finisher_s": 130320,
+        "median_late_s": 148320
+      },
+      {
+        "code": "FIN",
+        "name": "Whitney Portal",
+        "mile": 135,
+        "median_finisher_s": 137366,
+        "median_late_s": 156360
+      }
+    ],
+    "finishers_count": 334,
+    "starters_count": 390
+  }
+}
